@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: etask
+# key: etask
+# --
+(task '${1:name} '($2) "${3:desc}" '(lambda (&optional x) (ent-emacs "${4:efunction}" 
+                                                    (expand-file-name ent-file-name ent-project-home))))
+$0

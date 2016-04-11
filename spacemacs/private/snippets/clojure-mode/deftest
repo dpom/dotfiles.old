@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: deftest
+# key: deftest
+# --
+(deftest ${1:function}-test
+  (is (= $0 ($1 ))))
+

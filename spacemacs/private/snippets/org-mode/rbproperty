@@ -1,0 +1,181 @@
+# -*- mode: snippet -*-
+# name : rb_property
+# key : rbproperty
+# --
+** Property:${1:name}
+*** ItemName:nil
+#+name: ItemName_
+#begin_src xml 
+<ItemName>$1</ItemName>
+#+end_src
+*** Compatibility:nil
+#+name: Compatibility_
+#begin_src xml 
+<Compatibility></Compatibility>
+#+end_src
+*** Visible:nil
+#+name: Visible_
+#begin_src xml 
+<Visible>1</Visible>
+#+end_src
+*** ItemSource:${2:class}/$1
+**** TextEncoding:TextEncoding
+#+name: TextEncoding_TextEncoding
+#begin_src xml 
+<TextEncoding>134217984</TextEncoding>
+#+end_src
+**** SourceLine:$2/$1
+#+name: $2/$1
+#+begin_src rb :tangle rb/$2/$1.rb :mkdirp yes
+$1 As ${3:type}
+#+end_src
+*** TextEncoding:nil
+#+name: TextEncoding_
+#begin_src xml 
+<TextEncoding>134217984</TextEncoding>
+#+end_src
+*** ItemDeclaration:nil
+#+name: ItemDeclaration_
+#begin_src xml 
+<ItemDeclaration>$1 As $3</ItemDeclaration>
+#+end_src
+*** ItemFlags:nil
+#+name: ItemFlags_
+#begin_src xml 
+<ItemFlags>0</ItemFlags>
+#+end_src
+*** Shared:nil
+#+name: Shared_
+#begin_src xml 
+<Shared>0</Shared>
+#+end_src
+** Method:get${1:$(capitalize yas-text)}
+*** ItemName:nil
+#+name: ItemName_
+#begin_src xml 
+<ItemName>get${1:$(capitalize yas-text)}</ItemName>
+#+end_src
+*** Compatibility:nil
+#+name: Compatibility_
+#begin_src xml 
+<Compatibility></Compatibility>
+#+end_src
+*** Visible:nil
+#+name: Visible_
+#begin_src xml 
+<Visible>1</Visible>
+#+end_src
+*** ItemSource:$2/get${1:$(capitalize yas-text)}
+**** TextEncoding:TextEncoding
+#+name: TextEncoding_TextEncoding
+#begin_src xml 
+<TextEncoding>134217984</TextEncoding>
+#+end_src
+**** SourceLine:$2/get${1:$(capitalize yas-text)}
+#+name: $2/get${1:$(capitalize yas-text)}
+#+begin_src rb :tangle rb/$2/get${1:$(capitalize yas-text)}.rb :mkdirp yes
+Function get${1:$(capitalize yas-text)}() As $3
+/// @file $2/get${1:$(capitalize yas-text)}
+/// @brief getter for $1
+///
+/// @param void
+/// @return $3
+Return me.$1
+End Function
+#+end_src
+*** TextEncoding:nil
+#+name: TextEncoding_
+#begin_src xml 
+<TextEncoding>134217984</TextEncoding>
+#+end_src
+*** AliasName:nil
+#+name: AliasName_
+#begin_src xml 
+<AliasName></AliasName>
+#+end_src
+*** ItemFlags:nil
+#+name: ItemFlags_
+#begin_src xml 
+<ItemFlags>0</ItemFlags>
+#+end_src
+*** Shared:nil
+#+name: Shared_
+#begin_src xml 
+<Shared>0</Shared>
+#+end_src
+*** ItemParams:nil
+#+name: ItemParams_
+#begin_src xml 
+<ItemParams></ItemParams>
+#+end_src
+*** ItemResult:nil
+#+name: ItemResult_
+#begin_src xml 
+<ItemResult>$3</ItemResult>
+#+end_src
+** Method:set${1:$(capitalize yas-text)}
+*** ItemName:nil
+#+name: ItemName_
+#begin_src xml 
+<ItemName>set${1:$(capitalize yas-text)}</ItemName>
+#+end_src
+*** Compatibility:nil
+#+name: Compatibility_
+#begin_src xml 
+<Compatibility></Compatibility>
+#+end_src
+*** Visible:nil
+#+name: Visible_
+#begin_src xml 
+<Visible>1</Visible>
+#+end_src
+*** ItemSource:$2/set${1:$(capitalize yas-text)}
+**** TextEncoding:TextEncoding
+#+name: TextEncoding_TextEncoding
+#begin_src xml 
+<TextEncoding>134217984</TextEncoding>
+#+end_src
+**** SourceLine:$2/set${1:$(capitalize yas-text)}
+#+name: $2/set${1:$(capitalize yas-text)}
+#+begin_src rb :tangle rb/$2/set${1:$(capitalize yas-text)}.rb :mkdirp yes
+Sub set${1:$(capitalize yas-text)}(p_$1 as $3)
+/// @file $2/set${1:$(capitalize yas-text)}
+/// @brief setter for $1 property
+///
+/// @param p_$1 - the new value of the property
+/// @return void
+me.$1 = p_$1
+
+End Sub
+#+end_src
+*** TextEncoding:nil
+#+name: TextEncoding_
+#begin_src xml 
+<TextEncoding>134217984</TextEncoding>
+#+end_src
+*** AliasName:nil
+#+name: AliasName_
+#begin_src xml 
+<AliasName></AliasName>
+#+end_src
+*** ItemFlags:nil
+#+name: ItemFlags_
+#begin_src xml 
+<ItemFlags>0</ItemFlags>
+#+end_src
+*** Shared:nil
+#+name: Shared_
+#begin_src xml 
+<Shared>0</Shared>
+#+end_src
+*** ItemParams:nil
+#+name: ItemParams_
+#begin_src xml 
+<ItemParams>p_$1 As $3</ItemParams>
+#+end_src
+*** ItemResult:nil
+#+name: ItemResult_
+#begin_src xml 
+<ItemResult></ItemResult>
+#+end_src
+$0

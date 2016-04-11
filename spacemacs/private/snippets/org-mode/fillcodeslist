@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# name: fill_codes_list
+# key: fillcodeslist
+# --
+#+orgtbl: send fill-${1:list} orgtbl-to-sqlinsert :sqlname "codes_list"  :tstart "#+begin_src sql" :tend "#+end_src" :results replace :no-escape t
+| codes_list_id | codes_list_sub_type | codes_list_parent | codes_list_order | codes_list_text  | codes_list_parameter_1 | codes_list_parameter_2 | codes_list_type  | codes_list_deleted | codes_list_date_created | codes_list_date_modification | codes_list_users_id_last_modification |
+|-------+-------------+-----------+----------+----------+----------------+----------------+----------+------------+-----------------+----------------------+-------------------------------|
+| $1    | folder      | root      |        0 | $0       |                |                | enumlist | false      |                 |                      | dev                           |
+|       | item        | $1        |          |          |                |                | enumlist | false      |                 |                      | dev                           |
+#+TBLFM: \$8=enumlist::\$9=false::\$10='(format-time-string "%Y-%m-%d %H:%M:%S")::\$11='(format-time-string "%Y-%m-%d %H:%M:%S")::\$12=dev::@3\$4..@>\$4=@-1 + 1
+
+
+#+begin receive orgtbl fill-$1
+#+end receive orgtbl fill-$1

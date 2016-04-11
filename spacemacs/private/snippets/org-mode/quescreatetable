@@ -1,0 +1,34 @@
+# -*- mode: snippet -*-
+# name : quescreatetable
+# key : quescreatetable
+# --
+** ${1:table}
+#+name: create-$1
+#+begin_src sql :tangle src/database/Create${1:$(capitalize yas-text)}.sql :padline no :noweb yes :results silent
+DROP TABLE IF EXISTS $1;
+
+CREATE TABLE $1
+(
+  $1_seqnbr serial NOT NULL,
+  $1_deleted boolean NOT NULL,
+  $1_recordstatus character varying(10),
+  $1_date_created timestamp without time zone NOT NULL,
+  $1_date_modification timestamp without time zone NOT NULL,
+  $1_users_id_last_modification character varying(75) NOT NULL,
+  $1_internal_comments_1 text,
+  $1_internal_comments_2 text,
+  $1_internal_comments_3 text,
+
+  $1_center_id character varying(75) NOT NULL,
+
+$0
+
+  CONSTRAINT $1_pkey PRIMARY KEY ($1_seqnbr )
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE $1
+  OWNER TO postgres;
+#+end_src
+

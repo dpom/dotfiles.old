@@ -1,0 +1,15 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: qforeignkey_field
+# key: qforeignkey
+# binding: direct-keybinding
+# --
+<div id="${1:field}" class="qfield qforeignkey">
+    <div class="row">
+        <div class="small-3 columns"> <label for="$1" class="right inline qlabel ">${2:label}:</label> </div>
+        <div class="small-9 columns end">
+             <select name="$1">
+                     <option value="dev">enumlist</option>
+             </select>
+        </div>
+    </div>
+</div><!--  end qforeignkey -->

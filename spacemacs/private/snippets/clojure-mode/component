@@ -1,0 +1,25 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: component
+# key: component
+# binding: direct-keybinding
+# --
+;;; ${1:$(capitalize yas-text)}
+
+(defrecord ${1:$(capitalize yas-text)} [id ${2:fields}]
+  component/Lifecycle
+
+  (start [this]
+    (log/debugf "Start the %s component." id)
+    (assoc this $0))
+
+  (stop [this]
+    (log/debugf "Stop the %s component." id)
+    (assoc this )))
+
+;; constructor
+(defn new-${1:name} []
+  (let []
+    (log/debugf "Create the %s component." id)
+    (map->${1:$(capitalize yas-text)} {:id id $2})))
+
+;; public API

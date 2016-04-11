@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name : table-param
+# key : tableparam
+# --
+#+attr_latex: :align |r|l|$0

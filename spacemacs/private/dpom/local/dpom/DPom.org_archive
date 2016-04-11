@@ -1,0 +1,370 @@
+
+Archived entries from file /home/dan/.emacs.d/contrib/dpom/DPom.org
+
+
+* CANCELLED [#C] Install iimage and org mode additions [[file:notes.org::*%202010%2010%2016%20Sat%20inline%20images%20in%20org%20mode%20with%20http%20www%20netlaputa%20ne%20jp%20kose%20Emacs%20iimage%20html%20iimage][inline images in org mode]]
+   SCHEDULED: <2011-01-10 Mon> CLOSED: [2011-01-12 Wed 09:28]
+                                                                       :LOGBOOK:
+   - State "CANCELLED"  from "TODO"       [2011-01-12 Wed 09:29] \\
+     org-mode already have an image visualization mode with the command =C-c C-x C-v=
+                                                                           :END:
+                                                                    :PROPERTIES:
+   :Effort:   0:30
+                                                                    :ARCHIVE_TIME: 2012-01-09 Mon 19:01
+                                                                    :ARCHIVE_FILE: ~/.emacs.d/contrib/dpom/DPom.org
+                                                                    :ARCHIVE_OLPATH: Tasks
+                                                                    :ARCHIVE_CATEGORY: DPom
+                                                                    :ARCHIVE_TODO: CANCELLED
+                                                                           :END:
+   [2010-10-17 Sun]
+
+* CANCELLED [#C] Install Emacs 24 ELPA and clojure
+   SCHEDULED: <2011-01-17 Mon> CLOSED: [2011-01-17 Mon 10:14]
+                                                                       :LOGBOOK:
+   - State "CANCELLED"  from "TODO"       [2011-01-17 Mon 10:15] \\
+     mai bine astept versiunea 24
+                                                                           :END:
+:PROPERTIES:
+:ARCHIVE_TIME: 2012-01-09 Mon 19:01
+:ARCHIVE_FILE: ~/.emacs.d/contrib/dpom/DPom.org
+:ARCHIVE_OLPATH: Tasks
+:ARCHIVE_CATEGORY: DPom
+:ARCHIVE_TODO: CANCELLED
+:END:
+
+   My personal package archive at http://repo.technomancy.us/emacs/ now has
+   a new clojure-mode, clojure-test-mode, and paredit. It also has durendal
+   and a version of slime that has the version mismatch fix in place.
+
+   If you want to stay on stable Emacs, you can get the latest package.el
+   straight out of Emacs trunk; (http://bit.ly/pkg-el) I've done some
+   testing that indicates it should work fine on 23. Note that it now comes
+   configured with only the FSF repo out of the box, and since it doesn't
+   host non-GNU projects it only has six or so packages. You have to add
+   other archives like ELPA or my own before it's useful.
+
+   tl;dr: you'll get more up-to-date versions of clojure-mode, slime,
+   etc. if you use Emacs 24 with my personal package archive:
+   #+begin_src
+    (add-to-list 'package-archives
+                 '("technomancy" . "http://repo.technomancy.us/emacs/") t)
+   #+end_src
+
+
+* CANCELLED [#A] implementat comanda de traducere automata
+SCHEDULED: <2011-12-28 Wed>
+:LOGBOOK:
+CLOCK: [2011-12-28 Wed 22:28]--[2011-12-28 Wed 22:43] =>  0:15
+CLOCK: [2011-12-28 Wed 13:38]--[2011-12-28 Wed 14:06] =>  0:28
+:END:
+:PROPERTIES:
+:ARCHIVE_TIME: 2012-01-09 Mon 19:01
+:ARCHIVE_FILE: ~/.emacs.d/contrib/dpom/DPom.org
+:ARCHIVE_OLPATH: Tasks
+:ARCHIVE_CATEGORY: DPom
+:ARCHIVE_TODO: CANCELLED
+:END:
+
+* DONE [#B] install emacs-nexus
+   SCHEDULED: <2011-03-10 Thu>
+                                                                       :LOGBOOK:
+   - State "DONE"       from "STARTED"    [2011-03-10 Thu 12:54]
+   CLOCK: [2011-03-10 Thu 12:46]--[2011-03-10 Thu 12:52] =>  0:06
+                                                                           :END:
+:PROPERTIES:
+:ARCHIVE_TIME: 2012-01-09 Mon 19:03
+:ARCHIVE_FILE: ~/.emacs.d/contrib/dpom/DPom.org
+:ARCHIVE_OLPATH: Tasks
+:ARCHIVE_CATEGORY: DPom
+:ARCHIVE_TODO: DONE
+:END:
+  [2011-03-10 Thu]
+https://github.com/juergenhoetzel/emacs-nexus
+
+* DONE studiat convertorul bbdb -> org-contact
+   SCHEDULED: <2011-04-06 Wed>
+                                                                       :LOGBOOK:
+   - State "DONE"       from "STARTED"    [2011-04-06 Wed 16:42]
+   CLOCK: [2011-04-06 Wed 14:51]--[2011-04-06 Wed 16:42] =>  1:51
+                                                                           :END:
+:PROPERTIES:
+:ARCHIVE_TIME: 2012-01-09 Mon 19:03
+:ARCHIVE_FILE: ~/.emacs.d/contrib/dpom/DPom.org
+:ARCHIVE_OLPATH: Tasks
+:ARCHIVE_CATEGORY: DPom
+:ARCHIVE_TODO: DONE
+:END:
+  [2011-03-09 Wed]
+[[gnus:gmane.emacs.orgmode#sdy64pfi91.fsf@wjh.hardakers.net][Email from Wes Hardaker: {O} org-contacts from bbdb: a ]]
+
+* DONE [#C] creat un snippet pt titlu secțiune
+   SCHEDULED: <2011-05-16 Mon>
+                                                                       :LOGBOOK:
+   - State "DONE"       from "TODO"       [2011-05-16 Mon 05:57]
+                                                                           :END:
+                                                                    :PROPERTIES:
+   :Effort:   0:10
+                                                                    :ARCHIVE_TIME: 2012-01-09 Mon 19:03
+                                                                    :ARCHIVE_FILE: ~/.emacs.d/contrib/dpom/DPom.org
+                                                                    :ARCHIVE_OLPATH: Tasks
+                                                                    :ARCHIVE_CATEGORY: DPom
+                                                                    :ARCHIVE_TODO: DONE
+                                                                           :END:
+  [2011-01-27 Thu]
+[[file:~/pers/plan/todo.org::*Formation][Formation]]
+
+* DONE [#B] modify the org-src snippet to choose a language and attach to it an shortcut
+   SCHEDULED: <2011-01-22 Sat> CLOSED: [2011-01-22 Sat 23:50]
+                                                                       :LOGBOOK:
+   - State "DONE"       from "STARTED"    [2011-01-22 Sat 23:50]
+   CLOCK: [2011-01-22 Sat 22:36]--[2011-01-22 Sat 23:49] =>  1:13
+   CLOCK: [2011-01-22 Sat 22:24]--[2011-01-22 Sat 22:34] =>  0:10
+                                                                           :END:
+:PROPERTIES:
+:ARCHIVE_TIME: 2012-01-09 Mon 19:03
+:ARCHIVE_FILE: ~/.emacs.d/contrib/dpom/DPom.org
+:ARCHIVE_OLPATH: Tasks
+:ARCHIVE_CATEGORY: DPom
+:ARCHIVE_TODO: DONE
+:END:
+   [2011-01-22 Sat]
+
+* DONE [#B] create an ob file for xml
+   SCHEDULED: <2011-03-02 Wed>
+                                                                       :LOGBOOK:
+   - State "DONE"       from "STARTED"    [2011-03-08 Tue 18:26]
+   CLOCK: [2011-03-08 Tue 17:56]--[2011-03-08 Tue 18:26] =>  0:30
+   CLOCK: [2011-03-08 Tue 15:49]--[2011-03-08 Tue 17:11] =>  1:22
+                                                                           :END:
+                                                                    :PROPERTIES:
+   :Effort:   1:00
+                                                                    :ARCHIVE_TIME: 2012-01-09 Mon 19:03
+                                                                    :ARCHIVE_FILE: ~/.emacs.d/contrib/dpom/DPom.org
+                                                                    :ARCHIVE_OLPATH: Tasks
+                                                                    :ARCHIVE_CATEGORY: DPom
+                                                                    :ARCHIVE_TODO: DONE
+                                                                           :END:
+   [2011-01-08 Sat]
+
+* DONE [#B] reorganize EmacsInit, name all code blocks and use noweb :computer:
+   SCHEDULED: <2011-01-19 Wed> CLOSED: [2011-01-19 Wed 16:47]
+                                                                       :LOGBOOK:
+   - State "DONE"       from "STARTED"    [2011-01-19 Wed 16:47]
+   CLOCK: [2011-01-19 Wed 15:50]--[2011-01-19 Wed 16:14] =>  0:24
+   CLOCK: [2011-01-19 Wed 13:10]--[2011-01-19 Wed 15:14] =>  2:04
+                                                                           :END:
+                                                                    :PROPERTIES:
+   :Effort:   1:00
+                                                                    :ARCHIVE_TIME: 2012-01-09 Mon 19:03
+                                                                    :ARCHIVE_FILE: ~/.emacs.d/contrib/dpom/DPom.org
+                                                                    :ARCHIVE_OLPATH: Tasks
+                                                                    :ARCHIVE_CATEGORY: DPom
+                                                                    :ARCHIVE_TODO: DONE
+                                                                           :END:
+   [2011-01-19 Wed]
+
+* DONE [#B] study and reconfigure auto-complete mode               :computer:
+   SCHEDULED: <2011-01-12 Wed> CLOSED: [2011-01-12 Wed 17:45]
+                                                                       :LOGBOOK:
+                                                                       - State "DONE"       from "STARTED"    [2011-01-12 Wed 17:45]
+   CLOCK: [2011-01-12 Wed 12:56]--[2011-01-12 Wed 13:29] =>  0:33
+                                                                           :END:
+                                                                    :PROPERTIES:
+   :Effort:   1:00
+                                                                    :ARCHIVE_TIME: 2012-01-09 Mon 19:03
+                                                                    :ARCHIVE_FILE: ~/.emacs.d/contrib/dpom/DPom.org
+                                                                    :ARCHIVE_OLPATH: Tasks
+                                                                    :ARCHIVE_CATEGORY: DPom
+                                                                    :ARCHIVE_TODO: DONE
+                                                                           :END:
+
+* DONE [#B] studiu yasnippet                                       :computer:
+   SCHEDULED: <2011-01-13 Thu> CLOSED: [2011-01-13 Thu 12:38]
+                                                                       :LOGBOOK:
+   - State "DONE"       from "STARTED"    [2011-01-13 Thu 12:38]
+   CLOCK: [2011-01-13 Thu 12:04]--[2011-01-13 Thu 12:38] =>  0:34
+   CLOCK: [2011-01-06 Thu 19:27]--[2011-01-06 Thu 19:52] =>  0:25
+                                                                           :END:
+                                                                    :PROPERTIES:
+   :Effort:   0:30
+                                                                    :ARCHIVE_TIME: 2012-01-09 Mon 19:03
+                                                                    :ARCHIVE_FILE: ~/.emacs.d/contrib/dpom/DPom.org
+                                                                    :ARCHIVE_OLPATH: Tasks
+                                                                    :ARCHIVE_CATEGORY: DPom
+                                                                    :ARCHIVE_TODO: DONE
+                                                                           :END:
+   [2010-10-06 Wed]
+
+* DONE [#B] make auto-complete for bbdb to work fuzzy              :computer:
+   SCHEDULED: <2011-01-10 Mon> CLOSED: [2011-01-12 Wed 19:53]
+                                                                       :LOGBOOK:
+   - State "DONE"       from "STARTED"    [2011-01-12 Wed 19:53]
+   CLOCK: [2011-01-12 Wed 19:10]--[2011-01-12 Wed 19:47] =>  0:37
+                                                                           :END:
+                                                                    :PROPERTIES:
+   :Effort:   0:30
+                                                                    :ARCHIVE_TIME: 2012-01-09 Mon 19:03
+                                                                    :ARCHIVE_FILE: ~/.emacs.d/contrib/dpom/DPom.org
+                                                                    :ARCHIVE_OLPATH: Tasks
+                                                                    :ARCHIVE_CATEGORY: DPom
+                                                                    :ARCHIVE_TODO: DONE
+                                                                           :END:
+   [2010-11-04 Thu]
+
+* DONE [#A] add zaurus config                                      :computer:
+   SCHEDULED: <2011-01-07 Fri> CLOSED: [2011-01-07 Fri 19:03]
+                                                                       :LOGBOOK:
+   CLOCK: [2011-01-07 Fri 17:09]--[2011-01-07 Fri 17:16] =>  0:07
+   CLOCK: [2011-01-07 Fri 16:52]--[2011-01-07 Fri 17:09] =>  0:17
+                                                                           :END:
+:PROPERTIES:
+:ARCHIVE_TIME: 2012-01-09 Mon 19:03
+:ARCHIVE_FILE: ~/.emacs.d/contrib/dpom/DPom.org
+:ARCHIVE_OLPATH: Tasks
+:ARCHIVE_CATEGORY: DPom
+:ARCHIVE_TODO: DONE
+:END:
+
+* DONE [#A] transform dpom project in a literate programming project
+   SCHEDULED: <2011-01-07 Fri> CLOSED: [2011-01-08 Sat 21:44]
+                                                                       :LOGBOOK:
+   CLOCK: [2011-01-08 Sat 21:44]--[2011-01-08 Sat 21:44] =>  0:00
+   CLOCK: [2011-01-08 Sat 21:15]--[2011-01-08 Sat 21:44] =>  0:29
+   CLOCK: [2011-01-07 Fri 22:06]--[2011-01-07 Fri 22:09] =>  0:03
+                                                                           :END:
+:PROPERTIES:
+:ARCHIVE_TIME: 2012-01-09 Mon 19:03
+:ARCHIVE_FILE: ~/.emacs.d/contrib/dpom/DPom.org
+:ARCHIVE_OLPATH: Tasks
+:ARCHIVE_CATEGORY: DPom
+:ARCHIVE_TODO: DONE
+:END:
+
+* DONE [#B] Make the load document to use ido completion mode      :computer:
+   SCHEDULED: <2010-10-31 Sun> CLOSED: [2010-10-31 Sun 18:05]
+                                                                       :LOGBOOK:
+   CLOCK: [2010-10-31 Sun 16:32]--[2010-10-31 Sun 16:55] =>  0:23
+   - State "WAITING"    from "TODO"       [2010-10-13 Wed 08:11] \\
+     finnish muse to org conversion
+:PROPERTIES:
+:ARCHIVE_TIME: 2012-01-09 Mon 19:03
+:ARCHIVE_FILE: ~/.emacs.d/contrib/dpom/DPom.org
+:ARCHIVE_OLPATH: Tasks
+:ARCHIVE_CATEGORY: DPom
+:ARCHIVE_TODO: DONE
+:END:
+                                                                           :END:
+   [2010-09-28 Tue]
+
+* DONE [#B] install last org-mode
+   SCHEDULED: <2010-11-11 Thu> CLOSED: [2010-11-11 Thu 15:23]
+                                                                       :LOGBOOK:
+   CLOCK: [2010-11-11 Thu 15:18]--[2010-11-11 Thu 15:23] =>  0:05
+   CLOCK: [2010-11-11 Thu 15:04]--[2010-11-11 Thu 15:18] =>  0:14
+   CLOCK: [2010-11-11 Thu 14:16]--[2010-11-11 Thu 15:04] =>  0:48
+                                                                           :END:
+:PROPERTIES:
+:ARCHIVE_TIME: 2012-01-09 Mon 19:03
+:ARCHIVE_FILE: ~/.emacs.d/contrib/dpom/DPom.org
+:ARCHIVE_OLPATH: Tasks
+:ARCHIVE_CATEGORY: DPom
+:ARCHIVE_TODO: DONE
+:END:
+   [2010-11-11 Thu]
+
+* DONE [#B] Move ejic in dpom                                      :computer:
+   SCHEDULED: <2010-12-21 Tue> CLOSED: [2010-12-25 Sat 06:34]
+                                                                       :LOGBOOK:
+   CLOCK: [2010-12-25 Sat 06:28]--[2010-12-25 Sat 06:34] =>  0:06
+   CLOCK: [2010-12-23 Thu 18:25]--[2010-12-23 Thu 19:01] =>  0:36
+   CLOCK: [2010-12-23 Thu 18:12]--[2010-12-23 Thu 18:18] =>  0:06
+                                                                           :END:
+                                                                    :PROPERTIES:
+   :Effort:   0:30
+                                                                    :ARCHIVE_TIME: 2012-01-09 Mon 19:03
+                                                                    :ARCHIVE_FILE: ~/.emacs.d/contrib/dpom/DPom.org
+                                                                    :ARCHIVE_OLPATH: Tasks
+                                                                    :ARCHIVE_CATEGORY: DPom
+                                                                    :ARCHIVE_TODO: DONE
+                                                                           :END:
+   [2010-10-06 Wed]
+
+* DONE [#B] update el-get to 1.1 with el-get-update
+   SCHEDULED: <2010-12-23 Thu> CLOSED: [2010-12-23 Thu 21:22]
+                                                                       :LOGBOOK:
+   CLOCK: [2010-12-23 Thu 21:16]--[2010-12-23 Thu 21:22] =>  0:06
+                                                                           :END:
+:PROPERTIES:
+:ARCHIVE_TIME: 2012-01-09 Mon 19:03
+:ARCHIVE_FILE: ~/.emacs.d/contrib/dpom/DPom.org
+:ARCHIVE_OLPATH: Tasks
+:ARCHIVE_CATEGORY: DPom
+:ARCHIVE_TODO: DONE
+:END:
+   [2010-12-22 Wed]
+
+* DONE [#B] move all functions from init files in dpom             :computer:
+   SCHEDULED: <2010-12-30 Thu>
+                                                                       :LOGBOOK:
+   CLOCK: [2011-01-01 Sat 11:28]--[2011-01-01 Sat 12:11] =>  0:43
+                                                                           :END:
+:PROPERTIES:
+:ARCHIVE_TIME: 2012-01-09 Mon 19:03
+:ARCHIVE_FILE: ~/.emacs.d/contrib/dpom/DPom.org
+:ARCHIVE_OLPATH: Tasks
+:ARCHIVE_CATEGORY: DPom
+:ARCHIVE_TODO: DONE
+:END:
+   [2010-12-29 Wed]
+
+* DONE [#A] create a dpom project                                  :computer:
+   SCHEDULED: <2010-12-30 Thu>
+                                                                       :LOGBOOK:
+   CLOCK: [2010-12-31 Fri 19:28]--[2010-12-31 Fri 19:35] =>  0:07
+   CLOCK: [2010-12-31 Fri 16:32]--[2010-12-31 Fri 16:59] =>  0:27
+                                                                           :END:
+                                                                    :PROPERTIES:
+   :Effort:   0:30
+                                                                    :ARCHIVE_TIME: 2012-01-09 Mon 19:03
+                                                                    :ARCHIVE_FILE: ~/.emacs.d/contrib/dpom/DPom.org
+                                                                    :ARCHIVE_OLPATH: Tasks
+                                                                    :ARCHIVE_CATEGORY: DPom
+                                                                    :ARCHIVE_TODO: DONE
+                                                                           :END:
+   [2010-12-30 Thu]
+
+
+* DONE [#B] refactor dpom-org-surround-* functions
+   SCHEDULED: <2011-01-02 Sun> CLOSED: [2011-01-01 Sat 12:43]
+                                                                       :LOGBOOK:
+   CLOCK: [2011-01-01 Sat 12:40]--[2011-01-01 Sat 12:43] =>  0:03
+                                                                           :END:
+:PROPERTIES:
+:ARCHIVE_TIME: 2012-01-09 Mon 19:03
+:ARCHIVE_FILE: ~/.emacs.d/contrib/dpom/DPom.org
+:ARCHIVE_OLPATH: Tasks
+:ARCHIVE_CATEGORY: DPom
+:ARCHIVE_TODO: DONE
+:END:
+
+* DONE [#A] transform emacs initializations in a literate programming file :@admin:
+   SCHEDULED: <2011-01-04 Tue> CLOSED: [2011-01-07 Fri 16:49]
+                                                                       :LOGBOOK:
+   CLOCK: [2011-01-07 Fri 16:49]--[2011-01-07 Fri 16:49] =>  0:00
+   CLOCK: [2011-01-07 Fri 12:35]--[2011-01-07 Fri 13:23] =>  0:48
+   CLOCK: [2011-01-07 Fri 12:28]--[2011-01-07 Fri 12:35] =>  0:07
+   CLOCK: [2011-01-07 Fri 12:26]--[2011-01-07 Fri 12:27] =>  0:01
+   CLOCK: [2011-01-04 Tue 14:11]--[2011-01-04 Tue 15:46] =>  1:35
+   CLOCK: [2011-01-04 Tue 12:44]--[2011-01-04 Tue 12:46] =>  0:02
+   CLOCK: [2011-01-04 Tue 08:13]--[2011-01-04 Tue 08:25] =>  0:12
+   CLOCK: [2011-01-04 Tue 07:48]--[2011-01-04 Tue 08:08] =>  0:20
+                                                                           :END:
+                                                                    :PROPERTIES:
+   :Effort:   3:00
+                                                                    :ARCHIVE_TIME: 2012-01-09 Mon 19:03
+                                                                    :ARCHIVE_FILE: ~/.emacs.d/contrib/dpom/DPom.org
+                                                                    :ARCHIVE_OLPATH: Tasks
+                                                                    :ARCHIVE_CATEGORY: DPom
+                                                                    :ARCHIVE_TODO: DONE
+                                                                           :END:
+   [2011-01-01 Sat]

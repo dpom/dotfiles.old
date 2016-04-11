@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name : ifndef
+# key : ifndef
+# expand-env: ((yas/indent-line 'fixed) (yas/wrap-around-region 'nil))
+# --
+#ifndef _${1:$(upcase text)}_H_
+#define _${1:$(upcase text)}_H_
+
+$0
+
+#endif /* ${1:name} */

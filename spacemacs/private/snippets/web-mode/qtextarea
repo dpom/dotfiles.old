@@ -1,0 +1,13 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: qtextarea_field
+# key: qtextarea
+# binding: direct-keybinding
+# --
+<div id="${1:field}" class="qfield qtextarea">
+    <div class="row">
+        <div class="small-3 columns"> <label for="$1" class="right inline qlabel ">${2:label}:</label> </div>
+        <div class="small-9 columns end">
+            <textarea name="$1" rows="4"/> </textarea>
+        </div>
+    </div>
+</div><!--  end qtextarea -->

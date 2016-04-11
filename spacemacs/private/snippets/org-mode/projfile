@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: project-file
+# key: projfile
+# --
+* Project file
+
+The project is manged with =lein= using the folowing =project.clj= file:
+#+name: project
+#+begin_src clojure :tangle project.clj :padline no :noweb yes :results silent :comments noweb
+
+$0
+#+end_src

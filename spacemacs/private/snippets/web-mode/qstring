@@ -1,0 +1,13 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: qstring_field
+# key: qstring
+# binding: direct-keybinding
+# --
+<div id="${1:field}" class="qfield qstring">
+    <div class="row">
+        <div class="small-3 columns"> <label for="$1" class="right inline qlabel ">${2:label}:</label> </div>
+        <div class="small-9 columns end">
+            <input name="$1" type="text"/>
+        </div>
+    </div>
+</div><!--  end qstring -->

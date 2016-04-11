@@ -1,0 +1,89 @@
+# -*- mode: snippet -*-
+# name: build
+# key: build
+# --
+;; project settings
+(setq ent-project-home (file-name-directory (if load-file-name load-file-name buffer-file-name)))
+(setq ent-project-name "$1")
+(setq ent-clean-regexp "~$\\\\|\\\\.tex$")
+(setq ent-project-config-filename "${1:$(capitalize yas-text)}.org")
+
+;; local functions
+
+(defvar project-version)
+
+(setq project-version (ent-get-version))
+
+(setq ent-cli '(("templates/dev.cli" . "$1.sh")
+                ("templates/prod.cli" ."deploy/$1.sh")
+                ("templates/$1d.cli" ."deploy/$1d")
+                ("templates/dist.cli" . "deploy/dist.sh")
+                ("templates/update.cli" . "deploy/update.sh")
+                ))
+
+(setq pack-update '("deploy/$1.sh"
+                    "deploy/update.sh"
+                    "deploy/$1d"))
+
+(setq pack-dist '("deploy/$1.sh"
+                  "deploy/start_$1.sh"
+                  "deploy/stop_$1.sh"
+                  "deploy/status_$1.sh"
+                  "deploy/dist.sh"
+                  "deploy/$1d"))
+
+(defun add-file-to-zip (zip filename)
+  (progn
+    (message "add %s to %s" filename zipfile)
+    (call-process "zip" nil t t "-j" zipfile filename)))
+
+(defun get-package-name ()
+  (concat "target/" ent-project-name "-" project-version "-standalone.jar"))
+
+(defun make-pack (zipfile pack)
+  (let ((zip (expand-file-name zipfile ent-project-home)))
+    (if (file-exists-p zipfile) (delete-file zip))
+    (mapc (function (lambda (x) (add-file-to-zip zip x))) pack)
+    (add-file-to-zip zip (get-package-name))
+    (call-process "shasum" nil t t zipfile)))
+
+(defun make-update-pack () (make-pack "$1_update.zip" pack-update))
+
+(defun make-dist-pack () (make-pack "$1.zip" pack-dist))
+
+
+;; tasks
+
+(load ent-init-file)
+
+(task 'doc '(compile) "build the project documentation" '(lambda (&optional x) "lein doc"))
+
+(task 'format '() "format the project" '(lambda (&optional x) "lein cljfmt fix"))
+
+(task 'check '() "check the project" '(lambda (&optional x) "lein with-profile +check checkall"))
+
+(task 'tree '() "tree dependencies" '(lambda (&optional x) "lein do clean, deps :tree"))
+
+(task 'tests '() "run tests" '(lambda (&optional x) "lein  with-profile +dan do clean, test"))
+
+(task 'libupdate () "update project libraries" '(lambda (&optional x) "lein ancient :no-colors"))
+
+(task 'package '() "package the library" '(lambda (&optional x) "lein do clean, uberjar"))
+
+(task 'gencli '() "generate script files" '(lambda (&optional x) (ent-emacs "ent-make-all-cli-files"
+                                                                            (expand-file-name ent-file-name ent-project-home))))
+
+(task 'deploy '(gencli package) "deploy the application" '(lambda (&optional x) "chmod a+x deploy/qserv*;ls -l deploy"))
+
+(task 'distupdate '(deploy) "make update distribution" '(lambda (&optional x) (ent-emacs "make-update-pack" 
+                                                                                   (expand-file-name ent-file-name ent-project-home))))
+
+(task 'dist '(deploy) "make distribution" '(lambda (&optional x) (ent-emacs "make-dist-pack" 
+                                                                                         (expand-file-name ent-file-name ent-project-home))))
+
+$0
+
+;; Local Variables:
+;; no-byte-compile: t
+;; no-update-autoloads: t
+;; End:

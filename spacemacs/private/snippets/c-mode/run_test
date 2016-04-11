@@ -1,0 +1,4 @@
+# -*- mode: snippet -*-
+# name: run_test
+# --
+RUN_TEST(test_${1:func}, __LINE__);$0

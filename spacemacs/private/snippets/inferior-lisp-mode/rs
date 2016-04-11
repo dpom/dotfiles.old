@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: user/reset
+# key: rs
+# --
+(user/reset)

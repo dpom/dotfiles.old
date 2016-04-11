@@ -1,0 +1,9 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: searchcriteria 
+# key: searchcriteria
+# binding: direct-keybinding
+# --
+#+call: get-searchcriteria(tablename="${1:tablename}") :results value $0
+
+#+attr_latex: :align |l|l|l|l|
+#+RESULTS:

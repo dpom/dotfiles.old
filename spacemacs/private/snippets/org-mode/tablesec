@@ -1,0 +1,23 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: tablesec 
+# key: tablesec
+# binding: direct-keybinding
+# --
+#+call: get-table-structure(tablename="${1:tablename}") :colnames t :results value $0
+#+attr_latex: :align |l|l|l|l|
+#+RESULTS:
+
+Enumlist fields in this table:
+#+call: get-enumlist(tablename="$1") :colnames t :results value 
+#+attr_latex: :align |l|l|l|l|l|
+#+RESULTS:
+
+Search criteria for this table:
+#+call: get-searchcriteria(tablename="$1") :colnames t :results value
+#+attr_latex: :align |l|l|l|l|
+#+RESULTS:
+
+Columns order for this table:
+#+call: get-columnsorder(tablename="$1") :colnames t :results value
+#+attr_latex: :align |l|l|l|l|
+#+RESULTS:

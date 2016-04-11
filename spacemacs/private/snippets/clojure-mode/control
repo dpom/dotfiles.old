@@ -1,0 +1,40 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: control_file
+# key: control
+# binding: direct-keybinding
+# --
+$0   [qserv.models.page :as page]
+   [qserv.controls.common :refer [handle-page default_detail_actions default_list_actions]]
+ 
+(def list_page_config
+  {:id :${1:table}_list
+   :type :list
+   :page_title "${1:$(capitalize yas-text)} List"
+   :table_name "$1"
+   :entity model/$1
+   :own_url "/$1_list"
+   :pair_url "/$1_detail"
+   :parent_url "/main"
+   :actions default_list_actions
+   })
+
+(def detail_page_config
+  {:id :$1_detail
+   :type :detail
+   :page_title "${1:$(capitalize yas-text)} Detail"
+   :template detail_page_template
+   :table_name "$1"
+   :entity model/$1
+   :own_url "/$1_detail"
+   :pair_url "/$1_list"
+   :parent_url  "/$1_list"
+   :actions default_detail_actions
+   })
+
+
+(defn handle-detail [params]
+  (handle-page params detail_page_config))
+
+(defn handle-list [params]
+  (handle-page params list_page_config))
+
