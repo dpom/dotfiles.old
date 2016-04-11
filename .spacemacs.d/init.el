@@ -7,7 +7,7 @@
    dotspacemacs-distribution 'spacemacs
    ;; List of additional paths where to look for configuration layers.
    ;; Paths must have a trailing slash (ie. `~/.mycontribs/')
-   dotspacemacs-configuration-layer-path '("~/pers/dotfiles/spacemacs/private/")
+   dotspacemacs-configuration-layer-path (list (expand-file-name "layers/" dotspacemacs-directory))
    ;; List of configuration layers to load. If it is the symbol `all' instead
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers '((auto-completion :variables
@@ -18,10 +18,14 @@
                                             git-magit-status-fullscreen t
                                             git-enable-github-support t
                                             git-gutter-use-fringe t)
-                                       github
+                                       (github :variables gh-profile-default-profile "dpom")
                                        version-control
                                        emacs-lisp
+                                       (shell-scripts :variables
+                                                      sh-indentation 2
+                                                      sh-basic-offset 2)
                                        (shell :variables
+                                              shell-default-shell 'shell
                                               shell-default-height 30
                                               shell-default-position 'bottom)
                                        org

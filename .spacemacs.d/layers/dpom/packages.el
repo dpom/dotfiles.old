@@ -401,27 +401,6 @@
         org-mobile-inbox-for-pull dpom/org-notes-file
         )
 
-  ;; Keymap
-  (spacemacs/set-leader-keys
-    "oa" 'org-agenda
-    "og" 'helm-org-agenda-files-headings
-    "oo" 'org-clock-out
-    "oc" 'org-capture
-    "oC" 'helm-org-capture-templates ;requires templates to be defined.
-    "ol" 'org-store-link
-    "obd" 'org-babel-detangle
-    "obt" 'org-babel-tangle
-    )
-  (spacemacs/set-leader-keys "fE" 'dpom/sudo-edit)
-  (spacemacs/set-leader-keys "xf" 'dpom/cleanup-buffer)
-  (spacemacs/set-leader-keys-for-major-mode 'dired-mode
-    "w" 'wdired-change-to-wdired-mode)
-  (spacemacs/set-leader-keys-for-major-mode 'web-mode
-    "mrk" 'web-mode-element-kill)
-  (spacemacs/set-leader-keys-for-major-mode 'org-mode "m," 'org-ctrl-c-ctrl-c)
-  (spacemacs/set-leader-keys-for-major-mode 'org-mode
-    "mBt" 'org-babel-tangle
-    "mBd" 'org-babel-detangle)
   )
 
 
