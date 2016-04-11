@@ -1,0 +1,12 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: sanda
+# key: sanda
+# binding: direct-keybinding
+# --
+Buna Sanda,
+
+Am atasat la acest mail facturile si extrasele pe luna $1
+
+Toate cele bune,
+Dan
+

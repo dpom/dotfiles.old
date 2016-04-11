@@ -1,0 +1,214 @@
+#+TITLE: Emacs Configuration
+#+STARTUP: overview
+
+* References
+
+1. https://github.com/syl20bnr/spacemacs/blob/master/doc/DOCUMENTATION.md
+2. https://github.com/jwiegley/use-package
+3. http://thume.ca/howto/2015/03/07/configuring-spacemacs-a-tutorial/
+
+* .spacemacs
+
+ This file is loaded by Spacemacs at startup. It must be stored in your home directory.
+
+
+At any time you can press =SPC f e d= to edit this file.
+To apply the modifications made in ~/.spacemacs press =SPC m c c=. It will re-execute the Spacemacs initialization process.
+
+** Configuration Layers Declaration
+
+Layers specify which packages they want Spacemacs to install for them, how to
+load the package and often include some default configs to make the package
+integrate well with the rest of Spacemacs.
+
+The =dotspacemacs-configuration-layers= variable, set in the dotspacemacs/layers
+function near the top of the template is where you specify which layers you want
+to include. When you find yourself wondering “does Spacemacs come with support
+for X?” you can simply type =SPC f e h= and search through the built in
+layers. Once you find one you want to include simply include it in the list in
+the variable set statement.
+
+
+** Initialization Function
+
+This function is called at the very startup of Spacemacs initialization before layers configuration.
+
+
+** Configuration Function
+
+This function is called at the very end of Spacemacs initialization after layers configuration.
+
+This function is run after Spacemacs sets itself up, in here you can customize
+variables and activate extra functionality you want. Perhaps the most important
+thing to know is that this is generally where you can paste random snippets of
+Emacs Lisp you find on the internet. If a page says to put a snippet into your
+init.el file don’t do that, put it in dotspacemacs/config instead.
+
+Another thing this function is useful for is setting the default state of some
+toggleable editor preferences. If you press SPC t you will see some of the
+things you can toggle, these include line numbers, line wrapping, current line
+highlight, etc…
+
+Most of these toggles actually enable and disable “minor modes”, if you want
+some of these on or off by default you can put things like these in your
+dotspacemacs/config function:
+
+* Private Layers
+
+Each layer has the following structure:
+#+begin_src ditaa :file layer.png :cmdline -r -s 0.8
+[layer_name]
+  |__ [local]
+  | |__ [mode 1]
+  | |     ...
+  | |__ [mode n]
+  |__ config.el
+  |__ funcs.el
+  |__ keybindings.el
+  |__ packages.el
+#+end_src
+
+Where:
+#+attr_latex: :align |c|l|
+|----------------+----------------------------------------------------------------------|
+| File           | Usage                                                                |
+|----------------+----------------------------------------------------------------------|
+| config.el      | Emacs built-in configuration or mandatory configuration              |
+| funcs.el       | Various functions and macros (often used in keybindings.el)          |
+| keybindings.el | Emacs built-in key bindings or mandatory key bindings                |
+| packages.el    | The list of packages to install and the functions to initialize them |
+|----------------+----------------------------------------------------------------------|
+
+/Packages/ are ELPA packages which can be installed from an ELPA compliant
+repository, and /Extensions/ are generally elisp code from git submodules.
+
+In order to add configuration to an existing layer you can create a private layer with a different name and add it to your dotfile. You can extend a configuration by defining a funcion <layer>/post-init-<package>.
+
+For instance if you want to extend auctex which is configured with the function auctex/init-auctex you can define a private layer called my-auctex where you add auctex package to my-auctex-packages variable and define your configuration in my-auctex/post-init-auctex.
+
+Wrap your configuration in an eval-after-load form which delay the evaluation of its body. For instance:
+#+BEGIN_EXAMPLE
+(defun my-auctex/post-init-auctex
+  (eval-after-load 'auctex
+    '(progn
+      .....)))
+#+END_EXAMPLE
+This will assure that ='(progn ...)= will be evaluated after auctex has been loaded.
+
+
+** dpom
+
+*** dpom-package
+
+**** Code blocks (babel)
+This activates a number of widely used languages:
+
+Prefix key :: C-c C-v
+
+|-----+------------------------------------------|
+| key | function                                 |
+|-----+------------------------------------------|
+| a   | org-babel-sha1-hash                      |
+| b   | org-babel-execute-buffer                 |
+| d   | org-babel-demarcate-block                |
+| e   | org-babel-execute-maybe                  |
+| f   | org-babel-tangle-file                    |
+| g   | org-babel-goto-named-src-block           |
+| h   | org-babel-describe-bindings              |
+| i   | org-babel-lob-ingest                     |
+| l   | org-babel-load-in-session                |
+| n   | org-babel-next-src-block                 |
+| o   | org-babel-open-src-block-result          |
+| p   | org-babel-previous-src-block             |
+| r   | org-babel-goto-named-result              |
+| s   | org-babel-execute-subtree                |
+| t   | org-babel-tangle                         |
+| u   | org-babel-goto-src-block-head            |
+| v   | org-babel-expand-src-block               |
+| x   | org-babel-do-key-sequence-in-edit-buffer |
+| z   | org-babel-switch-to-session-with-code    |
+|-----+------------------------------------------|
+
+Fisierele org care contin vechea sintaxa pot fi transformate la noua sintaxa utilizind urmatoarea functie:
+#+name: org-babel-update
+#+begin_src emacs-lisp
+(require 'make-mode)
+(defun update-org-buffer ()
+  "Update an Org-mode buffer to the new data, code block and call line syntax."
+  (interactive)
+  (save-excursion
+    (cl-flet ((to-re (lst) (concat "^[ \t]*#\\+" (regexp-opt lst t)
+                                "\\(\\[\\([[:alnum:]]+\\)\\]\\)?\\:[ \t]*"))
+           (update (re new)
+                   (goto-char (point-min))
+                   (while (re-search-forward re nil t)
+                     (replace-match new nil nil nil 1))))
+      (let ((old-re (to-re '("RESULTS" "DATA" "SRCorg" "SOURCE")))
+            (lob-re (to-re '("LOB")))
+            (case-fold-search t))
+        (update old-re "name")
+        (update lob-re "call")))))
+#+end_src
+
+**** Load up the Library of Babel
+The library of babel contains makes many useful functions available for use by code blocks in *any* emacs file (see [[http://orgmode.org/worg/org-contrib/babel/intro.php#library-of-babel][worg:library-of-babel]] for more usage information).
+
+
+**** Exports
+
+Using ideas from http://emacs-fu.blogspot.com/2011/04/nice-looking-pdfs-with-org-mode-and.html I created a personal latex form (dpom/org-article). In order to work this form need several debian packages:
+- texlive-xetex,
+- ttf-sil-gentium, ttf-sil-doulos, and ttf-sil-charis,
+- ttf-dejavu
+
+***** Setari si clase 
+
+References:
+1. http://emacs-fu.blogspot.com/2011/04/nice-looking-pdfs-with-org-mode-and.html
+2. http://comments.gmane.org/gmane.emacs.orgmode/40221
+
+Install Packages:
+   + texlive-all  
+   + texlive-xetex
+   + ttf-sil-gentium
+   + ttf-sil-gentium-basic
+   + ttf-sil-charis
+   + ttf-dejavu
+
+ Added Syntax Highlighting Support:
+ http://orgmode.org/worg/org-tutorials/org-latex-export.html
+ #+BEGIN_EXAMPLE
+  #+LaTeX_HEADER: \usepackage{minted}
+  #+LaTeX_HEADER: \usemintedstyle{emacs}
+  #+LaTeX_HEADER: \newminted{common-lisp}{fontsize=\footnotesize}
+ #+END_EXAMPLE
+
+Install Packages:
+   + python-pygments
+
+
+
+** clj
+
+*** References
+
+1. http://martintrojer.github.io/clojure/2014/10/02/clojure-and-emacs-without-cider
+2. https://github.com/sanel/monroe
+3. http://root42.blogspot.ro/2014/08/how-to-automatically-refresh-cider-when.html
+4. https://github.com/UYSio/pixie-spacemacs-layer
+5. https://github.com/clojure-emacs/inf-clojure/blob/master/inf-clojure.el
+
+
+
+*  Setup                                                           :noexport:
+#+AUTHOR:    Dan Pomohaci
+#+EMAIL:     dan.pomohaci@gmail.com
+#+LANGUAGE:  en
+#+OPTIONS:   H:3 num:t toc:t \n:nil @:t ::t |:t ^:{} -:nil f:t *:t <:t
+#+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+LATEX_CLASS: dpom-spec
+#+PROPERTY: comments noweb
+#+PROPERTY: noweb yes
+#+PROPERTY: padline no
+#+PROPERTY: results silent

@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# name: riverting-report
+# key: rivertingreport
+# --
+$0** write ${1:doc} [%]
+*** TODO $1 - [[file:~/pers/doc/conspecte/RivertingReports.org::*Determină%20ce%20trebuie%20să%20scrii%20şi%20pentru%20cine][Determină ce trebuie să scrii şi pentru cine]]
+*** TODO $1 - [[file:~/pers/doc/conspecte/RivertingReports.org::*Adună%20detalii,%20exemple%20şi%20comentarii][Adună detalii, exemple şi comentarii]]
+*** TODO $1 - [[file:~/pers/doc/conspecte/RivertingReports.org::*Enunţă%20mesajul%20principal%20şi%20mesajele%20de%20suport][Enunţă mesajul principal şi mesajele de suport]]
+*** TODO $1 - [[file:~/pers/doc/conspecte/RivertingReports.org::*Foloseşte%20mesajele%20suport%20pentru%20a%20dezvolta%20un%20plan%20al%20lucrării.][Foloseşte mesajele suport pentru a dezvolta un plan al lucrării.]]
+*** TODO $1 - [[file:~/pers/doc/conspecte/RivertingReports.org::*Decide%20c%E2t%20de%20lungă%20trebuie%20să%20fie%20fiecare%20secţiune][Decide cât de lungă trebuie să fie fiecare secţiune]]
+*** TODO $1 - [[file:~/pers/doc/conspecte/RivertingReports.org::*Crează%20un%20plan%20la%20nivel%20de%20paragraf][Crează un plan la nivel de paragraf]]
+*** TODO $1 - [[file:~/pers/doc/conspecte/RivertingReports.org::*Concepe%20c%E2te%20un%20punct%20puternic%20pentru%20fiecare%20subiect%20de%20paragraf][Concepe câte un punct puternic pentru fiecare subiect de paragraf]]
+*** TODO $1 - [[file:~/pers/doc/conspecte/RivertingReports.org::*Converteşte%20materialul%20primar%20%EEn%20ciorne%20de%20paragrafe][Converteşte materialul primar în ciorne de paragrafe]]
+*** TODO $1 - [[file:~/pers/doc/conspecte/RivertingReports.org::*Vizualizează%20ciorna%20şi%20aplică%20corecţiile%20finale][Vizualizează ciorna şi aplică corecţiile finale]]

@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: sub
+# key: sub
+# --
+Sub ${1:name}(${2:param})
+$0
+End Sub

@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: user/stop
+# key: stop
+# --
+(user/stop)

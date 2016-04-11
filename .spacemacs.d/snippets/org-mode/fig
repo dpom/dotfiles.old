@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: fig
+# key: fig
+# --
+#+ATTR_LATEX: :placement [htb!] :options width=0.7\textwidth
+#+CAPTION: ${1:caption}
+#+LABEL: fig:${2:name}
+[[./img/$2.png]]
+
+$0

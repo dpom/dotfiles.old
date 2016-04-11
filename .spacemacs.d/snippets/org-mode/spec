@@ -1,0 +1,34 @@
+# -*- mode: snippet -*-
+# name: spec
+# key: spec
+# --
+#+TITLE: `(file-name-nondirectory buffer-file-name)`
+#+DESCRIPTION: ${1:desc}
+#+STARTUP: overview
+
+* Revisions History
+
+#+attr_latex: :align |r|l|l|l|
+|----------+--------------+-----------------+--------------|
+| REVISION | AUTHOR       | CHANGES MADE    | DATE REVISED |
+|----------+--------------+-----------------+--------------|
+|     0.01 | Dan Pomohaci | initial version |              |
+|----------+--------------+-----------------+--------------|
+
+* Introduction
+** Purpose
+
+$0
+
+** Intended Audience
+
+* Requirements Analysis
+
+* Architecture
+
+* Implementation
+
+* References
+
+bibliography:~/pers/bibliography/dpom.bib 
+bibliographystyle:unsrt

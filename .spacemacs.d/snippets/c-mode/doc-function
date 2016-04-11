@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: doc-function
+# key: docfunc
+# --
+/**
+ * ${1:brief}
+ *
+ * @param ${2:param}
+ * @return ${3:ret}
+ */
+$0

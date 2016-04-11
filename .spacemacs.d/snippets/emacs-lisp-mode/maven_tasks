@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: maven_tasks
+# key: maventasks
+# --
+(task 'tests '(env) "run tests" '(lambda (&optional x) (concat maven-cmd "clean process-test-resources clojure:test")))
+(task 'package '(env) "build project package" '(lambda (&optional x) (concat maven-cmd "clean package")))
+(task 'swank '(env) "run swank" '(lambda (&optional x) (concat maven-cmd "clojure:swank")))
+

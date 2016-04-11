@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: fixture
+# key: fixture
+# --
+(use-fixtures :once
+  (fn [tests]
+    (println "===============")
+      ($0)
+      (tests)
+      ( )
+      (println "===============")))
+

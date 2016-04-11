@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: function
+# key: func
+# --
+CREATE OR REPLACE FUNCTION ${1:name} (${2:params}) RETURNS ${3:return} AS $$
+DECLARE
+$0
+BEGIN
+ 
+ RETURN ;
+END
+$$ LANGUAGE plpgsql;

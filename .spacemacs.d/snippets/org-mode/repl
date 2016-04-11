@@ -1,0 +1,16 @@
+# -*- mode: snippet -*-
+# name: repl
+# key: repl
+# --
+* REPL                                                             :noexport:
+
+#+name: repl
+#+begin_src clojure
+(ns ${1:project}.repl
+  (:require
+            [clojure.tools.logging :as log]
+            [midje.sweet :refer :all]))
+
+$0
+#+end_src
+

@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: tangleopt
+# key: tangleopt
+# --
+:tangle ${1:file} :padline no :noweb yes :results silent :comments noweb
+$0

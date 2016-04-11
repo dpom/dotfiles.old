@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: for
+# key: for
+# --
+Dim i as Integer
+For i = ${1:start} to ${2:end}
+    $0
+Next 

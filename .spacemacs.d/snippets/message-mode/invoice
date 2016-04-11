@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: invoice
+# key: invoice
+# --
+Hi Emmanuel,
+
+I attached to this email the invoice for ${1:month}.
+
+Best regards,
+
+${1:$(capitalize yas-text)} invoice

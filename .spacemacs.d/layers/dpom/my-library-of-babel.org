@@ -1,0 +1,28 @@
+#+TITLE: my-library-of-babel.org
+#+DESCRIPTION: my library of babel
+#+STARTUP: overview
+
+#+name: jk-keywords
+#+header: :results silent
+#+begin_src emacs-lisp
+(defun jk-org-kwds ()
+  "parse the buffer and return a cons list of (property . value)
+from lines like: #+PROPERTY: value"
+  (org-element-map (org-element-parse-buffer 'element) '(keyword node-property)
+                   (lambda (keyword) (cons (org-element-property :key keyword)
+                                           (org-element-property :value keyword)))))
+
+(defun jk-org-kwd (KEYWORD)
+  "get the value of a KEYWORD in the form of #+KEYWORD: value"
+  (cdr (assoc KEYWORD (jk-org-kwds))))
+#+end_src
+
+
+#+name: test-properties
+#+begin_src emacs-lisp
+(jk-org-kwd "LANGUAGE")
+#+end_src
+
+#+results: test-properties
+: en
+

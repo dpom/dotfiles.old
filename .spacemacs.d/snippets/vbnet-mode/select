@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name : select
+# key : select
+# --
+Select Case ${1:cond}
+Case
+$0
+Case Else
+End Select

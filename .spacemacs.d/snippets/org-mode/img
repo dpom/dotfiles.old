@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: img
+# key: img
+# --
+#+ATTR_LaTeX: :width 0.8\textwidth :options keepaspectratio
+file:img/${1:name}.png
+
+$0

@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name : appdisperr
+# key : appdisperr
+# --
+Dim errCode, errMsg As String
+  
+errCode = CurrentMethodName() + ".${1:code}"
+errMsg = gmd_getTranslatedErrorText(errCode, gv_Users_Language_Id, "${2:text}")
+gmd_ProjectDisplayError(errCode, errMsg)
+$0

@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: task
+# key: task
+# --
+(task '${1:name} '($2) "${3:desc}" '(lambda (&optional x) $0))

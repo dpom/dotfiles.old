@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name : src
+# key: src
+# --
+#+name: ${1:name}
+#+begin_src ${2:lang$$(yas-choose-value '("emacs-lisp" "sh" "clojure" "sql" "xml" "c" "make" "asm" "text" "rb" "dtd" "js" "plantuml"))}
+$0
+#+end_src

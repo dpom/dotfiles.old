@@ -1,0 +1,9 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: dbstruct 
+# key: dbstruct
+# binding: direct-keybinding
+# --
+#+call: get-table-structure(tablename="${1:tablename}") :results value $0
+
+#+attr_latex: :align |l|l|l|l|
+#+RESULTS:

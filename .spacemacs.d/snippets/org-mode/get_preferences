@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: get_preferences
+# --
+Enumlist fields in this table:
+#+call: get-enumlist(tablename="${1:name}") :results value$0
+
+Search criteria for this table:
+#+call: get-searchcriteria(tablename="$1") :results value
+
+Columns order for this table:
+#+call: get-columnsorder(tablename="$1") :results value

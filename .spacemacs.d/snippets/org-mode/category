@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: category
+# key: category
+# --
+* ${1:name}
+ :PROPERTIES:
+ :ARCHIVE:  %s_archive::*  $1
+ :CATEGORY:   $1
+ :END:
+
+$0

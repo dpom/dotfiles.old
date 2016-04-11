@@ -1,0 +1,146 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: layout
+# key: lyt
+# binding: direct-keybinding
+# --
+** ${1:name}
+
+*** $1-package
+
+**** code
+
+#+name: $1-package
+#+begin_src emacs-lisp :tangle $1/packages.el :padline no :noweb yes :results silent :comments noweb
+   
+  ;;; packages.el --- $1 Layer packages File for Spacemacs
+  ;;
+  ;; Copyright (c) 2012-2014 Sylvain Benner
+  ;; Copyright (c) 2014-2015 Dan Pomohaci & Contributors
+  ;;
+  ;; Author: Dan Pomohaci <dan.pomohaci@gmail.com>
+  ;; URL: https://github.com/syl20bnr/spacemacs
+  ;;
+  ;; This file is not part of GNU Emacs.
+  ;;
+  ;;; License: GPLv3
+
+  (defvar $1-packages
+    '(
+      $1
+      )
+    "List of all packages to install and/or initialize. Built-in packages
+    which require an initialization must be listed explicitly in the list.")
+
+  (defvar $1-excluded-packages '()
+    "List of packages to exclude.")
+
+  (defun $1/init-$1 ()
+    "Initialize $1 package"
+    (use-package $1
+      :defer t
+      :config (progn
+                <<$1-keymap>>
+                )
+      ))
+#+end_src
+
+
+**** Keymap
+
+#+name: $1-keymap
+#+begin_src emacs-lisp
+(evil-leader/set-key "d" '$1-agenda)
+(evil-leader/set-key-for-mode '$1-mode
+  "mbt" '$1-babel-tangle
+  "mbd" '$1-babel-detangle)
+#+end_src
+
+
+
+*** $1-extensions
+
+#+name: $1-extensions
+#+begin_src emacs-lisp  :tangle $1/extensions.el :padline no :noweb yes :results silent :comments noweb
+  ;;; extensions.el --- $1 Layer extensions File for Spacemacs
+  ;;
+  ;; Copyright (c) 2012-2014 Sylvain Benner
+  ;; Copyright (c) 2014-2015 Dan Pomohaci & Contributors
+  ;;
+  ;; Author: Dan Pomohaci <dan.pomohaci@gmail.com>
+  ;; URL: https://github.com/syl20bnr/spacemacs
+  ;;
+  ;; This file is not part of GNU Emacs.
+  ;;
+  ;;; License: GPLv3
+
+  (defvar $1-pre-extensions
+    '(
+      ;; pre extension names go here
+      )
+    "List of all extensions to load before the packages.")
+
+  (defvar $1-post-extensions
+    '(
+      $1-
+      )
+    "List of all extensions to load after the packages.")
+
+  ;; For each extension, define a function $1/init-<extension-name>
+  ;;
+  (defun $1/init-$1- ()
+    "Initialize $1-redmine extension"
+    (use-package $1-redmine
+      :config (progn
+                ))
+    )
+#+end_src
+
+*** $1-config
+
+#+name: $1-config
+#+begin_src emacs-lisp  :tangle $1/config.el :padline no :noweb yes :results silent :comments noweb
+  ;;; config.el --- $1 Layer configuration File for Spacemacs
+  ;;
+  ;; Copyright (c) 2012-2014 Sylvain Benner
+  ;; Copyright (c) 2014-2015 Dan Pomohaci & Contributors
+  ;;
+  ;; Author: Dan Pomohaci <dan.pomohaci@gmail.com>
+  ;; URL: https://github.com/syl20bnr/spacemacs
+  ;;
+  ;; This file is not part of GNU Emacs.
+  ;;
+  ;;; License: GPLv3
+
+#+end_src
+
+*** $1-funcs
+
+#+name: $1-funcs
+#+begin_src emacs-lisp  :tangle $1/funcs.el :padline no :noweb yes :results silent :comments noweb
+  ;;; funcs.el --- $1 Layer functions File for Spacemacs
+  ;;
+  ;; Copyright (c) 2012-2014 Sylvain Benner
+  ;; Copyright (c) 2014-2015 Dan Pomohaci & Contributors
+  ;;
+  ;; Author: Dan Pomohaci <dan.pomohaci@gmail.com>
+  ;; URL: https://github.com/syl20bnr/spacemacs
+  ;;
+  ;; This file is not part of GNU Emacs.
+  ;;
+  ;;; License: GPLv3
+
+#+end_src
+
+
+
+
+
+
+
+
+
+
+
+
+
+

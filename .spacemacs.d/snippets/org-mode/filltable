@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# name: fill_table
+# key: filltable
+# --
+#+orgtbl: send fill-${1:list} orgtbl-to-sqlinsert :sqlname "${2:table}"  :tstart "#+begin_src sql" :tend "#+end_src" :results replace
+| $2_id | $2_sub_type | $2_parent | $2_order | $2_text  | $2_parameter_1 | $2_parameter_2 | $2_type  | $2_deleted | $2_date_created | $2_date_modification | $2_users_id_last_modification |
+|-------+-------------+-----------+----------+----------+----------------+----------------+----------+------------+-----------------+----------------------+-------------------------------|
+| $1    | folder      | root      |        0 | $0       |                |                | enumlist | false      |                 |                      | dev                           |
+|       | item        | $1        |          |          |                |                | enumlist | false      |                 |                      | dev                           |
+#+TBLFM: \$8=enumlist::\$9=false::\$10='(format-time-string "%Y-%m-%d %H:%M:%S")::\$11='(format-time-string "%Y-%m-%d %H:%M:%S")::\$12=dev
+
+
+#+begin receive orgtbl fill-$1
+#+end receive orgtbl fill-$1

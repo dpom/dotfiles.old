@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: ditaa
+# key: dy
+# --
+#+begin_src ditaa :file ${1:file}.png :cmdline -r -s 0.8
+$0
+#+end_src

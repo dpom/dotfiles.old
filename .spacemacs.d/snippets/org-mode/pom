@@ -1,0 +1,136 @@
+# -*- mode: snippet -*-
+# name: pom
+# key: pom
+# --
+* Maven POM
+** Project Identity
+#+srcname: pom-id
+#+begin_src xml
+  <groupId>dpom</groupId>
+  <artifactId>${1:id}</artifactId>
+  <packaging>jar</packaging>
+  <version>1.0-SNAPSHOT</version>
+  <name>$1</name>
+#+end_src
+** Properties
+#+srcname: pom-props
+#+begin_src xml
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+#+end_src
+** Repositories
+#+srcname: pom-repositories
+#+begin_src xml
+  <repositories>
+    <repository>
+      <id>clojure-releases</id>
+      <url>http://build.clojure.org/releases</url>
+    </repository>
+    <repository>
+      <id>clojars</id>
+      <url>http://clojars.org/repo/</url>
+    </repository>
+  </repositories>
+#+end_src
+** Plugins
+*** Clojure Plugin
+#+srcname: pom-plugin-clojure
+#+begin_src xml
+  <plugin>
+    <groupId>com.theoryinpractise</groupId>
+    <artifactId>clojure-maven-plugin</artifactId>
+    <version>1.3.7</version>
+    <extensions>true</extensions>
+    <executions>
+      <execution>
+        <id>compile</id>
+        <phase>compile</phase>
+        <goals>
+          <goal>compile</goal>
+        </goals>
+      </execution>
+      <execution>
+        <id>test</id>
+        <phase>test-compile</phase>
+        <goals>
+          <goal>test</goal>
+        </goals>
+      </execution>
+    </executions>
+    <configuration>
+      <replScript>src/main/config/init.clj</replScript>
+      <mainClass>dpom.$1</mainClass>
+    </configuration>
+  </plugin>
+#+end_src
+*** Assembly Plugin
+#+srcname: pom-plugin-assembly
+#+begin_src xml
+  <plugin>
+    <artifactId>maven-assembly-plugin</artifactId>
+    <executions>
+      <execution>
+        <id>create-executable-jar</id>
+        <phase>package</phase>
+        <goals>
+          <goal>single</goal>
+        </goals>
+        <configuration>
+          <descriptorRefs>
+            <descriptorRef>
+              jar-with-dependencies
+            </descriptorRef>
+          </descriptorRefs>
+          <archive>
+            <manifest>
+              <mainClass>dpom.$1</mainClass>
+            </manifest>
+          </archive>
+       </configuration>
+      </execution>
+    </executions>
+  </plugin>
+#+end_src
+*** Plugins Main Bloc
+#+srcname: pom-plugins
+#+begin_src xml  :noweb yes
+  <plugins>
+   <<pom-plugin-clojure>>
+   <<pom-plugin-assembly>>
+  </plugins>
+#+end_src
+** Dependencies
+#+srcname: pom-dependencies
+#+begin_src xml
+  <dependencies>
+      <dependency>
+        <groupId>dpom</groupId>
+        <artifactId>clojure-deps</artifactId>
+        <version>1.0</version>
+        <type>pom</type>
+      </dependency>
+  </dependencies>
+#+end_src
+** Blocul principal
+#+srcname: pom
+#+begin_src xml :tangle pom.xml :noweb yes
+  <project xmlns="http://maven.apache.org/POM/4.0.0" 
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <<pom-id>>
+    
+    <<pom-props>>
+
+    <<pom-repositories>>
+    
+    <build>
+      <<pom-plugins>>
+    </build>
+    
+    <<pom-dependencies>>    
+  </project>
+#+end_src
+$0

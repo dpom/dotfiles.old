@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: graphviz
+# key: graphviz
+# --
+#+begin_src dot :file ${1:file}.png :cmdline -Kdot -Tpng
+digraph G {
+$0
+}
+#+end_src

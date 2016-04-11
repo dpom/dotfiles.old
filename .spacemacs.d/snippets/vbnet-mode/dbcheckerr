@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: dbcheckerr
+# --
+
+If gmd_DatabaseCheckError(CurrentMethodName() + ".${1:code}", "${2:text}", ${3:$$(yas-choose-value '("false" "true"))}) Then
+   Return
+End If
+$0

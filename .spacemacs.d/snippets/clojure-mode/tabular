@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: tabular
+# key: tabular
+# --
+;;<
+(tabular
+"about ${1:function}"
+(fact
+  ($1 ?$0) => ?ret)
+  ?  ?ret
+)
+;;>

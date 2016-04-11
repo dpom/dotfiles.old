@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: foreach
+# key: foreach
+# --
+For Each ${1:element} As ${2:type} In ${3:coll}
+   $0
+Next
