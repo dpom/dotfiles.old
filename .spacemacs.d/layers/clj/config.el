@@ -16,6 +16,7 @@
 
 (defvar dpom/inf-lisp-buffer "*inferior-lisp*")
 (defvar dpom/inferior-lisp-program-lein "lein with-profile +dan repl")
+(defvar dpom/inferior-lisp-program-figweel "lein figwheel server-dev")
 (defvar dpom/inferior-lisp-program-boot "boot repl")
 
 (defvar cljtest-error-regexp

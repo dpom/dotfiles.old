@@ -61,6 +61,11 @@
   (split-window-below-and-focus)
   (run-lisp dpom/inferior-lisp-program-lein))
 
+(defun dpom/run-figweel ()
+  (interactive)
+  (split-window-below-and-focus)
+  (run-lisp dpom/inferior-lisp-program-figweel))
+
 (defun dpom/run-boot ()
   (interactive)
   (split-window-below-and-focus)
