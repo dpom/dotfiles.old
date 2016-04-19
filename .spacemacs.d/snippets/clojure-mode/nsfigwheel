@@ -1,8 +1,8 @@
-# -*- mode: snippet; require-final-newline: nil -*-
-# name: nstest
-# key: nst
+# -*- coding: utf-8 -*-
+# name: nsfigweel
+# key: nsfig
 # --
-(ns `(flet ((try-src-prefix
+(ns ^:figwheel-always  `(flet ((try-src-prefix
 	  (path src-pfx)
 	  (let ((parts (split-string path src-pfx)))
 	    (if (= 2 (length parts))
@@ -14,15 +14,11 @@
 			       (mapcar
 				'(lambda (pfx)
 				   (try-src-prefix p pfx))
-				'("/src/cljs/" "/src/clj/" "/src/" "/test/")))))
+				'("/src/cljs/" "/src/clj/" "/src/")))))
 	   (p3 (file-name-sans-extension p2))
 	   (p4 (mapconcat '(lambda (x) x)
 		 (split-string p3 "/")
 		 ".")))
       (replace-regexp-in-string "_" "-" p4)))`
-  (:require
-   [clojure.test :refer :all]
+(:require
 ))
-
-
-$0

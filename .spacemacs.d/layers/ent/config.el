@@ -17,4 +17,4 @@
 
 (defvar ent-cli () "(template . script file) pair alist")
 
-(defvar ent-init-file (expand-file-name "ent-tasks.el" "~/pers/dotfiles/.emacs.d/private/ent/"))
+(defvar ent-init-file (expand-file-name "ent-tasks.el" (expand-dir-name "ent/" (expand-file-name "layers/" dotspacemacs-directory))))
