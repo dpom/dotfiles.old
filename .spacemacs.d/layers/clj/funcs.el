@@ -59,12 +59,17 @@
 (defun dpom/run-lisp ()
   (interactive)
   (split-window-below-and-focus)
-  (run-lisp dpom/inferior-lisp-program-lein))
+  (run-clojure dpom/inferior-lisp-program-lein))
 
 (defun dpom/run-figweel ()
   (interactive)
   (split-window-below-and-focus)
-  (run-lisp dpom/inferior-lisp-program-figweel))
+  (run-clojure dpom/inferior-lisp-program-figweel))
+
+(defun dpom/run-node ()
+  (interactive)
+  (split-window-below-and-focus)
+  (run-clojure dpom/inferior-lisp-program-node))
 
 (defun dpom/run-boot ()
   (interactive)
