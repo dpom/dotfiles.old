@@ -14,7 +14,6 @@
       '(clojure-mode
         company
         etags
-        inf-clojure
         ))
 
 (defun clj/init-clojure-mode ()
@@ -30,19 +29,7 @@
               (add-hook 'inferior-lisp-mode-hook 'rainbow-delimiters-mode)
               (add-hook 'inferior-lisp-mode-hook 'subword-mode)
               (add-hook 'inferior-lisp-mode-hook 'spacemacs/load-yasnippet)
-              
-              
               )))
-
-
-(defun clj/init-inf-clojure ()
-  (use-package clojure-mode
-    :defer t
-    :config (progn
-              (add-hook 'clojure-mode-hook #'inf-clojure-minor-mode)
-              (add-hook 'clojurescript-mode-hook #'inf-clojure-minor-mode)
-              )))
-
 
 (defun clj/post-init-company ()
   (use-package company-etags
@@ -57,5 +44,5 @@
 
 
 (defun clj/post-init-etags ()
-  
   )
+
