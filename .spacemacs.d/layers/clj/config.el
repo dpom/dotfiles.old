@@ -16,7 +16,7 @@
 
 (defvar clj-inf-lisp-buffer "*inferior-lisp*")
 (defvar clj-inferior-lisp-program-lein "lein with-profile +dev repl")
-(defvar clj-inferior-lisp-program-figweel "lein figwheel server-dev")
+(defvar clj-inferior-lisp-program-figwheel "lein figwheel")
 (defvar clj-inferior-lisp-program-boot "boot repl")
 
 (defvar cljtest-error-regexp

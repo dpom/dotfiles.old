@@ -37,7 +37,8 @@
   ;;"sE" 'spacemacs/clj-eval-last-sexp
   ;;"sr" 'inf-clojure-eval-region
   ;;"sR" 'spacemacs/clj-eval-region
-  "sn" 'reload-current-clj-ns
+  "sr" 'clj-load-current-cljs-ns
+  "sn" 'clj-switch-to-current-cljs-ns
   ;;"hd" 'inf-clojure-show-var-documentation
   ;;"hs" 'inf-clojure-show-var-source
   "ll"  'clj-run-lisp
