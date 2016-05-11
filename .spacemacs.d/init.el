@@ -35,6 +35,7 @@
                                        smex
                                        c-c++
                                        sql
+                                       java
                                        javascript
                                        markdown
                                        common-lisp
@@ -212,6 +213,8 @@
   (spacemacs/toggle-truncate-lines)
   (spacemacs|defvar-company-backends sh-mode)
   (spacemacs|add-company-hook sh-mode)
+  (setq eclim-eclipse-dirs "~/eclipse"
+        eclim-executable "~/eclipse/eclim")
   (load (expand-file-name ".config.el" "~/pers/.private/"))
   ;;(setq yas-snippet-dirs '("")
   (eval-after-load 'yasnippet '(yas-reload-all))
