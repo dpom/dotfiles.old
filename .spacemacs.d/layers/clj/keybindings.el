@@ -49,7 +49,15 @@
 
 
 (spacemacs/set-leader-keys-for-major-mode 'inferior-lisp-mode
-  "sk" 'spacemacs/comint-clear-buffer)
+  "sk" 'spacemacs/comint-clear-buffer
+  "sr" 'clj-reimport
+  )
+
+(spacemacs/declare-prefix "or" "repl")
+(spacemacs/set-leader-keys
+  "ork" 'spacemacs/comint-clear-buffer
+  "ori" 'clj-switch-to-inf-lisp
+  "orr" 'clj-reimport)
 
 (spacemacs/set-leader-keys-for-major-mode 'clojure-mode
   "jR" 'projectile-regenerate-tags

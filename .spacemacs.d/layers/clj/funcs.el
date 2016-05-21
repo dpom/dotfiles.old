@@ -96,6 +96,12 @@
       (insert form))
     (clj-switch-to-inf-lisp)))
 
+(defun clj-reimport ()
+  (interactive)
+    (with-current-buffer clj-inf-lisp-buffer
+      (goto-char (point-max))
+      (insert "(./reimport)"))
+    (clj-switch-to-inf-lisp))
 
 (defun clj-load-current-cljs-ns ()
   (interactive)

@@ -1,0 +1,16 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: exclass
+# key: exclass
+# --
+package `(substring (second (split-string (file-name-directory (buffer-file-name)) "src/java/")) 0 -1)`;
+
+public class `(file-name-nondirectory (file-name-sans-extension (buffer-file-name)))` {
+
+  /** Entry point to class & application.
+   * @param args array of string arguments
+   * @throws exceptions No exceptions thrown
+  */
+public static void main(String args[]) {
+$0
+}
+}

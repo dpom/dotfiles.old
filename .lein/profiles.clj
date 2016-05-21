@@ -1,21 +1,22 @@
 {:user
- {:plugins [
-            [lein-ancient "0.6.7" :exclusions [org.clojure/clojure]]
-            [lein-checkall "0.1.1" :exclusions [org.clojure/tools.namespace org.clojure/clojure]]
-            ]
+ {:plugins [[lein-ancient "0.6.7" :exclusions [org.clojure/clojure]]
+            [lein-checkall "0.1.1" :exclusions [org.clojure/tools.namespace org.clojure/clojure]]]
   :dependencies [[pjstadig/humane-test-output "0.8.0"]
                  [spyscope "0.1.4"]
                   [org.clojure/tools.namespace "0.2.4"]
                   [leiningen #=(leiningen.core.main/leiningen-version)]
                   [io.aviso/pretty "0.1.8"]
                   [alembic "0.3.2"]
-                 [im.chit/vinyasa "0.4.3"]
-                 ]
+                 [clj-ns-browser "1.3.1"]
+                 [org.clojars.gjahad/debug-repl "0.3.3"]
+                 [im.chit/vinyasa "0.4.3"]]
   :injections [(require 'pjstadig.humane-test-output)
                (pjstadig.humane-test-output/activate!)
                (require 'spyscope.core)
                (require '[vinyasa.inject :as inject])
                (require 'io.aviso.repl)
+               (require 'clj-ns-browser.sdoc)
+               (require 'alex-and-georges.debug-repl)
                (inject/in ;; the default injected namespace is `.`
 
                ;; note that `:refer, :all and :exclude can be used
@@ -32,5 +33,7 @@
 
                ;; inject into clojure.core with prefix
                clojure.core >
+               [clj-ns-browser.sdoc sdoc]
+               [alex-and-georges.debug-repl debug-repl]
                [clojure.pprint pprint]
                [clojure.java.shell sh])]}}

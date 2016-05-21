@@ -3,3 +3,8 @@
 
 # Packaging
 .cask
+/.spacemacs.d/EmacsConfig.bbl
+/.spacemacs.d/EmacsConfig.pdf
+/.spacemacs.d/EmacsConfig.pyg
+/.spacemacs.d/EmacsConfig.tex
+/.spacemacs.d/auto/EmacsConfig.el
