@@ -10,6 +10,7 @@
 ;;
 ;;; License: GPLv3
 
+
 (defun get-clj-completions (prefix)
   (let* ((proc (inferior-lisp-proc))
          (comint-filt (process-filter proc))
@@ -23,7 +24,7 @@
     completions))
 
 (defun company-infclj (command &optional arg &rest ignored)
-  (interactive (list 'interactive))
+ (interactive (list 'interactive))
   (cl-case command
     (interactive (company-begin-backend 'company-infclj))
     (prefix (and (eq major-mode 'inferior-lisp-mode)
@@ -43,40 +44,37 @@
           (lisp-eval-string (format "(in-ns '%s)" sym)))))
     (goto-char current-point)))
 
+
+
+
 (defun find-tag-without-ns (next-p)
   (interactive "P")
   (find-tag (first (last (split-string (symbol-name (symbol-at-point)) "/")))
             next-p))
 
 
-(defun dpom/switch-to-inf-lisp ()
+(defun clj-switch-to-inf-lisp ()
   (interactive)
-  (pop-to-buffer dpom/inf-lisp-buffer)
+  (pop-to-buffer clj-inf-lisp-buffer)
   (goto-char (point-max)))
 
-
-
-(defun dpom/run-lisp ()
-  (interactive)
+(defun clj-run (cmd)
   (split-window-below-and-focus)
-  (run-clojure dpom/inferior-lisp-program-lein))
+  (run-lisp cmd))
 
-(defun dpom/run-figweel ()
+(defun clj-run-lisp ()
   (interactive)
-  (split-window-below-and-focus)
-  (run-clojure dpom/inferior-lisp-program-figweel))
+  (clj-run clj-inferior-lisp-program-lein))
 
-(defun dpom/run-node ()
+(defun clj-run-boot ()
   (interactive)
-  (split-window-below-and-focus)
-  (run-clojure dpom/inferior-lisp-program-node))
+  (clj-run clj-inferior-lisp-program-boot))
 
-(defun dpom/run-boot ()
+(defun clj-run-figwheel ()
   (interactive)
-  (split-window-below-and-focus)
-  (run-lisp dpom/inferior-lisp-program-boot))
+  (clj-run clj-inferior-lisp-program-figwheel))
 
-(defun dpom/get-last-sexp ()
+(defun clj-get-last-sexp ()
   "Return the sexp preceding the point."
   (buffer-substring-no-properties
    (save-excursion
@@ -84,16 +82,51 @@
      (point))
    (point)))
 
-(defun dpom/insert-last-sexp-in-repl ()
+(defun clj-insert-in-repl (form)
+  (with-current-buffer clj-inf-lisp-buffer
+    (goto-char (point-max))
+    (insert form))
+  )
+
+(defun clj-insert-last-sexp-in-repl ()
   (interactive)
-  (let ((form (dpom/get-last-sexp)))
-    (with-current-buffer dpom/inf-lisp-buffer
+  (let ((form (clj-get-last-sexp)))
+    (with-current-buffer clj-inf-lisp-buffer
       (goto-char (point-max))
       (insert form))
-    (dpom/switch-to-inf-lisp)))
+    (clj-switch-to-inf-lisp)))
+
+(defun clj-reimport ()
+  (interactive)
+    (with-current-buffer clj-inf-lisp-buffer
+      (goto-char (point-max))
+      (insert "(./reimport)"))
+    (clj-switch-to-inf-lisp))
+
+(defun clj-load-current-cljs-ns ()
+  (interactive)
+  (let ((current-point (point)))
+    (goto-char (point-min))
+    (let ((ns-idx (re-search-forward clojure-namespace-name-regex nil t)))
+      (when ns-idx
+        (goto-char ns-idx)
+        (let ((sym (symbol-at-point)))
+          (clj-insert-in-repl (format "(require '%s)" sym)))))
+    (clj-switch-to-inf-lisp)))
+
+(defun clj-switch-to-current-cljs-ns ()
+  (interactive)
+  (let ((current-point (point)))
+    (goto-char (point-min))
+    (let ((ns-idx (re-search-forward clojure-namespace-name-regex nil t)))
+      (when ns-idx
+        (goto-char ns-idx)
+        (let ((sym (symbol-at-point)))
+          (clj-insert-in-repl (format "(in-ns '%s)" sym)))))
+    (clj-switch-to-inf-lisp)))
 
 (defun erase-inf-buffer ()
   (interactive)
-  (with-current-buffer dpom/inf-lisp-buffer
+  (with-current-buffer clj-inf-lisp-buffer
     (erase-buffer)
     (lisp-eval-string "")))

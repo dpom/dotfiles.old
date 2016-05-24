@@ -14,12 +14,10 @@
 (spacemacs|defvar-company-backends clojure-mode)
 (spacemacs|defvar-company-backends inferior-lisp-mode)
 
-;; (defvar dpom/inf-lisp-buffer "*inferior-lisp*")
-(defvar dpom/inf-lisp-buffer "*inf-clojure*")
-(defvar dpom/inferior-lisp-program-lein "lein with-profile +dev repl")
-(defvar dpom/inferior-lisp-program-figweel "lein figwheel server-dev")
-(defvar dpom/inferior-lisp-program-boot "boot repl")
-(defvar dpom/inferior-lisp-program-node "lein with-profile +dev trampoline run -m clojure.main repl.clj")
+(defvar clj-inf-lisp-buffer "*inferior-lisp*")
+(defvar clj-inferior-lisp-program-lein "lein with-profile +dev repl")
+(defvar clj-inferior-lisp-program-figwheel "lein figwheel")
+(defvar clj-inferior-lisp-program-boot "boot repl")
 
 (defvar cljtest-error-regexp
   '(cljtest "FAIL in (.+) (\\(.+\\):\\([0-9,]+\\))" 1 2))

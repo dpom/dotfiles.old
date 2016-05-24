@@ -26,6 +26,11 @@
    [clojure.java.io :as io]
 ))
 
+(defmacro log
+  [frm & params]
+  `(println (format ~frm ~@params)))
+
+
 (defn process
 []
 )

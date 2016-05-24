@@ -197,9 +197,118 @@ Install Packages:
 3. http://root42.blogspot.ro/2014/08/how-to-automatically-refresh-cider-when.html
 4. https://github.com/UYSio/pixie-spacemacs-layer
 5. https://github.com/clojure-emacs/inf-clojure/blob/master/inf-clojure.el
+6. http://dev.solita.fi/2014/03/18/pimp-my-repl.html
+7. 
+
+*** Comenzi utile
+
+**** pyscope
+
+#+BEGIN_SRC clojure
+spyscope.repl=> (take 20 (repeat #spy/d (+ 1 2 3)))
+spyscope.repl$eval3869.invoke(NO_SOURCE_FILE:1) (+ 1 2 3) => 6
+(6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6)
+#+END_SRC
+
+In the simplest usage, the form is printed along with the stack trace it
+occurred on, which makes it easier to grep through logs that have many tracing
+statements enabled.
 
 
+Often, you may find that additional context would be beneficial. One way to add
+context is to include a marker in all of the output. This lets you add a
+semantic name to any spy:
 
+#+BEGIN_SRC clojure
+spyscope.repl=> #spy/d ^{:marker "triple-add"} (+ 1 2 3)
+spyscope.repl$eval3935.invoke(NO_SOURCE_FILE:1) triple-add (+ 1 2 3) => 6
+6
+#+END_SRC
+
+In addition, you can request additional stack frames with the metadata key :fs, which gives you a richer context without you doing nything:
+
+#+BEGIN_SRC clojure
+spyscope.repl=> (take 20 (repeat #spy/d ^{:fs 3} (+ 1 2 3)))
+----------------------------------------
+clojure.lang.Compiler.eval(Compiler.java:6477)
+clojure.lang.Compiler.eval(Compiler.java:6511)
+spyscope.repl$eval675.invoke(REPL:13) (+ 1 2 3) => 6
+(6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6)
+#+END_SRC
+
+As you can see, when multiple stack frames are printed, a row of dashes is
+printed before the trace to keep the start of the stack frame group clearly
+denoted.
+
+As you debug further, you may realize that the context of the creation of
+certain values is important; however, if you print out 10 or 20 lines of stack
+trace, you'll end up with an unreadable mess. The metadata key :nses allows you
+to apply a regex to the stacktrace frames to filter out noise:
+
+#+BEGIN_SRC clojure
+spyscope.repl=> (take 20 (repeat #spy/d ^{:fs 3 :nses #"core|spyscope"} (+ 1 2 3)))
+----------------------------------------
+clojure.core$apply.invoke(core.clj:601)
+clojure.core$eval.invoke(core.clj:2797)
+spyscope.repl$eval678.invoke(REPL:14) (+ 1 2 3) => 6
+(6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6)
+#+END_SRC
+
+If you leave your application unattended for a period of time, you may wish to
+have timestamps included in all the output lines. Spyscope can use a default
+time format, or a user-provided one:
+
+#+BEGIN_SRC clojure
+;; Default formatter is yyyy-mm-ddThh:mm:ss
+spyscope.repl=> #spy/d ^{:time true} (+ 1 2 3)
+spyscope.repl$eval4028.invoke(NO_SOURCE_FILE:1) 2013-04-11T03:20:46 (+ 1 2 3) => 6
+6
+;; Custom formatters use clj-time
+spyscope.repl=> #spy/d ^{:time "hh:mm:ss"} (+ 1 2 3)
+spyscope.repl$eval4061.invoke(NO_SOURCE_FILE:1) 03:21:40 (+ 1 2 3) => 6
+6
+#+END_SRC
+
+The last feature of #spy/d is that it can suppress printing the code that
+generated the value, which can be used to de-clutter the output if you have
+particularly large forms. This is controlled by setting the metadata key :form
+to false:
+
+#+BEGIN_SRC clojure
+spyscope.repl=> {:a #spy/d ^{:form false} (+ 1 2 3)
+                 :b #spy/d ^{:form false} (- 16 10)}
+spyscope.repl$eval685.invoke(REPL:16) => 6
+spyscope.repl$eval685.invoke(REPL:16) => 6
+{:a 6, :b 6}
+#+END_SRC
+
+
+**** vinyasa
+
+- ./pull :: adauga ad-hoc o biblioteca la dependinte:
+  #+BEGIN_SRC clojure
+  (./pull hiccup)
+  #+END_SRC
+- ./lein :: lein in interiorul repl 
+- ./reimport :: reimporta clasele java 
+- ./inject :: injecteaza functii si variabile
+  #+BEGIN_SRC clojure
+> (./inject '[clojure.core [clojure.repl doc source]])
+;; => will create the var #'clojure.core/doc and #'clojure.core/source
+> (./inject '[clojure.core >> [clojure.repl doc source]])
+;; => will create the var #'clojure.core/>>doc and #'clojure.core/>>source
+  #+END_SRC
+- =.&=   :: transparency into objects
+- =.%=   :: showing class properties
+- =.%>=  :: showing type hierarchy
+- =.?=   :: showing class elements
+- =.*=   :: showing instance elements
+- =.>=   :: threading macro for reflective invocation of objects
+- =>ns=  :: importing object elements into a namespace
+- =>var= :: importing elements into current namespace
+
+
+ 
 *  Setup                                                           :noexport:
 #+AUTHOR:    Dan Pomohaci
 #+EMAIL:     dan.pomohaci@gmail.com
