@@ -1,0 +1,21 @@
+
+Contains configuration files for my development tools.
+
+* linux
+
+Linux specific configuration files
+
+* osx 
+
+Mac OS specific files.
+
+* .spacemacs.d
+
+My private layers:
+- clj :: clojure layer using inferior-lisp-mode 
+- dpom :: collect all my specific configurations
+- ent :: my build tool 
+
+* .lein
+
+Leiningen configurations
