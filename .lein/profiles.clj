@@ -1,13 +1,18 @@
 {:user
- {:plugins [[lein-ancient "0.6.7" :exclusions [org.clojure/clojure]]
+ {:plugins [[lein-ancient "0.6.10" :exclusions [org.clojure/clojure]]
             [lein-checkall "0.1.1" :exclusions [org.clojure/tools.namespace org.clojure/clojure]]]
   :dependencies [[pjstadig/humane-test-output "0.8.0"]
-                 [spyscope "0.1.4"]
-                  [org.clojure/tools.namespace "0.2.4"]
-                  [leiningen #=(leiningen.core.main/leiningen-version)]
-                  [io.aviso/pretty "0.1.8"]
+                 [spyscope "0.1.5"]
+                  [org.clojure/tools.namespace "0.2.10"]
+                 ;; [leiningen #=(leiningen.core.main/leiningen-version)]
+                 [leiningen #=(leiningen.core.main/leiningen-version) :exclusions [slingshot
+                                                                                   commons-logging
+                                                                                   org.codehaus.plexus/plexus-utils
+                                                                                   org.apache.maven.wagon/wagon-provider-api]]
+                 [org.apache.maven.wagon/wagon-provider-api "2.10"]
+                 [commons-logging "1.2"]
+                  [io.aviso/pretty "0.1.26"]
                   [alembic "0.3.2"]
-                 [clj-ns-browser "1.3.1"]
                  [org.clojars.gjahad/debug-repl "0.3.3"]
                  [im.chit/vinyasa "0.4.3"]]
   :injections [(require 'pjstadig.humane-test-output)
@@ -15,7 +20,6 @@
                (require 'spyscope.core)
                (require '[vinyasa.inject :as inject])
                (require 'io.aviso.repl)
-               (require 'clj-ns-browser.sdoc)
                (require 'alex-and-georges.debug-repl)
                (inject/in ;; the default injected namespace is `.`
 
@@ -33,7 +37,6 @@
 
                ;; inject into clojure.core with prefix
                clojure.core >
-               [clj-ns-browser.sdoc sdoc]
                [alex-and-georges.debug-repl debug-repl]
                [clojure.pprint pprint]
                [clojure.java.shell sh])]}}
