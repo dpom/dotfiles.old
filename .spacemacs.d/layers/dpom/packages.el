@@ -154,7 +154,19 @@
   (appt-activate t)
 
   ;; If we leave Emacs running overnight - reset the appointments one minute after midnight
-  (run-at-time "24:01" nil 'dpom/org-agenda-to-appt)
+  (run-at-time "00:01" nil 'dpom/org-agenda-to-appt)
+
+  (setq appt-display-format 'window)
+  (setq appt-disp-window-function (function dpom/appt-disp-window))
+
+  (defun dpom/appt-disp-window (min-to-app new-time msg)
+    (save-window-excursion
+      (shell-command
+       (concat "~/bin/org-appt-notify '" msg "'  '" min-to-app "'&")
+       nil nil)
+      )
+    )
+
 
   ;; Code blocks (babel)
   ;; (require 'ob-xml)
