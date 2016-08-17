@@ -35,8 +35,4 @@
   "w" 'wdired-change-to-wdired-mode)
 (spacemacs/set-leader-keys-for-major-mode 'web-mode
   "mrk" 'web-mode-element-kill)
-(spacemacs/set-leader-keys-for-major-mode 'org-mode "m," 'org-ctrl-c-ctrl-c)
-(spacemacs/set-leader-keys-for-major-mode 'org-mode
-  "mBt" 'org-babel-tangle
-  "mBd" 'org-babel-detangle)
  

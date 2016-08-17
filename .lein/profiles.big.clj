@@ -3,9 +3,19 @@
             [lein-checkall "0.1.1" :exclusions [org.clojure/tools.namespace org.clojure/clojure]]]
   :dependencies [[pjstadig/humane-test-output "0.8.0"]
                  [spyscope "0.1.5"]
-                  [org.clojure/tools.namespace "0.2.10"]
+                  [org.clojure/tools.namespace "0.2.11"]
+                 [refactor-nrepl "2.0.0"]
+                 ;; [cider-nrepl "0.12.0"]
                  ;; [leiningen #=(leiningen.core.main/leiningen-version)]
                  [leiningen #=(leiningen.core.main/leiningen-version) :exclusions [slingshot
+                                                                                   potemkin
+                                                                                   cheshire
+                                                                                   org.clojure/tools.macro
+                                                                                   clj-tuple
+                                                                                   riddley
+                                                                                   com.fasterxml.jackson.core/jackson-core
+                                                                                   commons-codec
+                                                                                   org.clojure/clojure 
                                                                                    commons-logging
                                                                                    org.codehaus.plexus/plexus-utils
                                                                                    org.apache.maven.wagon/wagon-provider-api]]
