@@ -39,6 +39,7 @@
   (spacemacs/set-leader-keys-for-major-mode m
   ;; repl
   "si" 'clj-switch-to-inf-lisp
+  "ss" 'clj-switch-to-inf-lisp
   "se" 'clj-insert-last-sexp-in-repl
   "sn" 'reload-current-clj-ns
   "sr" 'clj-load-current-cljs-ns
