@@ -17,6 +17,7 @@
         rainbow-delimiters
         subword
         etags
+        clj-refactor
         ))
 
 (defun clj/init-clojure-mode ()
@@ -49,14 +50,14 @@
   )
 
 
-(defun clojure/post-init-eldoc ()
+(defun clj/post-init-eldoc ()
   (add-hook 'clojure-mode-hook 'eldoc-mode)
   (add-hook 'inferior-lisp-mode-hook 'eldoc-mode))
 
-(defun clojure/post-init-rainbow-delimiters ()
+(defun clj/post-init-rainbow-delimiters ()
   (add-hook 'inferior-lisp-mode-hook 'rainbow-delimiters-mode))
 
-(defun clojure/post-init-subword ()
+(defun clj/post-init-subword ()
   (add-hook 'inferior-lisp-mode-hook 'subword-mode))
 
 
@@ -64,3 +65,20 @@
 (defun clj/post-init-etags ()
   )
 
+(defun clj/init-clj-refactor ()
+  (use-package clj-refactor
+    :defer t
+    :init
+    (add-hook 'clojure-mode-hook 'clj-refactor-mode)
+    :config
+    (progn
+      (cljr-add-keybindings-with-prefix "C-c C-f")
+
+      (dolist (m '(clojure-mode clojurec-mode clojurescript-mode clojurex-mode))
+        (dolist (r cljr--all-helpers)
+          (let* ((binding (car r))
+                 (func (car (cdr r))))
+            (when (not (string-prefix-p "hydra" (symbol-name func)))
+              (spacemacs/set-leader-keys-for-major-mode m (concat "r" binding) func)))))
+
+      )))

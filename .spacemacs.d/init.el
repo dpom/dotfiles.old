@@ -11,34 +11,46 @@
    ;; List of configuration layers to load. If it is the symbol `all' instead
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers '((auto-completion :variables
-                                                        auto-completion-enable-company-help-tooltip nil
+                                                        auto-completion-enable-snippets-in-popup t
+                                                        auto-completion-return-key-behavior nil
+                                                        auto-completion-tab-key-behavior 'comlete
+                                                        auto-completion-private-snippets-directory "~/.spacemacs.d/snippets/"
+                                                        auto-completion-enable-company-help-tooltip 'manual
                                                         auto-completion-enable-sort-by-usage t
                                                         company-show-numbers t)
+                                       (c-c++ :variables c-c++-enable-clang-support t)
+                                       common-lisp
+                                       emacs-lisp
+                                       (evil-snipe :variables evil-snipe-enable-alternate-f-and-t-behaviors t)
+                                       fasd
                                        (git :variables
-                                            git-magit-status-fullscreen t
                                             git-enable-github-support t
                                             git-gutter-use-fringe t)
                                        (github :variables gh-profile-default-profile "dpom")
-                                       version-control
-                                       emacs-lisp
+                                       gtags
+                                       html
+                                       (ibuffer :variables ibuffer-group-buffers-by nil)
+                                       java
+                                       javascript
+                                       latex
+                                       markdown
+                                       org
+                                       (ranger :variables ranger-override-dired t)
+                                       semantic
+                                       (shell :variables
+                                              shell-default-shell 'eshell
+                                              shell-default-height 30
+                                              shell-default-position 'bottom)
                                        (shell-scripts :variables
                                                       sh-indentation 2
                                                       sh-basic-offset 2)
-                                       (shell :variables
-                                              shell-default-shell 'shell
-                                              shell-default-height 30
-                                              shell-default-position 'bottom)
-                                       org
-                                       latex
-                                       syntax-checking
-                                       html
                                        smex
-                                       c-c++
+                                       (spell-checking :variables spell-checking-enable-by-default nil)
                                        sql
-                                       java
-                                       javascript
-                                       markdown
-                                       common-lisp
+                                       (syntax-checking :variables syntax-checking-enable-by-default nil)
+                                       unimpaired
+                                       (version-control :variables version-control-diff-tool 'diff-hl)
+                                       ;; specific
                                        ;; clojure
                                        dpom
                                        ent
@@ -75,7 +87,7 @@
    ;; directory. A string value must be a path to a .PNG file.
    ;; If the value is nil then no banner is displayed.
    ;; dotspacemacs-startup-banner 'official
-   dotspacemacs-startup-banner 'official
+   dotspacemacs-startup-banner nil
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
@@ -90,7 +102,7 @@
                                :size 18
                                :weight normal
                                :width normal
-                               :powerline-scale 1.1)
+                               :powerline-scale 1.2)
    ;; The leader key
    dotspacemacs-leader-key "SPC"
    ;; Major mode leader key is a shortcut key which is the equivalent of
@@ -155,7 +167,7 @@
    ;; the transparency level of a frame when it's active or selected.
    ;; Transparency can be toggled through `toggle-transparency'.
    dotspacemacs-active-transparency 90
-   ;; A value from the range (0..100), in increasing opacity, which describes
+    ;; A value from the range (0..100), in increasing opacity, which describes
    ;; the transparency level of a frame when it's inactive or deselected.
    ;; Transparency can be toggled through `toggle-transparency'.
    dotspacemacs-inactive-transparency 90

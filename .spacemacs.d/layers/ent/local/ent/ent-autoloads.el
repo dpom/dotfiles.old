@@ -2,8 +2,7 @@
 ;;
 ;;; Code:
 
-;;;### (autoloads (ent-find-file ent-visit-config-file ent-visit-build-file
-;;;;;;  ent) "ent" "ent.el" (19730 52156))
+;;;### (autoloads nil "ent" "ent.el" (22350 45404 620802 158000))
 ;;; Generated autoloads from ent.el
 
 (autoload 'ent "ent" "\

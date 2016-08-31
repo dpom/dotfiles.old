@@ -5,3 +5,10 @@ export NVM_DIR="$HOME/.nvm"
 export BOOT_JVM_OPTIONS="-Xmx2g -client -XX:+TieredCompilation -XX:TieredStopAtLevel=1 -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -Xverify:none"
 
 export PATH="$HOME/opt/maven/bin:$PATH"
+# eval "$(fasd # --init auto)"
+fasd_cache="$HOME/.fasd-init-bash"
+if [ "$(command -v fasd)" -nt "$fasd_cache" -o ! -s "$fasd_cache" ]; then
+  fasd --init posix-alias bash-hook bash-ccomp bash-ccomp-install >| "$fasd_cache"
+fi
+source "$fasd_cache"
+unset fasd_cache

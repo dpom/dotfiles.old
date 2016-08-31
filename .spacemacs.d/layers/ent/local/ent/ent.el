@@ -1,8 +1,8 @@
 ;;; ent.el --- emacs build tool
-;; Copyright (C) 2009 Dan Pomohaci (dpom)
+;; Copyright (C) 2016 Dan Pomohaci (dpom)
 
 ;; Author: Dan Pomohaci <dan.pomohaci@gmail.com>
-;; Version: 0.3
+;; Version: 0.4
 ;; Keywords: build ant task 
 
 ;; This program is free software; you can redistribute it and/or
@@ -68,12 +68,12 @@
   :group 'ent)
 
 
-(defcustom ent-elisp-default-src-dir "src/main/lisp/"
+(defcustom ent-elisp-default-src-dir "src/elisp/"
   "Default lisp source directory"
   :type '(string)
   :group 'ent)
 
-(defcustom ent-project-config-filename "project.clj"
+(defcustom ent-project-config-filename ".build.el"
   "Project specific config file name"
   :type '(string)
   :group 'ent)
@@ -92,11 +92,11 @@
 
 (defvar ent-tasks () "Local tasks list")
 
-(defvar ent-clean-regexp "" "Regular expression to match garbage files")
+(defvar ent-clean-regexp nil "Regular expression to match garbage files")
 
-(defvar ent-dirclean-regexp "" "Regular expression to match garbage directories")
+(defvar ent-dirclean-regexp nil "Regular expression to match garbage directories")
 
-(defvar ent-elisp-src-dir "" "Lisp source directory")
+(defvar ent-elisp-src-dir nil "Lisp source directory")
 
 (defvar ent-mcopy-list () "Multiple copy list each element is \(SRC DEST PATTERN\).The SRC and DEST must be absolute path.")
 

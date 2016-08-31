@@ -4,7 +4,7 @@
 # --
 ;; project settings
 (setq ent-project-home (file-name-directory (if load-file-name load-file-name buffer-file-name)))
-(setq ent-project-name "$1")
+(setq ent-project-name "${1:project}")
 (setq ent-clean-regexp "~$\\\\|\\\\.tex$")
 (setq ent-project-config-filename "${1:$(capitalize yas-text)}.org")
 
