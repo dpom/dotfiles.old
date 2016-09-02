@@ -19,17 +19,15 @@
                                                         auto-completion-enable-sort-by-usage t
                                                         company-show-numbers t)
                                        (c-c++ :variables c-c++-enable-clang-support t)
-                                       common-lisp
+                                       ;; common-lisp
                                        emacs-lisp
                                        (evil-snipe :variables evil-snipe-enable-alternate-f-and-t-behaviors t)
-                                       fasd
                                        (git :variables
                                             git-enable-github-support t
                                             git-gutter-use-fringe t)
                                        (github :variables gh-profile-default-profile "dpom")
                                        gtags
                                        html
-                                       (ibuffer :variables ibuffer-group-buffers-by nil)
                                        java
                                        javascript
                                        latex
@@ -48,7 +46,6 @@
                                        (spell-checking :variables spell-checking-enable-by-default nil)
                                        sql
                                        (syntax-checking :variables syntax-checking-enable-by-default nil)
-                                       unimpaired
                                        (version-control :variables version-control-diff-tool 'diff-hl)
                                        ;; specific
                                        ;; clojure
