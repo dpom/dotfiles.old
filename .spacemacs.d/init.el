@@ -13,7 +13,9 @@
    dotspacemacs-configuration-layers '((auto-completion :variables
                                                         auto-completion-enable-snippets-in-popup t
                                                         auto-completion-return-key-behavior nil
-                                                        auto-completion-tab-key-behavior 'comlete
+                                                        auto-completion-tab-key-behavior 'complete
+                                                        auto-completion-complete-with-key-sequence "ff"
+                                                        auto-completion-complete-with-key-sequence-delay 0.5
                                                         auto-completion-private-snippets-directory "~/.spacemacs.d/snippets/"
                                                         auto-completion-enable-company-help-tooltip 'manual
                                                         auto-completion-enable-sort-by-usage t
@@ -21,7 +23,7 @@
                                        (c-c++ :variables c-c++-enable-clang-support t)
                                        ;; common-lisp
                                        emacs-lisp
-                                       (evil-snipe :variables evil-snipe-enable-alternate-f-and-t-behaviors t)
+                                       ;; (evil-snipe :variables evil-snipe-enable-alternate-f-and-t-behaviors t)
                                        (git :variables
                                             git-enable-github-support t
                                             git-gutter-use-fringe t)
