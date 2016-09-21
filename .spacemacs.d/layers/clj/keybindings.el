@@ -82,7 +82,10 @@
   )
 
 
-
+(spacemacs/set-leader-keys-for-major-mode 'java-mode
+  "se" 'clj-insert-last-sexp-in-repl
+  "ss" 'inf-clojure-switch-to-repl
+  )
 
 (spacemacs/set-leader-keys-for-major-mode 'inferior-lisp-mode
   "sk" 'spacemacs/comint-clear-buffer

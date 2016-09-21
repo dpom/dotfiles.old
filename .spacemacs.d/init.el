@@ -35,7 +35,7 @@
                                        latex
                                        markdown
                                        org
-                                       (ranger :variables ranger-override-dired t)
+                                       ;; (ranger :variables ranger-override-dired t)
                                        semantic
                                        (shell :variables
                                               shell-default-shell 'eshell
@@ -251,7 +251,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(calendar-date-style (quote european)))
+ '(calendar-date-style (quote european))
+ '(safe-local-variable-values (quote ((ggtags-process-environment)))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
