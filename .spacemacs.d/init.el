@@ -24,6 +24,13 @@
                                        ;; common-lisp
                                        emacs-lisp
                                        ;; (evil-snipe :variables evil-snipe-enable-alternate-f-and-t-behaviors t)
+                                       (erc :variables
+                                            erc-server-list
+                                            '(("irc.freenode.net" 
+                                               :port "6697"
+                                               :ssl t
+                                               :nick "dpom")
+                                              ))
                                        (git :variables
                                             git-enable-github-support t
                                             git-gutter-use-fringe t)
@@ -36,6 +43,13 @@
                                        markdown
                                        org
                                        ;; (ranger :variables ranger-override-dired t)
+                                       ;; (rcirc :variables
+                                       ;;        rcirc-enable-authinfo-support t
+                                       ;;        rcirc-server-alist
+                                       ;;        '(("irc.freenode.net"
+                                       ;;           :user "dpom"
+                                       ;;           :channels ("#emacs #yetibot")))
+                                       ;;        )
                                        semantic
                                        (shell :variables
                                               shell-default-shell 'eshell

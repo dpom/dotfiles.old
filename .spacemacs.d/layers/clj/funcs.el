@@ -46,7 +46,7 @@
 
 (defun clj-run (cmd)
   (split-window-below-and-focus)
-  (run-lisp cmd))
+  (run-clojure cmd))
 
 (defun clj-run-lisp ()
   (interactive)

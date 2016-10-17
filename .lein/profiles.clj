@@ -1,0 +1,1 @@
+/home/dan/pers/dotfiles/.lein/profiles.small.clj
