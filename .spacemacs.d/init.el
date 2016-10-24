@@ -68,6 +68,7 @@
                                        dpom
                                        ent
                                        clj
+                                       multiedit
                                        ;; osx  ; for mac
                                        )
    ;; List of additional packages that will be installed without being
