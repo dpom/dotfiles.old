@@ -10,7 +10,19 @@
 ;;; License: GPLv3
 
 ;;; Commentary:
-
+;;
+;; Many evil-mode motions/operators will have slightly different behavior while
+;; evil-multiedit is active or the cursor is in an iedit region:
+;;
+;; D: clear the region
+;; C: clear to end-of-region and go into insert mode
+;; A: go into insert mode at end-of-region
+;; I: go into insert mode at start-of-region
+;; V: select the region
+;; $: go to end-of-region
+;; 0/^: go to start-of-region
+;; gg/G: go to the first/last region
+;;
 ;;; Code:
 
 (defconst multiedit-packages
