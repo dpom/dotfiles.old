@@ -114,6 +114,13 @@
     "ruw" 'cljr-unwind
   )
 
+
+(spacemacs/set-leader-keys-for-major-mode 'inf-clojure-mode
+  ;; "sk" 'spacemacs/comint-clear-buffer
+  "sk" 'inf-clojure-clear-repl-buffer
+  )
+
+
 ;;; global mode 
 (spacemacs/declare-prefix "or" "repl")
 (spacemacs/set-leader-keys
