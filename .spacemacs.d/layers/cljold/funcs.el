@@ -31,9 +31,26 @@
                  (company-grab-symbol)))
     (candidates (get-clj-completions arg))))
 
+(defun reload-current-clj-ns ()
+  (interactive)
+  (let ((current-point (point)))
+    (goto-char (point-min))
+    (let ((ns-idx (re-search-forward clojure-namespace-name-regex nil t)))
+      (when ns-idx
+        (goto-char ns-idx)
+        (let ((sym (symbol-at-point)))
+          (message (format "Loading %s ..." sym))
+          (lisp-eval-string (format "(require '%s :reload)" sym))
+          (lisp-eval-string (format "(in-ns '%s)" sym)))))
+    (goto-char current-point)))
 
 
 
+
+(defun find-tag-without-ns (next-p)
+  (interactive "P")
+  (find-tag (first (last (split-string (symbol-name (symbol-at-point)) "/")))
+            next-p))
 
 
 (defun clj-switch-to-inf-lisp ()
@@ -108,4 +125,8 @@
           (clj-insert-in-repl (format "(in-ns '%s)" sym)))))
     (clj-switch-to-inf-lisp)))
 
-
+(defun erase-inf-buffer ()
+  (interactive)
+  (with-current-buffer clj-inf-lisp-buffer
+    (erase-buffer)
+    (lisp-eval-string "")))

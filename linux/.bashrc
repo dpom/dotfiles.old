@@ -3,7 +3,7 @@ export NVM_DIR="$HOME/.nvm"
 [[ -r $NVM_DIR/bash_completion ]] && . $NVM_DIR/bash_completion
 
 export BOOT_JVM_OPTIONS="-Xmx2g -client -XX:+TieredCompilation -XX:TieredStopAtLevel=1 -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -Xverify:none"
-
+echo export GTAGSLABEL=pygments
 export PATH="$HOME/opt/maven/bin:$PATH"
 # eval "$(fasd # --init auto)"
 fasd_cache="$HOME/.fasd-init-bash"
@@ -12,3 +12,7 @@ if [ "$(command -v fasd)" -nt "$fasd_cache" -o ! -s "$fasd_cache" ]; then
 fi
 source "$fasd_cache"
 unset fasd_cache
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/home/dan/.sdkman"
+[[ -s "/home/dan/.sdkman/bin/sdkman-init.sh" ]] && source "/home/dan/.sdkman/bin/sdkman-init.sh"

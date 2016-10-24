@@ -37,12 +37,33 @@
 
 (dolist (m '(clojure-mode clojurec-mode clojurescript-mode clojurex-mode))
   (spacemacs/set-leader-keys-for-major-mode m
-  ;; repl
-  "si" 'clj-switch-to-inf-lisp
-  "ss" 'clj-switch-to-inf-lisp
-  "se" 'clj-insert-last-sexp-in-repl
-  "sn" 'reload-current-clj-ns
-  "sr" 'clj-load-current-cljs-ns
+    ;; eval
+    "eb" 'inf-clojure-eval-buffer
+    "ee" 'inf-clojure-eval-last-sexp
+    "ef" 'inf-clojure-eval-defun
+    "er" 'inf-clojure-eval-region
+    "en" 'inf-clojure-set-ns
+    ;; "ew" 'cider-eval-last-sexp-and-replace
+    ;; repl
+    ;; "sb" 'cider-load-buffer
+    ;; "sB" 'spacemacs/cider-send-buffer-in-repl-and-focus
+    ;; "sc" 'cider-connect
+    ;; "se" 'spacemacs/cider-send-last-sexp-to-repl
+    ;; "sE" 'spacemacs/cider-send-last-sexp-to-repl-focus
+    ;; "sf" 'spacemacs/cider-send-function-to-repl
+    ;; "sF" 'spacemacs/cider-send-function-to-repl-focus
+    "se" 'clj-insert-last-sexp-in-repl
+    "sn" 'reload-current-clj-ns
+    "sr" 'clj-load-current-cljs-ns
+    "si" 'inf-clojure
+    ;; "sI" 'cider-jack-in-clojurescript
+    ;; "sn" 'spacemacs/cider-send-ns-form-to-repl
+    ;; "sN" 'spacemacs/cider-send-ns-form-to-repl-focus
+    ;; "sq" 'cider-quit
+    ;; "sr" 'spacemacs/cider-send-region-to-repl
+    ;; "sR" 'spacemacs/cider-send-region-to-repl-focus
+    "ss" 'inf-clojure-switch-to-repl
+    ;; "sx" 'cider-refresh
   ;; start repl
   "ll"  'clj-run-lisp
   "lb"  'clj-run-boot
@@ -61,7 +82,10 @@
   )
 
 
-
+(spacemacs/set-leader-keys-for-major-mode 'java-mode
+  "se" 'clj-insert-last-sexp-in-repl
+  "ss" 'inf-clojure-switch-to-repl
+  )
 
 (spacemacs/set-leader-keys-for-major-mode 'inferior-lisp-mode
   "sk" 'spacemacs/comint-clear-buffer
@@ -89,6 +113,13 @@
     "rup" 'cljr-update-project-dependencies
     "ruw" 'cljr-unwind
   )
+
+
+(spacemacs/set-leader-keys-for-major-mode 'inf-clojure-mode
+  ;; "sk" 'spacemacs/comint-clear-buffer
+  "sk" 'inf-clojure-clear-repl-buffer
+  )
+
 
 ;;; global mode 
 (spacemacs/declare-prefix "or" "repl")

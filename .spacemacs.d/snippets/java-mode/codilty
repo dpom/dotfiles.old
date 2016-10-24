@@ -1,0 +1,32 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: $2
+# key: cod
+
+# --
+package ${2:`(substring (second (split-string (file-name-directory (buffer-file-name)) "src/java/")) 0 -1)`};
+
+/*
+$0
+*/
+
+import java.util.Arrays;
+
+public class Solution${1:id} {
+    public int solution(int[] A) {
+        int len = A.length;
+        int ret = 1;
+        return ret;
+    }
+}
+
+/* test:
+   (import $2.Solution$1)
+   (.solution ($2.Solution$1.) (int-array [4 1 3 2]))
+   (.solution ($2.Solution$1.) (int-array [4 1 3]))
+   (.solution ($2.Solution$1.) (int-array []))
+   (.solution ($2.Solution$1.) (int-array [1 2]))
+   (.solution ($2.Solution$1.) (int-array [1]))
+   (.solution ($2.Solution$1.) (int-array [2]))
+   (.solution ($2.Solution$1.) (int-array (vec (range 1 100001))))
+
+*/

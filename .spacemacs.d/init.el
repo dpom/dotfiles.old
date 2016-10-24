@@ -13,29 +13,43 @@
    dotspacemacs-configuration-layers '((auto-completion :variables
                                                         auto-completion-enable-snippets-in-popup t
                                                         auto-completion-return-key-behavior nil
-                                                        auto-completion-tab-key-behavior 'comlete
+                                                        auto-completion-tab-key-behavior 'complete
+                                                        auto-completion-complete-with-key-sequence "ff"
+                                                        auto-completion-complete-with-key-sequence-delay 0.5
                                                         auto-completion-private-snippets-directory "~/.spacemacs.d/snippets/"
                                                         auto-completion-enable-company-help-tooltip 'manual
                                                         auto-completion-enable-sort-by-usage t
                                                         company-show-numbers t)
                                        (c-c++ :variables c-c++-enable-clang-support t)
-                                       common-lisp
+                                       ;; common-lisp
                                        emacs-lisp
-                                       (evil-snipe :variables evil-snipe-enable-alternate-f-and-t-behaviors t)
-                                       fasd
+                                       ;; (evil-snipe :variables evil-snipe-enable-alternate-f-and-t-behaviors t)
+                                       (erc :variables
+                                            erc-server-list
+                                            '(("irc.freenode.net" 
+                                               :port "6697"
+                                               :ssl t
+                                               :nick "dpom")
+                                              ))
                                        (git :variables
                                             git-enable-github-support t
                                             git-gutter-use-fringe t)
                                        (github :variables gh-profile-default-profile "dpom")
                                        gtags
                                        html
-                                       (ibuffer :variables ibuffer-group-buffers-by nil)
                                        java
                                        javascript
                                        latex
                                        markdown
                                        org
-                                       (ranger :variables ranger-override-dired t)
+                                       ;; (ranger :variables ranger-override-dired t)
+                                       ;; (rcirc :variables
+                                       ;;        rcirc-enable-authinfo-support t
+                                       ;;        rcirc-server-alist
+                                       ;;        '(("irc.freenode.net"
+                                       ;;           :user "dpom"
+                                       ;;           :channels ("#emacs #yetibot")))
+                                       ;;        )
                                        semantic
                                        (shell :variables
                                               shell-default-shell 'eshell
@@ -48,7 +62,6 @@
                                        (spell-checking :variables spell-checking-enable-by-default nil)
                                        sql
                                        (syntax-checking :variables syntax-checking-enable-by-default nil)
-                                       unimpaired
                                        (version-control :variables version-control-diff-tool 'diff-hl)
                                        ;; specific
                                        ;; clojure
@@ -252,7 +265,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(calendar-date-style (quote european)))
+ '(calendar-date-style (quote european))
+ '(safe-local-variable-values (quote ((ggtags-process-environment)))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
