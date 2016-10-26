@@ -14,7 +14,8 @@
       '(org
         org-ref
         (org-redmine :location local)
-        (mu4e :location local)))
+        (mu4e :location local)
+        ox-reveal))
 
 (defun dpom/post-init-org ()
   ;; org-basic-settings
@@ -211,7 +212,7 @@
   (setq org-src-fontify-natively t)
   (setq org-src-preserve-indentation t)
   (setq org-src-tab-acts-natively t)
-  
+
   (add-hook 'org-babel-after-execute-hook 'org-display-inline-images)
   ;; Now you just create a =begin-src= block for the appropriate tool, edit
   ;; the text, and build the pictures with =C-c C-c=.  After evaluating the
@@ -388,14 +389,7 @@
 
 
 
-  (require 'ox-latex)
-  (add-to-list 'org-latex-classes
-               '("beamer"
-                 "\\documentclass\[presentation\]\{beamer\}"
-                 ("\\section\{%s\}" . "\\section*\{%s\}")
-                 ("\\subsection\{%s\}" . "\\subsection*\{%s\}")
-                 ("\\subsubsection\{%s\}" . "\\subsubsection*\{%s\}")))
-
+  
   (require 'org-crypt)
   (org-crypt-use-before-save-magic)
   (setq org-tags-exclude-from-inheritance (quote ("crypt")))
@@ -407,16 +401,10 @@
                                         ;            (lambda ()
                                         ;              (local-set-key "\C-c\M-o" 'org-mime-htmlize)))
                                         ;
-  ;; Org Mobile
-  (setq org-mobile-directory "~/Dropbox/MobileOrg"
-        org-directory dpom/org-dir
-        org-mobile-inbox-for-pull dpom/org-notes-file
-        )
-
-  )
+)
 
 
-(defun dpom/init-org-ref ()
+(defun dpom/post-init-org-ref ()
   "Initialize org-ref extension"
   (use-package org-ref
     :config (progn
@@ -482,9 +470,7 @@ citecolor=blue,filecolor=blue,menucolor=blue,urlcolor=blue"
                                 . (lambda (issue) (org-redmine-insert-subtree issue))))))))
                 (while (re-search-forward "/" nil t)
                   (replace-match "-")))
-              (spacemacs/set-leader-keys  "oR" 'dpom-helm-redmine)
-              ))
-  )
+              (spacemacs/set-leader-keys  "oR" 'dpom-helm-redmine))))
 
 (defun dpom/init-mu4e ()
   "Initialize mu4e extension"
@@ -545,7 +531,12 @@ citecolor=blue,filecolor=blue,menucolor=blue,urlcolor=blue"
                            '("org-contact-add" . mu4e-action-add-org-contact) t)
               (setq mu4e-compose-complete-only-personal t)
               (setq message-kill-buffer-on-exit t)
-              (defalias 'org-mail 'org-mu4e-compose-org-mode)
-              ))
-  )
+              (defalias 'org-mail 'org-mu4e-compose-org-mode))))
+
+(defun dpom/post-init-ox-reveal ()
+  "Initialize ox-reveal package."
+  (use-package ox-reveal
+    :config (progn
+              (setq org-reveal-root ""))))
+
 ;; dpom-package ends here

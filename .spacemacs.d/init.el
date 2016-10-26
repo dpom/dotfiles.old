@@ -20,6 +20,7 @@
                                                         auto-completion-enable-company-help-tooltip 'manual
                                                         auto-completion-enable-sort-by-usage t
                                                         company-show-numbers t)
+                                       bibtex
                                        (c-c++ :variables c-c++-enable-clang-support t)
                                        ;; common-lisp
                                        emacs-lisp
@@ -41,7 +42,9 @@
                                        javascript
                                        latex
                                        markdown
-                                       org
+                                       (org :variables
+                                            org-enable-github-support t
+                                            org-enable-reveal-js-support t)
                                        ;; (ranger :variables ranger-override-dired t)
                                        ;; (rcirc :variables
                                        ;;        rcirc-enable-authinfo-support t
@@ -256,6 +259,10 @@
               '(:with company-yasnippet))))
 
   (setq company-backends (mapcar #'company-mode/backend-with-yas company-backends))
+
+  (setq org-ref-default-bibliography '("~/pers/bibliography/dpom.bib")
+        org-ref-pdf-directory "~/pers/bibliography/pdfs/"
+        org-ref-bibliography-notes "~/pers/bibliography/notes.org")
   )
 
 ;; Do not write anything past this comment. This is where Emacs will

@@ -29,7 +29,6 @@
   "obt" 'org-babel-tangle
   )
 
-(spacemacs/set-leader-keys "fE" 'dpom/sudo-edit)
 (spacemacs/set-leader-keys "xf" 'dpom/cleanup-buffer)
 (spacemacs/set-leader-keys-for-major-mode 'dired-mode
   "w" 'wdired-change-to-wdired-mode)
