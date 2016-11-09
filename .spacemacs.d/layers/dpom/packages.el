@@ -41,6 +41,7 @@
         org-cycle-emulate-tab t
         org-outline-path-complete-in-steps nil)
   (setq org-refile-targets '((org-agenda-files . (:maxlevel . 5))))
+  (setq org-bullets-bullet-list '("○" "◙" "▲" "▶"))
 
   ;; org-custom-commands
   (setq org-agenda-custom-commands
@@ -132,20 +133,7 @@
   ;; Include current clocking task in clock reports
   (setq org-clock-report-include-clocking-task t)
 
-  ;; Pomodoro
-  (require 'org-timer)
-  (add-to-list 'org-modules 'org-timer)
-  (setq org-timer-default-timer 25)
-  (add-hook 'org-clock-in-hook '(lambda ()
-                                  (if (not org-timer-current-timer)
-                                      (org-timer-set-timer '(16)))))
-  (add-hook 'org-clock-out-hook '(lambda ()
-                                   (setq org-mode-line-string nil)))
-  (add-hook 'org-timer-done-hook '(lambda()
-                                    (start-process "orgmode" nil "/usr/bin/notify-send" "Pomodoro: Take a break")
-                                    (org-timer-stop)))
-
-  ;; Reminders
+    ;; Reminders
   ;; Rebuild the reminders everytime the agenda is displayed
   (add-hook 'org-finalize-agenda-hook 'dpom/org-agenda-to-appt 'append)
 
@@ -326,7 +314,38 @@
                  ("\\paragraph{%s}" . "\\paragraph*{%s}")
                  ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
 
-
+(add-to-list 'org-latex-classes
+               '("dpom-spec-ro"
+                 "\\documentclass[12pt,a4paper]{article}
+      [NO-DEFAULT-PACKAGES]
+      \\usepackage[T1]{fontenc}
+      \\usepackage[utf8]{inputenc}
+      \\usepackage[romanian]{babel}
+      \\usepackage{minted}
+      \\usemintedstyle{emacs}
+      \\newminted{common-lisp}{fontsize=10}
+      \\usepackage[hmargin=2cm,top=4cm,headheight=65pt,footskip=65pt]{geometry}
+      \\usepackage{fancyhdr}
+      \\usepackage{lastpage}
+      \\usepackage{xcolor}
+      \\usepackage{array}
+      \\usepackage[parfill]{parskip}
+      \\usepackage{hyperref}
+      \\pagestyle{fancy}
+      \\fancyhead{}
+      \\fancyfoot{}
+      \\renewcommand{\\headrulewidth}{0.5pt}
+      \\renewcommand{\\footrulewidth}{0.5pt}
+      \\addtolength{\\headsep}{5pt}
+      \\setlength{\\parindent}{0pt}
+      \\setlength{\\headsep}{50pt}
+      \\rfoot{\\thepage/\\pageref{LastPage}}"
+                 ("\\section{%s}" . "\\section*{%s}")
+                 ("\\subsection{%s}" . "\\subsection*{%s}")
+                 ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                 ("\\subsubsubsection{%s}" . "\\subsubsubsection*{%s}")
+                 ("\\paragraph{%s}" . "\\paragraph*{%s}")
+                 ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
   (add-to-list 'org-latex-classes
                '("letter"
                  "\\documentclass[12pt]{letter}
@@ -351,7 +370,7 @@
                  ))
 
   (add-to-list 'org-latex-classes
-               '("dpom/org-article"
+               '("dpom-org-article"
                  "\\documentclass[12pt,a4paper]{article}
       [NO-DEFAULT-PACKAGES]
       \\usepackage[hmargin=2cm,top=4cm,headheight=65pt,footskip=65pt]{geometry}

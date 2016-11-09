@@ -21,7 +21,10 @@
                                                         auto-completion-enable-sort-by-usage t
                                                         company-show-numbers t)
                                        bibtex
-                                       (c-c++ :variables c-c++-enable-clang-support t)
+                                       (c-c++ :variables
+                                              c-c++-enable-clang-support t
+                                              c-default-style "linux"
+                                              c-basic-offset 2)
                                        ;; common-lisp
                                        emacs-lisp
                                        ;; (evil-snipe :variables evil-snipe-enable-alternate-f-and-t-behaviors t)
@@ -237,9 +240,10 @@
                                         ;(global-set-key (kbd "TAB") 'hippie-expand)
   (setq spacemacs-mode-line-org-clock-current-taskp t)
   (setq dired-dwim-target t)
-  (spacemacs/toggle-menu-bar)
+  (auto-fill-mode)
+  (toggle-truncate-lines)
+  (menu-bar-mode 1)
   (spacemacs/toggle-mode-line-org-clock)
-  (spacemacs/toggle-truncate-lines)
   (spacemacs|defvar-company-backends sh-mode)
   (spacemacs|add-company-hook sh-mode)
   (setq eclim-eclipse-dirs "~/eclipse"
@@ -260,6 +264,10 @@
 
   (setq company-backends (mapcar #'company-mode/backend-with-yas company-backends))
 
+  (add-hook 'c-mode-common-hook
+            (lambda ()
+              (c-set-offset 'case-label '+)))
+
   (setq org-ref-default-bibliography '("~/pers/bibliography/dpom.bib")
         org-ref-pdf-directory "~/pers/bibliography/pdfs/"
         org-ref-bibliography-notes "~/pers/bibliography/notes.org")
@@ -279,7 +287,7 @@
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
+ ;; If there îs more than one, they won't work right.
  '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
  '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil))))
  '(org-done ((t (:foreground "PaleGreen" :weight normal :strike-through t))))
