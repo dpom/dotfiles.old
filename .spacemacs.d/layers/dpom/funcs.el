@@ -55,3 +55,22 @@
   (interactive)
   (setq appt-time-msg-list nil)
   (org-agenda-to-appt))
+
+(defun dpom/insert-char (c)
+  (delete-char 1)
+  (insert c))
+
+(defun dpom/insert-rom-char (c)
+  (interactive "cchar:")
+  (case c
+    ((?i)
+     (dpom/insert-char "î"))
+    ((?s)
+     (dpom/insert-char "ş"))
+    ((?t)
+     (dpom/insert-char "ţ"))
+    ((?a)
+     (dpom/insert-char "ă"))
+    ((?q)
+     (dpom/insert-char "â"))
+    ))

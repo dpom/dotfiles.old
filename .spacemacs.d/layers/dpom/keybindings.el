@@ -23,13 +23,13 @@
   "og" 'helm-org-agenda-files-headings
   "oo" 'org-clock-out
   "oc" 'org-capture
+  "op" 'org-pomodoro 
   "oC" 'helm-org-capture-templates ;requires templates to be defined.
   "ol" 'org-store-link
   "obd" 'org-babel-detangle
   "obt" 'org-babel-tangle
-  )
+  "oi" 'dpom/insert-rom-char)
 
-(spacemacs/set-leader-keys "fE" 'dpom/sudo-edit)
 (spacemacs/set-leader-keys "xf" 'dpom/cleanup-buffer)
 (spacemacs/set-leader-keys-for-major-mode 'dired-mode
   "w" 'wdired-change-to-wdired-mode)

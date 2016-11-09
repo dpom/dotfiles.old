@@ -4,6 +4,8 @@
 # --
 #+TITLE: `(file-name-nondirectory buffer-file-name)`
 #+DESCRIPTION: $1
+#+AUTHOR: Dan Pomohaci
+#+EMAIL: dan.pomohaci@gmail.com
 #+STARTUP: overview
 
 $0

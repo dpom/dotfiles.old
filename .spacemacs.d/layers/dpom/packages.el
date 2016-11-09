@@ -14,7 +14,8 @@
       '(org
         org-ref
         (org-redmine :location local)
-        (mu4e :location local)))
+        (mu4e :location local)
+        ox-reveal))
 
 (defun dpom/post-init-org ()
   ;; org-basic-settings
@@ -40,6 +41,7 @@
         org-cycle-emulate-tab t
         org-outline-path-complete-in-steps nil)
   (setq org-refile-targets '((org-agenda-files . (:maxlevel . 5))))
+  (setq org-bullets-bullet-list '("○" "◙" "▲" "▶"))
 
   ;; org-custom-commands
   (setq org-agenda-custom-commands
@@ -131,20 +133,7 @@
   ;; Include current clocking task in clock reports
   (setq org-clock-report-include-clocking-task t)
 
-  ;; Pomodoro
-  (require 'org-timer)
-  (add-to-list 'org-modules 'org-timer)
-  (setq org-timer-default-timer 25)
-  (add-hook 'org-clock-in-hook '(lambda ()
-                                  (if (not org-timer-current-timer)
-                                      (org-timer-set-timer '(16)))))
-  (add-hook 'org-clock-out-hook '(lambda ()
-                                   (setq org-mode-line-string nil)))
-  (add-hook 'org-timer-done-hook '(lambda()
-                                    (start-process "orgmode" nil "/usr/bin/notify-send" "Pomodoro: Take a break")
-                                    (org-timer-stop)))
-
-  ;; Reminders
+    ;; Reminders
   ;; Rebuild the reminders everytime the agenda is displayed
   (add-hook 'org-finalize-agenda-hook 'dpom/org-agenda-to-appt 'append)
 
@@ -211,7 +200,7 @@
   (setq org-src-fontify-natively t)
   (setq org-src-preserve-indentation t)
   (setq org-src-tab-acts-natively t)
-  
+
   (add-hook 'org-babel-after-execute-hook 'org-display-inline-images)
   ;; Now you just create a =begin-src= block for the appropriate tool, edit
   ;; the text, and build the pictures with =C-c C-c=.  After evaluating the
@@ -325,7 +314,38 @@
                  ("\\paragraph{%s}" . "\\paragraph*{%s}")
                  ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
 
-
+(add-to-list 'org-latex-classes
+               '("dpom-spec-ro"
+                 "\\documentclass[12pt,a4paper]{article}
+      [NO-DEFAULT-PACKAGES]
+      \\usepackage[T1]{fontenc}
+      \\usepackage[utf8]{inputenc}
+      \\usepackage[romanian]{babel}
+      \\usepackage{minted}
+      \\usemintedstyle{emacs}
+      \\newminted{common-lisp}{fontsize=10}
+      \\usepackage[hmargin=2cm,top=4cm,headheight=65pt,footskip=65pt]{geometry}
+      \\usepackage{fancyhdr}
+      \\usepackage{lastpage}
+      \\usepackage{xcolor}
+      \\usepackage{array}
+      \\usepackage[parfill]{parskip}
+      \\usepackage{hyperref}
+      \\pagestyle{fancy}
+      \\fancyhead{}
+      \\fancyfoot{}
+      \\renewcommand{\\headrulewidth}{0.5pt}
+      \\renewcommand{\\footrulewidth}{0.5pt}
+      \\addtolength{\\headsep}{5pt}
+      \\setlength{\\parindent}{0pt}
+      \\setlength{\\headsep}{50pt}
+      \\rfoot{\\thepage/\\pageref{LastPage}}"
+                 ("\\section{%s}" . "\\section*{%s}")
+                 ("\\subsection{%s}" . "\\subsection*{%s}")
+                 ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                 ("\\subsubsubsection{%s}" . "\\subsubsubsection*{%s}")
+                 ("\\paragraph{%s}" . "\\paragraph*{%s}")
+                 ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
   (add-to-list 'org-latex-classes
                '("letter"
                  "\\documentclass[12pt]{letter}
@@ -350,7 +370,7 @@
                  ))
 
   (add-to-list 'org-latex-classes
-               '("dpom/org-article"
+               '("dpom-org-article"
                  "\\documentclass[12pt,a4paper]{article}
       [NO-DEFAULT-PACKAGES]
       \\usepackage[hmargin=2cm,top=4cm,headheight=65pt,footskip=65pt]{geometry}
@@ -388,14 +408,7 @@
 
 
 
-  (require 'ox-latex)
-  (add-to-list 'org-latex-classes
-               '("beamer"
-                 "\\documentclass\[presentation\]\{beamer\}"
-                 ("\\section\{%s\}" . "\\section*\{%s\}")
-                 ("\\subsection\{%s\}" . "\\subsection*\{%s\}")
-                 ("\\subsubsection\{%s\}" . "\\subsubsection*\{%s\}")))
-
+  
   (require 'org-crypt)
   (org-crypt-use-before-save-magic)
   (setq org-tags-exclude-from-inheritance (quote ("crypt")))
@@ -407,16 +420,10 @@
                                         ;            (lambda ()
                                         ;              (local-set-key "\C-c\M-o" 'org-mime-htmlize)))
                                         ;
-  ;; Org Mobile
-  (setq org-mobile-directory "~/Dropbox/MobileOrg"
-        org-directory dpom/org-dir
-        org-mobile-inbox-for-pull dpom/org-notes-file
-        )
-
-  )
+)
 
 
-(defun dpom/init-org-ref ()
+(defun dpom/post-init-org-ref ()
   "Initialize org-ref extension"
   (use-package org-ref
     :config (progn
@@ -482,9 +489,7 @@ citecolor=blue,filecolor=blue,menucolor=blue,urlcolor=blue"
                                 . (lambda (issue) (org-redmine-insert-subtree issue))))))))
                 (while (re-search-forward "/" nil t)
                   (replace-match "-")))
-              (spacemacs/set-leader-keys  "oR" 'dpom-helm-redmine)
-              ))
-  )
+              (spacemacs/set-leader-keys  "oR" 'dpom-helm-redmine))))
 
 (defun dpom/init-mu4e ()
   "Initialize mu4e extension"
@@ -545,7 +550,12 @@ citecolor=blue,filecolor=blue,menucolor=blue,urlcolor=blue"
                            '("org-contact-add" . mu4e-action-add-org-contact) t)
               (setq mu4e-compose-complete-only-personal t)
               (setq message-kill-buffer-on-exit t)
-              (defalias 'org-mail 'org-mu4e-compose-org-mode)
-              ))
-  )
+              (defalias 'org-mail 'org-mu4e-compose-org-mode))))
+
+(defun dpom/post-init-ox-reveal ()
+  "Initialize ox-reveal package."
+  (use-package ox-reveal
+    :config (progn
+              (setq org-reveal-root ""))))
+
 ;; dpom-package ends here

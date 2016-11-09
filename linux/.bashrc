@@ -16,3 +16,5 @@ unset fasd_cache
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/home/dan/.sdkman"
 [[ -s "/home/dan/.sdkman/bin/sdkman-init.sh" ]] && source "/home/dan/.sdkman/bin/sdkman-init.sh"
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
