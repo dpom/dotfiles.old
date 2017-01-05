@@ -15,6 +15,7 @@
         org-ref
         (org-redmine :location local)
         (mu4e :location local)
+        cdlatex 
         ox-reveal))
 
 (defun dpom/post-init-org ()
@@ -492,7 +493,7 @@ citecolor=blue,filecolor=blue,menucolor=blue,urlcolor=blue"
               (spacemacs/set-leader-keys  "oR" 'dpom-helm-redmine))))
 
 (defun dpom/init-mu4e ()
-  "Initialize mu4e extension"
+ "Initialize mu4e extension"
   (use-package mu4e
     :config (progn
               (setq mu4e-maildir "~/Maildir"
@@ -551,6 +552,11 @@ citecolor=blue,filecolor=blue,menucolor=blue,urlcolor=blue"
               (setq mu4e-compose-complete-only-personal t)
               (setq message-kill-buffer-on-exit t)
               (defalias 'org-mail 'org-mu4e-compose-org-mode))))
+
+(defun dpom/init-cdlatex ()
+  "Initialize cdlatex extension"
+  (use-package cdlatex))
+ 
 
 (defun dpom/post-init-ox-reveal ()
   "Initialize ox-reveal package."
