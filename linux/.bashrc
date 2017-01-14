@@ -1,5 +1,4 @@
-# ~/.bashrc: executed by bash(1) for non-login shells.
-# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
+# ~/.bashrc: executed by bash(1) for non-login shells. # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
 # If not running interactively, don't do anything
@@ -123,3 +122,6 @@ fi
 if [ -x /usr/bin/mint-fortune ]; then
      /usr/bin/mint-fortune
 fi
+export PATH="/home/dan/.pyenv/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"

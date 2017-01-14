@@ -404,25 +404,6 @@ values."
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
 ;; spacemacs ends here
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(calendar-date-style (quote european))
- '(package-selected-packages
-   (quote
-    (yapfify pytest hy-mode web-completion-data dash-functional auto-complete yaml-mode pyenv-mode company-anaconda anaconda-mode pyvenv py-isort pip-requirements live-py-mode helm-pydoc cython-mode pythonic seq spinner peg org xterm-color which-key web-mode use-package spaceline pug-mode persp-mode org-ref ivy org-plus-contrib org-download neotree move-text info+ indent-guide hide-comnt help-fns+ helm-flx git-messenger git-gutter-fringe eyebrowse exec-path-from-shell evil-mc dumb-jump company-emacs-eclim eclim clj-refactor cider bind-key auctex tern smartparens iedit highlight flycheck company request helm helm-core clojure-mode yasnippet markdown-mode projectile magit magit-popup git-commit with-editor js2-mode zenburn-theme ws-butler window-numbering web-beautify volatile-highlights vi-tilde-fringe uuidgen toc-org tagedit stickyfunc-enhance srefactor sql-indent spacemacs-theme smex smeargle slim-mode shell-pop scss-mode sass-mode restart-emacs rainbow-delimiters queue quelpa powerline popwin pkg-info pcre2el paredit paradox ox-reveal ox-gfm origami orgit org-projectile org-present org-pomodoro org-bullets open-junk-file multi-term mmm-mode markdown-toc magit-gitflow magit-gh-pulls macrostep lorem-ipsum livid-mode linum-relative link-hint less-css-mode key-chord json-mode js2-refactor js-doc insert-shebang inflections inf-clojure ido-vertical-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-themes helm-swoop helm-purpose helm-projectile helm-mode-manager helm-make helm-gtags helm-gitignore helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-bibtex helm-ag google-translate golden-ratio gnuplot github-search github-clone github-browse-file gitconfig-mode gitattributes-mode git-timemachine git-link git-gutter-fringe+ git-gutter gist gh-md ggtags flyspell-correct-helm flycheck-pos-tip flx-ido fish-mode fill-column-indicator fancy-battery expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-multiedit evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help erc-yt erc-view-log erc-social-graph erc-image erc-hl-nicks emmet-mode elisp-slime-nav edn disaster diminish diff-hl define-word company-web company-tern company-statistics company-shell company-c-headers company-auctex column-enforce-mode coffee-mode cmake-mode clean-aindent-mode clang-format cdlatex auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile auctex-latexmk async aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell)))
- '(safe-local-variable-values (quote ((ggtags-process-environment)))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
- '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil))))
- '(org-done ((t (:foreground "PaleGreen" :weight normal :strike-through t))))
- '(org-headline-done ((((class color) (min-colors 16) (background dark)) (:foreground "LightSalmon" :strike-through t)))))
 (defun dotspacemacs/emacs-custom-settings ()
   "Emacs custom settings.
 This is an auto-generated function, do not modify its content directly, use
