@@ -15,8 +15,10 @@
         org-ref
         (org-redmine :location local)
         (mu4e :location local)
-        cdlatex 
+        cdlatex
+        conda
         ox-reveal))
+
 
 (defun dpom/post-init-org ()
   ;; org-basic-settings
@@ -563,5 +565,18 @@ citecolor=blue,filecolor=blue,menucolor=blue,urlcolor=blue"
   (use-package ox-reveal
     :config (progn
               (setq org-reveal-root ""))))
+
+(defun dpom/init-conda ()
+  "Initialize conda package"
+  (use-package conda
+    :config (progn
+              ;; if you want interactive shell support, include:
+              (conda-env-initialize-interactive-shells)
+              ;; if you want eshell support, include:
+              (conda-env-initialize-eshell)
+              ;; if you want auto-activation (see below for details), include:
+              (conda-env-autoactivate-mode t)
+              ))
+  )
 
 ;; dpom-package ends here

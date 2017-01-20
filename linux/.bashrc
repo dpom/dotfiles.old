@@ -122,6 +122,25 @@ fi
 if [ -x /usr/bin/mint-fortune ]; then
      /usr/bin/mint-fortune
 fi
-export PATH="/home/dan/.pyenv/bin:$PATH"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+# export PATH="/home/dan/.pyenv/bin:$PATH"
+# eval "$(pyenv init -)"
+# eval "$(pyenv virtualenv-init -)"
+
+# added by Anaconda3 4.2.0 installer
+export PATH="/home/dan/anaconda3/bin:$PATH"
+# conda_auto_env
+source /home/dan/bin/conda_auto_env.sh
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f /home/dan/Dropbox/emag/googlecloud/google-cloud-sdk/path.bash.inc ]; then
+  source '/home/dan/Dropbox/emag/googlecloud/google-cloud-sdk/path.bash.inc'
+fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f /home/dan/Dropbox/emag/googlecloud/google-cloud-sdk/completion.bash.inc ]; then
+  source '/home/dan/Dropbox/emag/googlecloud/google-cloud-sdk/completion.bash.inc'
+fi
+# source ~/.autoenv/activate.sh
+# export WORKON_HOME=$HOME/.virtualenvs
+# export PROJECT_HOME=$HOME
+# source /usr/local/bin/virtualenvwrapper.sh

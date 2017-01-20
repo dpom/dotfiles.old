@@ -32,7 +32,6 @@
 (defconst clj-packages
   '(clojure-mode
     inf-clojure
-    clj-refactor
     company-etags
     eldoc
     )
@@ -69,7 +68,8 @@ Each entry is either:
     :init (progn
             (add-to-list 'auto-mode-alist '("\\.cljs$" . clojure-mode))
             (add-to-list 'auto-mode-alist '("\\.boot\\'" . clojure-mode))
-            (add-to-list 'magic-mode-alist '(".* boot" . clojure-mode)))
+            ;; This regexp matches shebang expressions like `#!/usr/bin/env boot'
+            (add-to-list 'magic-mode-alist '("#!.*boot\\s-*$" . clojure-mode)))
     :config (progn
               (require 'compile)
               (unless (assq 'cljtest  compilation-error-regexp-alist-alist)
@@ -116,24 +116,6 @@ Each entry is either:
                            (define-key inf-clojure-mode-map "\C-cl" 'erase-inf-buffer)))
 
               )))
-;; clj-refactor
-(defun clj/init-clj-refactor ()
-  (use-package clj-refactor
-    :defer t
-    :init
-    (add-hook 'clojure-mode-hook 'clj-refactor-mode)
-    :config
-    (progn
-      (cljr-add-keybindings-with-prefix "C-c C-f")
-
-      (dolist (m '(clojure-mode clojurec-mode clojurescript-mode clojurex-mode))
-        (dolist (r cljr--all-helpers)
-          (let* ((binding (car r))
-                 (func (car (cdr r))))
-            (when (not (string-prefix-p "hydra" (symbol-name func)))
-              (spacemacs/set-leader-keys-for-major-mode m (concat "r" binding) func)))))
-
-      )))
 
 
 ;; company-mode
