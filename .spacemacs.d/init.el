@@ -76,7 +76,7 @@ values."
                                        ;;           :user "dpom"
                                        ;;           :channels ("#emacs #yetibot")))
                                        ;;        )
-                                       semantic
+                                       ;; semantic
                                        (shell :variables
                                               shell-default-shell 'eshell
                                               shell-default-height 30
