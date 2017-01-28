@@ -94,7 +94,9 @@ values."
                                        dpom
                                        ent
                                        clj
-                                       python
+                                       (python :variables
+                                               python-test-runner 'pytest
+                                               python-enable-yapf-format-on-save t )
                                        multiedit
                                        yaml
                                        docker

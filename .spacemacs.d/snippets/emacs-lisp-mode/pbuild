@@ -22,6 +22,7 @@
 
 (task 'makenv '() "make environment.yml" '(lambda (&optional x) (concat "conda env export > environment.yml --name " project-env)))
 (task 'updatenv '() "update environment" '(lambda (&optional x)  "conda env update"))
+;(task 'makereq '() "make requirements.txt" '(lambda (&optional x) "conda list --explicit > requirements.txt "))
 (task 'makereq '() "make requirements.txt" '(lambda (&optional x) "conda list --explicit > requirements.txt "))
 
 (task 'startcompose '() "start compose" '(lambda (&optional x) "docker-compose up -d"))
