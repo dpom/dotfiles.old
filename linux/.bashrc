@@ -144,3 +144,6 @@ fi
 # export WORKON_HOME=$HOME/.virtualenvs
 # export PROJECT_HOME=$HOME
 # source /usr/local/bin/virtualenvwrapper.sh
+
+export GOOGLE_APPLICATION_CREDENTIALS=$HOME/etc/MerlinP-02459cca50ec.json
+source <(kubectl completion bash)
