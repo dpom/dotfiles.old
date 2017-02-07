@@ -216,7 +216,6 @@
   ;; (require 'orgtbl-sqlinsert)
 
   (org-babel-lob-ingest (expand-file-name "library-of-babel.org" dpom/dpom-layer))
-  (org-babel-lob-ingest (expand-file-name "dpom-library-of-babel.org" dpom/dpom-layer))
   
   ;; Exports
   (setq org-alphabetical-lists t)
