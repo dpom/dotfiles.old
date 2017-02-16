@@ -34,8 +34,13 @@
   "oi" 'dpom/insert-rom-char)
 
 (spacemacs/set-leader-keys "xf" 'dpom/cleanup-buffer)
-(spacemacs/set-leader-keys-for-major-mode 'dired-mode
-  "w" 'wdired-change-to-wdired-mode)
+
 (spacemacs/set-leader-keys-for-major-mode 'web-mode
   "mrk" 'web-mode-element-kill)
- 
+
+(spacemacs/declare-prefix-for-mode 'python-mode "mv" "conda")
+
+(spacemacs/set-leader-keys-for-major-mode 'python-mode
+  "vl" 'conda-env-list
+  "va" 'conda-env-activate
+  "vd" 'conda-env-deactivate)

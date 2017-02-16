@@ -107,9 +107,7 @@ values."
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
    dotspacemacs-additional-packages
-   '((ox-reveal :location (recipe :fetcher github :repo "yjwen/org-reveal"))
-     ox-rst
-     (conda :location (recipe :fetcher github :repo "necaris/conda.el")))
+   '()
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.

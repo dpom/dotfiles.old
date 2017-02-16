@@ -16,8 +16,10 @@
         (org-redmine :location local)
         (mu4e :location local)
         cdlatex
-        conda
-        ox-reveal))
+        (ox-reveal :location (recipe :fetcher github :repo "yjwen/org-reveal"))
+        (ox-rst :location (recipe :fetcher github :repo "masayuko/ox-rst"))
+        (conda :location (recipe :fetcher github :repo "necaris/conda.el"))
+        ))
 
 
 (defun dpom/post-init-org ()
@@ -559,16 +561,21 @@ citecolor=blue,filecolor=blue,menucolor=blue,urlcolor=blue"
   (use-package cdlatex))
  
 
-(defun dpom/post-init-ox-reveal ()
+(defun dpom/init-ox-reveal ()
   "Initialize ox-reveal package."
   (use-package ox-reveal
     :config (progn
               (setq org-reveal-root ""))))
 
+(defun dpom/init-ox-rst ()
+  "Initialize ox-rst package."
+  (use-package ox-rst))
+
 (defun dpom/init-conda ()
   "Initialize conda package"
   (use-package conda
     :config (progn
+              (setq conda-anaconda-home "~/anaconda3")
               ;; if you want interactive shell support, include:
               (conda-env-initialize-interactive-shells)
               ;; if you want eshell support, include:
