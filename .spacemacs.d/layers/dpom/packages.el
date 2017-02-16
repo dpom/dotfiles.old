@@ -561,7 +561,7 @@ citecolor=blue,filecolor=blue,menucolor=blue,urlcolor=blue"
   (use-package cdlatex))
  
 
-(defun dpom/init-ox-reveal ()
+(defun dpom/post-init-ox-reveal ()
   "Initialize ox-reveal package."
   (use-package ox-reveal
     :config (progn
