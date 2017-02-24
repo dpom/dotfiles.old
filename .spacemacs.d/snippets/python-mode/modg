@@ -1,0 +1,16 @@
+# -*- mode: snippet -*-
+# Module docstring.
+# name: Module Docstring
+# key: modg
+# binding: direct-keybinding
+# type: snippet
+# contributor: dpom
+# --
+\"\"\"
+$1
+~~~~~~
+
+$2
+\"\"\"
+
+$0

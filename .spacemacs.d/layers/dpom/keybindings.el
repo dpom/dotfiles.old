@@ -31,6 +31,7 @@
   "obt" 'org-babel-tangle
   "omi" 'cdlatex-math-symbol
   "omv" 'org-toggle-latex-fragment
+  "os" 'fixup-whitespace
   "oi" 'dpom/insert-rom-char)
 
 (spacemacs/set-leader-keys "xf" 'dpom/cleanup-buffer)

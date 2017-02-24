@@ -127,9 +127,9 @@ fi
 # eval "$(pyenv virtualenv-init -)"
 
 # added by Anaconda3 4.2.0 installer
-export PATH="/home/dan/anaconda3/bin:$PATH"
+export PATH=$HOME/anaconda3/bin:$PATH
 # conda_auto_env
-source /home/dan/bin/conda_auto_env.sh
+source $HOME/bin/conda_auto_env.sh
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f /home/dan/Dropbox/emag/googlecloud/google-cloud-sdk/path.bash.inc ]; then

@@ -19,6 +19,7 @@
         (ox-reveal :location (recipe :fetcher github :repo "yjwen/org-reveal"))
         (ox-rst :location (recipe :fetcher github :repo "masayuko/ox-rst"))
         (conda :location (recipe :fetcher github :repo "necaris/conda.el"))
+        (python-django :location (recipe :fetcher github :repo "fgallina/python-django.el"))
         ))
 
 
@@ -584,5 +585,9 @@ citecolor=blue,filecolor=blue,menucolor=blue,urlcolor=blue"
               (conda-env-autoactivate-mode t)
               ))
   )
+
+(defun dpom/init-python-django ()
+  "Initialize python-django package"
+  (use-package python-django))
 
 ;; dpom-package ends here
