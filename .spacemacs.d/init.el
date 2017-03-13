@@ -403,6 +403,7 @@ values."
         org-ref-bibliography-notes "~/pers/bibliography/notes.org")
 
   (setq calendar-date-style 'european)
+  (spacemacs/set-leader-keys "SPC" 'avy-goto-char-timer)
 
   )
 
