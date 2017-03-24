@@ -191,7 +191,10 @@
   ;; (add-to-list 'org-src-lang-modes '("rb" . vbnet))
   (add-to-list 'org-src-lang-modes '("plantuml" . text))
   (setq org-plantuml-jar-path (expand-file-name "plantuml.jar" (expand-dir-name "scripts" dpom/dpom-layer))
+
         org-ditaa-jar-path (expand-file-name "ditaa.jar" (expand-dir-name "scripts" dpom/dpom-layer)))
+
+  (setq plantuml-jar-path org-plantuml-jar-path) 
   (setq org-id-link-to-org-use-id nil)
 
   (require 'org-id)
