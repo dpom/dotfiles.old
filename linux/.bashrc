@@ -145,3 +145,4 @@ fi
 # export PROJECT_HOME=$HOME
 # source /usr/local/bin/virtualenvwrapper.sh
 
+eval "$(register-python-argcomplete conda)"
