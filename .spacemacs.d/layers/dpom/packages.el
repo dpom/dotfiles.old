@@ -139,7 +139,7 @@
   ;; Include current clocking task in clock reports
   (setq org-clock-report-include-clocking-task t)
 
-    ;; Reminders
+  ;; Reminders
   ;; Rebuild the reminders everytime the agenda is displayed
   (add-hook 'org-finalize-agenda-hook 'dpom/org-agenda-to-appt 'append)
 
@@ -194,7 +194,7 @@
 
         org-ditaa-jar-path (expand-file-name "ditaa.jar" (expand-dir-name "scripts" dpom/dpom-layer)))
 
-  (setq plantuml-jar-path org-plantuml-jar-path) 
+  (setq plantuml-jar-path org-plantuml-jar-path)
   (setq org-id-link-to-org-use-id nil)
 
   (require 'org-id)
@@ -222,7 +222,7 @@
   ;; (require 'orgtbl-sqlinsert)
 
   (org-babel-lob-ingest (expand-file-name "library-of-babel.org" dpom/dpom-layer))
-  
+
   ;; Exports
   (setq org-alphabetical-lists t)
 
@@ -256,23 +256,31 @@
           ("linenos" "")
           ))
 
-  ;; ;; (setq org-latex-pdf-process '("latexmk -pdflatex=xelatex -pdf -bibtex -quiet -latexoption=-shell-escape %f"))
-  ;; ;; (setq org-latex-pdf-process '("latexmk -xelatex -bibtex -diagnostics -f -latexoption=-shell-escape %f"))
-  ;; ;; (setq org-latex-pdf-process '("latexmk -xelatex -g -bibtex -latexoption=-shell-escape -f %f"))
-  ;; ;; (setq org-latex-pdf-process '("latexmk -g -xelatex -bibtex -shell-escape %f"))
-  ;; ;; (setq org-latex-pdf-process '("pdflatex -interaction nonstopmode -output-directory %o %f" "pdflatex -interaction nonstopmode -output-directory %o %f" "pdflatex -interaction nonstopmode -output-directory %o %f"))
-  ;; (setq org-latex-pdf-process '("xelatex -shell-escape -interaction nonstopmode %f"
-  ;;                               "bibtex %b"
-  ;;                               "xelatex -shell-escape -interaction nonstopmode %f"
-  ;;                               "xelatex -shell-escape -interaction nonstopmode %f"))
-  ;; ;; (setq org-latex-pdf-process '("latexmk -xelatex -g -gg -bibtex -latexoption=-shell-escape -f %f"))
-  ;; ;; (setq org-latex-pdf-process '("latexmk -pdflatex='pdflatex -interaction nonstopmode' -pdf -bibtex -f %f"))
-  (setq org-latex-pdf-process
-        '("pdflatex -interaction nonstopmode -output-directory %o -shell-escape %f"
-          "bibtex %b"
-          "pdflatex -interaction nonstopmode -output-directory %o -shell-escape %f"
-          "pdflatex -interaction nonstopmode -output-directory %o -shell-escape %f"))
+  ;; ;; ;; (setq org-latex-pdf-process '("latexmk -pdflatex=xelatex -pdf -bibtex -quiet -latexoption=-shell-escape %f"))
+  ;; ;; ;; (setq org-latex-pdf-process '("latexmk -xelatex -bibtex -diagnostics -f -latexoption=-shell-escape %f"))
+  ;; ;; ;; (setq org-latex-pdf-process '("latexmk -xelatex -g -bibtex -latexoption=-shell-escape -f %f"))
+  ;; ;; ;; (setq org-latex-pdf-process '("latexmk -g -xelatex -bibtex -shell-escape %f"))
+  ;; ;; ;; (setq org-latex-pdf-process '("pdflatex -interaction nonstopmode -output-directory %o %f" "pdflatex -interaction nonstopmode -output-directory %o %f" "pdflatex -interaction nonstopmode -output-directory %o %f"))
+  ;; ;; (setq org-latex-pdf-process '("xelatex -shell-escape -interaction nonstopmode %f"
+  ;; ;;                               "bibtex %b"
+  ;; ;;                               "xelatex -shell-escape -interaction nonstopmode %f"
+  ;; ;;                               "xelatex -shell-escape -interaction nonstopmode %f"))
+  ;; ;; ;; (setq org-latex-pdf-process '("latexmk -xelatex -g -gg -bibtex -latexoption=-shell-escape -f %f"))
+  ;; ;; ;; (setq org-latex-pdf-process '("latexmk -pdflatex='pdflatex -interaction nonstopmode' -pdf -bibtex -f %f"))
+  
+  ;; (setq org-latex-pdf-process
+  ;;       '("pdflatex -interaction nonstopmode -output-directory %o -shell-escape %f"
+  ;;         "bibtex %b"
+  ;;         "pdflatex -interaction nonstopmode -output-directory %o -shell-escape %f"
+  ;;         "pdflatex -interaction nonstopmode -output-directory %o -shell-escape %f"))
 
+  (setq bibtex-dialect 'biblatex)
+  
+  (setq  org-latex-pdf-process
+         '("latexmk -shell-escape -bibtex -pdf %f"))
+
+  ;; (setq org-latex-to-pdf-process
+  ;;       '("texi2dvi -p -b -c -V %f"))
 
   (setq org-latex-image-default-width nil)
 
@@ -297,6 +305,10 @@
                  "\\documentclass[12pt,a4paper]{article}
       [NO-DEFAULT-PACKAGES]
       \\usepackage{minted}
+      \\usepackage[T1]{fontenc}
+      \\usepackage{tgtermes}
+      \\usepackage[scale=.85]{tgheros}
+      \\usepackage{tgcursor}
       \\usemintedstyle{emacs}
       \\newminted{common-lisp}{fontsize=10}
       \\usepackage[hmargin=2cm,top=4cm,headheight=65pt,footskip=65pt]{geometry}
@@ -322,7 +334,7 @@
                  ("\\paragraph{%s}" . "\\paragraph*{%s}")
                  ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
 
-(add-to-list 'org-latex-classes
+  (add-to-list 'org-latex-classes
                '("dpom-spec-ro"
                  "\\documentclass[12pt,a4paper]{article}
       [NO-DEFAULT-PACKAGES]
@@ -414,9 +426,15 @@
                  ("\\paragraph{%s}" . "\\paragraph*{%s}")
                  ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
 
+  (defun org-export-latex-remove-references-heading (contents backend info)
+    (if (not (eq backend 'latex))
+        contents
+      (replace-regexp-in-string "\\\\section\\*?{References}\\s-*\\\\label{.*?}" "" contents)
+      ))
+
+  (add-hook 'org-export-filter-final-output-functions 'org-export-latex-remove-references-heading)
 
 
-  
   (require 'org-crypt)
   (org-crypt-use-before-save-magic)
   (setq org-tags-exclude-from-inheritance (quote ("crypt")))
@@ -428,7 +446,7 @@
                                         ;            (lambda ()
                                         ;              (local-set-key "\C-c\M-o" 'org-mime-htmlize)))
                                         ;
-)
+  )
 
 
 (defun dpom/post-init-org-ref ()
@@ -463,7 +481,7 @@
                      org-latex-default-packages-alist))
 
               ;; Append new packages
-              (add-to-list 'org-latex-default-packages-alist '("" "natbib" "") t)
+              ;; (add-to-list 'org-latex-default-packages-alist '("" "natbib" "") t)
               (add-to-list 'org-latex-default-packages-alist
                            '("linktocpage,pdfstartview=FitH,colorlinks,
 linkcolor=blue,anchorcolor=blue,
@@ -500,7 +518,7 @@ citecolor=blue,filecolor=blue,menucolor=blue,urlcolor=blue"
               (spacemacs/set-leader-keys  "oR" 'dpom-helm-redmine))))
 
 (defun dpom/init-mu4e ()
- "Initialize mu4e extension"
+  "Initialize mu4e extension"
   (use-package mu4e
     :config (progn
               (setq mu4e-maildir "~/Maildir"
@@ -563,7 +581,7 @@ citecolor=blue,filecolor=blue,menucolor=blue,urlcolor=blue"
 (defun dpom/init-cdlatex ()
   "Initialize cdlatex extension"
   (use-package cdlatex))
- 
+
 
 (defun dpom/post-init-ox-reveal ()
   "Initialize ox-reveal package."

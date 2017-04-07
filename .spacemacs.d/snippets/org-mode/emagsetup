@@ -2,6 +2,10 @@
 # name: emagsetup 
 # key: emagsetup
 # --
+* Referinte
+
+\printbibliography[heading=none]
+
 
 * Setup                                                              :noexport:
 
@@ -33,6 +37,6 @@
   #+LaTeX_HEADER: \newcommand{\docSubTitle}{Software Specifications}
   #+LaTeX_HEADER: \fancyhead[CE,CO,LE,LO,RE,RO]{} %% clear out all headers
   #+LaTeX_HEADER: \fancyhead[C]{\begin{tabular}{|m{3.0cm}|m{10.0cm}|m{2.5cm}|} \hline \includegraphics[height=1.5cm,width=2.5cm]{img/eMAG.png} & \centering \Large{\docTitle{} - \docSubTitle{}} & \centering \tiny{\ Data: {\today}\ Rev. \docVersion}\tabularnewline \hline \end{tabular}}
-  #+LaTeX_HEADER: \fancyfoot[CE,CO,LE,LO,RE,RO]{} %% clear out all footers
-  #+LaTeX_HEADER: \fancyfoot[C]{\begin{tabular}{|m{3.0cm}|m{10.0cm}|m{2.5cm}|} \hline  & \centering \small{eMAG IT Research} & \centering \small{Page \thepage\ of \pageref{LastPage}}\tabularnewline \hline \end{tabular}}
   #+LATEX_HEADER: \input{mytitle}
+  #+latex_header: \usepackage[style=alphabetic,hyperref=true,backref=true,maxcitenames=3,url=true,backend=bibtex,natbib=false]{biblatex}
+  #+latex_header: \addbibresource{~/pers/bibliography/dpom.bib}

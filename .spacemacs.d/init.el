@@ -48,27 +48,25 @@ values."
                                        ;; common-lisp
                                        emacs-lisp
                                        ;; (evil-snipe :variables evil-snipe-enable-alternate-f-and-t-behaviors t)
-                                       (erc :variables
-                                            erc-server-list
-                                            '(("irc.freenode.net" 
-                                               :port "6697"
-                                               :ssl t
-                                               :nick "dpom")
-                                              ))
+                                       ;(erc :variables
+                                       ;     erc-server-list
+                                        ;    '(("irc.freenode.net" 
+                                         ;      :port "6697"
+                                          ;     :ssl t
+                                          ;     :nick "dpom")
+                                          ;    ))
                                        (git :variables
                                             git-enable-github-support t
                                             git-gutter-use-fringe t)
                                        (github :variables gh-profile-default-profile "dpom")
-                                       gtags
+                                       ;gtags
                                        html
-                                       java
-                                       javascript
                                        latex
                                        markdown
                                        (org :variables
                                             org-enable-github-support t
                                             org-enable-reveal-js-support t)
-                                       ;; (ranger :variables ranger-override-dired t)
+                                       (ranger :variables ranger-override-dired t)
                                        ;; (rcirc :variables
                                        ;;        rcirc-enable-authinfo-support t
                                        ;;        rcirc-server-alist
@@ -101,14 +99,14 @@ values."
                                        yaml
                                        docker
                                        plantuml
+                                       octave
                                        ;; osx  ; for mac
                                        )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages
-   '()
+   dotspacemacs-additional-packages '()
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -301,8 +299,18 @@ values."
    ;; scrolling overrides the default behavior of Emacs which recenters point
    ;; when it reaches the top or bottom of the screen. (default t)
    dotspacemacs-smooth-scrolling t
-   ;; If non nil line numbers are turned on in all `prog-mode' and `text-mode'
-   ;; derivatives. If set to `relative', also turns on relative line numbers.
+   ;; Control line numbers activation.
+   ;; If set to `t' or `relative' line numbers are turned on in all `prog-mode' and
+   ;; `text-mode' derivatives. If set to `relative', line numbers are relative.
+   ;; This variable can also be set to a property list for finer control:
+   ;; '(:relative nil
+   ;;   :disabled-for-modes dired-mode
+   ;;                       doc-view-mode
+   ;;                       markdown-mode
+   ;;                       org-mode
+   ;;                       pdf-view-mode
+   ;;                       text-mode
+   ;;   :size-limit-kb 1000)
    ;; (default nil)
    dotspacemacs-line-numbers nil
    ;; Code folding method. Possible values are `evil' and `origami'.
@@ -417,27 +425,7 @@ values."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (plantuml-mode powerline spinner key-chord ivy org alert log4e gntp markdown-mode skewer-mode simple-httpd multiple-cursors js2-mode hydra parent-mode projectile request helm-bibtex parsebib haml-mode gitignore-mode fringe-helper git-gutter+ git-gutter gh marshal logito pcache ht flyspell-correct pos-tip flycheck pkg-info epl flx magit git-commit with-editor smartparens iedit anzu evil goto-chg undo-tree highlight json-mode tablist magit-popup docker-tramp json-snatcher json-reformat diminish web-completion-data dash-functional tern eclim company clojure-mode bind-map bind-key biblio biblio-core yasnippet packed auctex anaconda-mode pythonic f dash s helm avy helm-core async auto-complete popup package-build python-django org-plus-contrib zenburn-theme yapfify yaml-mode xterm-color ws-butler window-numbering which-key web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package toc-org tagedit sql-indent spacemacs-theme spaceline smex smeargle slim-mode shell-pop scss-mode sass-mode restart-emacs rainbow-delimiters quelpa pyvenv pytest pyenv-mode py-isort pug-mode popwin pip-requirements persp-mode pcre2el paradox ox-rst ox-reveal ox-gfm orgit org-ref org-projectile org-present org-pomodoro org-download org-bullets open-junk-file neotree multi-term move-text mmm-mode markdown-toc magit-gitflow magit-gh-pulls macrostep lorem-ipsum livid-mode live-py-mode linum-relative link-hint less-css-mode js2-refactor js-doc insert-shebang info+ inf-clojure indent-guide ido-vertical-mode hy-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-gtags helm-gitignore helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot github-search github-clone github-browse-file gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gist gh-md ggtags flyspell-correct-helm flycheck-pos-tip flx-ido fish-mode fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-multiedit evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help erc-yt erc-view-log erc-social-graph erc-image erc-hl-nicks emmet-mode elisp-slime-nav dumb-jump dockerfile-mode docker disaster diff-hl define-word cython-mode conda company-web company-tern company-statistics company-shell company-emacs-eclim company-c-headers company-auctex company-anaconda column-enforce-mode coffee-mode cmake-mode clean-aindent-mode clang-format cdlatex auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile auctex-latexmk aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell)))
- '(safe-local-variable-values
-   (quote
-    ((python-shell-extra-pythonpaths quote
-                                     ("/home/dan/emag/emaproject/ema/apps"))
-     (python-shell-virtualenv-root . "/home/dan/anaconda3/envs/eMA")
-     (python-shell-extra-pythonpaths . "/home/dan/emag/emaproject/ema/apps")
-     (python-shell-interpreter-args . "/home/dan/emag/emaproject/manage.py shell --settings ema.settings.dan --no-color --interface python")
-     (python-shell-interpreter-args . "/home/dan/emag/emaproject/manage.py shell --settings ema.settings.dan --no-color -v 0")
-     (python-shell-enable-font-lock)
-     (python-shell-virtualenv-path . "/home/dan/anaconda3/envs/eMA")
-     (python-shell-extra-pythonpaths "/home/dan/emag/emaproject/ema/apps")
-     (python-shell-completion-string-code . "';'.join(get_ipython().Completer.all_completions('''%s'''))
-")
-     (python-shell-completion-module-string-code . "';'.join(module_completion('''%s'''))
-")
-     (python-shell-completion-setup-code . "from IPython.core.completerlib import module_completion")
-     (python-shell-prompt-output-regexp . "Out\\[[0-9]+\\]: ")
-     (python-shell-prompt-regexp . "In \\[[0-9]+\\]: ")
-     (python-shell-interpreter-args . "/home/dan/emag/emaproject/manage.py shell --settings ema.settings.dan")
-     (python-shell-interpreter . "python")))))
+    (web-mode tagedit sql-indent slim-mode scss-mode sass-mode ranger pug-mode plantuml-mode mmm-mode markdown-toc markdown-mode less-css-mode helm-css-scss haml-mode gh-md flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip flycheck emmet-mode dockerfile-mode docker json-mode tablist docker-tramp json-snatcher json-reformat company-web web-completion-data company-auctex auto-dictionary auctex-latexmk auctex zenburn-theme yapfify yaml-mode xterm-color ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline smex smeargle shell-pop restart-emacs rainbow-delimiters pyvenv python-django pytest pyenv-mode py-isort popwin pip-requirements persp-mode pcre2el paradox ox-rst ox-reveal ox-gfm orgit org-ref org-projectile org-present org-pomodoro org-download org-bullets open-junk-file neotree multi-term move-text magit-gitflow magit-gh-pulls macrostep lorem-ipsum live-py-mode linum-relative link-hint insert-shebang info+ inf-clojure indent-guide hy-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot github-search github-clone github-browse-file gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gist fuzzy flx-ido fish-mode fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-multiedit evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help elisp-slime-nav dumb-jump disaster diff-hl define-word cython-mode conda company-statistics company-shell company-c-headers company-anaconda column-enforce-mode cmake-mode clean-aindent-mode clang-format cdlatex auto-yasnippet auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
