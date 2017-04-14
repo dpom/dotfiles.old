@@ -304,8 +304,10 @@
                '("dpom-spec"
                  "\\documentclass[12pt,a4paper]{article}
       [NO-DEFAULT-PACKAGES]
-      \\usepackage{minted}
       \\usepackage[T1]{fontenc}
+      \\usepackage[utf8]{inputenc}
+      \\usepackage[AUTO]{babel}
+      \\usepackage{minted}
       \\usepackage{tgtermes}
       \\usepackage[scale=.85]{tgheros}
       \\usepackage{tgcursor}
@@ -317,55 +319,32 @@
       \\usepackage{xcolor}
       \\usepackage{array}
       \\usepackage[parfill]{parskip}
+      \\usepackage{titlesec}
       \\usepackage{hyperref}
       \\pagestyle{fancy}
       \\fancyhead{}
       \\fancyfoot{}
-      \\renewcommand{\\headrulewidth}{0.5pt}
-      \\renewcommand{\\footrulewidth}{0.5pt}
+      \\renewcommand{\\headrulewidth}{0pt}
+      \\renewcommand{\\footrulewidth}{0pt}
       \\addtolength{\\headsep}{5pt}
       \\setlength{\\parindent}{0pt}
       \\setlength{\\headsep}{50pt}
-      \\rfoot{\\thepage/\\pageref{LastPage}}"
+
+      \\setcounter{secnumdepth}{4}
+\\titleformat{\\paragraph}
+{\\normalfont\\normalsize\\bfseries}{\\theparagraph}{1em}{}
+\\titlespacing*{\\paragraph}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+
+       \\rfoot{\\thepage/\\pageref{LastPage}}"
                  ("\\section{%s}" . "\\section*{%s}")
                  ("\\subsection{%s}" . "\\subsection*{%s}")
                  ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-                 ("\\subsubsubsection{%s}" . "\\subsubsubsection*{%s}")
                  ("\\paragraph{%s}" . "\\paragraph*{%s}")
                  ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
 
-  (add-to-list 'org-latex-classes
-               '("dpom-spec-ro"
-                 "\\documentclass[12pt,a4paper]{article}
-      [NO-DEFAULT-PACKAGES]
-      \\usepackage[T1]{fontenc}
-      \\usepackage[utf8]{inputenc}
-      \\usepackage[romanian]{babel}
-      \\usepackage{minted}
-      \\usemintedstyle{emacs}
-      \\newminted{common-lisp}{fontsize=10}
-      \\usepackage[hmargin=2cm,top=4cm,headheight=65pt,footskip=65pt]{geometry}
-      \\usepackage{fancyhdr}
-      \\usepackage{lastpage}
-      \\usepackage{xcolor}
-      \\usepackage{array}
-      \\usepackage[parfill]{parskip}
-      \\usepackage{hyperref}
-      \\pagestyle{fancy}
-      \\fancyhead{}
-      \\fancyfoot{}
-      \\renewcommand{\\headrulewidth}{0.5pt}
-      \\renewcommand{\\footrulewidth}{0.5pt}
-      \\addtolength{\\headsep}{5pt}
-      \\setlength{\\parindent}{0pt}
-      \\setlength{\\headsep}{50pt}
-      \\rfoot{\\thepage/\\pageref{LastPage}}"
-                 ("\\section{%s}" . "\\section*{%s}")
-                 ("\\subsection{%s}" . "\\subsection*{%s}")
-                 ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-                 ("\\subsubsubsection{%s}" . "\\subsubsubsection*{%s}")
-                 ("\\paragraph{%s}" . "\\paragraph*{%s}")
-                 ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+  
   (add-to-list 'org-latex-classes
                '("letter"
                  "\\documentclass[12pt]{letter}

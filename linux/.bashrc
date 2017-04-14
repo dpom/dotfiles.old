@@ -146,3 +146,5 @@ fi
 # source /usr/local/bin/virtualenvwrapper.sh
 
 eval "$(register-python-argcomplete conda)"
+export EDITOR='emacsclient'
+export VISUAL='emacsclient'
