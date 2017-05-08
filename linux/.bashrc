@@ -119,10 +119,7 @@ if ! shopt -oq posix; then
   fi
 fi
 
-if [ -x /usr/bin/mint-fortune ]; then
-     /usr/bin/mint-fortune
-fi
-# export PATH="/home/dan/.pyenv/bin:$PATH"
+ export PATH="/home/dan/.pyenv/bin:$PATH"
 # eval "$(pyenv init -)"
 # eval "$(pyenv virtualenv-init -)"
 
@@ -148,3 +145,5 @@ fi
 eval "$(register-python-argcomplete conda)"
 export EDITOR='emacsclient'
 export VISUAL='emacsclient'
+export GTAGSLABEL=pygments
+alias ede='ssh dan.pomohaci@edeploy.emag.local'
