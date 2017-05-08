@@ -20,6 +20,7 @@
         (ox-rst :location (recipe :fetcher github :repo "masayuko/ox-rst"))
         (conda :location (recipe :fetcher github :repo "necaris/conda.el"))
         (python-django :location (recipe :fetcher github :repo "fgallina/python-django.el"))
+        (org-jira)
         ))
 
 
@@ -589,5 +590,14 @@ citecolor=blue,filecolor=blue,menucolor=blue,urlcolor=blue"
 (defun dpom/init-python-django ()
   "Initialize python-django package"
   (use-package python-django))
+
+
+(defun dpom/init-org-jira ()
+  "Initialize conda package"
+  (use-package org-jira
+    :config (progn
+              (setq jiralib-url  "http://jira.emag.local:8080/secure/")
+              ))
+  )
 
 ;; dpom-package ends here
