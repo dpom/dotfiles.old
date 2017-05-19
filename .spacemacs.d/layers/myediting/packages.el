@@ -1,4 +1,4 @@
-;;; packages.el --- multiedit layer packages file for Spacemacs.
+;;; packages.el --- myediting layer packages file for Spacemacs.
 ;;
 ;; Copyright (c) 2012-2016 Sylvain Benner & Contributors
 ;;
@@ -25,12 +25,13 @@
 ;;
 ;;; Code:
 
-(defconst multiedit-packages
-  '(evil-multiedit)
-  "The list of Lisp packages required by the multiedit layer.")
+(defconst myediting-packages
+  '(evil-multiedit
+    string-inflection)
+  "The list of Lisp packages required by the myediting layer.")
 
 
-(defun multiedit/init-evil-multiedit ()
+(defun myediting/init-evil-multiedit ()
   (use-package evil-multiedit
     :bind (:map evil-normal-state-map
              ("M-d" . evil-multiedit-match-and-next)
@@ -52,5 +53,17 @@
               ;; Ex command that allows you to invoke evil-multiedit with a regular expression, e.g.
               (evil-ex-define-cmd "ie[dit]" 'evil-multiedit-ex-match))
     ))
+
+(defun myediting/init-string-inflection ()
+    (use-package string-inflection
+           :init
+           (progn
+                    (spacemacs/set-leader-keys
+                               "xii" 'string-inflection-all-cycle
+                               "xiu" 'string-inflection-underscore
+                               "xiU" 'string-inflection-upcase
+                               "xik" 'string-inflection-kebab-case
+                               "xic" 'string-inflection-lower-camelcase
+                               "xiC" 'string-inflection-camelcase))))
 
 ;;; packages.el ends here
