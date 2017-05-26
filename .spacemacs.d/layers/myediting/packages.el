@@ -27,6 +27,7 @@
 
 (defconst myediting-packages
   '(evil-multiedit
+    (doxymacs :location local)
     string-inflection)
   "The list of Lisp packages required by the myediting layer.")
 
@@ -55,15 +56,21 @@
     ))
 
 (defun myediting/init-string-inflection ()
-    (use-package string-inflection
-           :init
-           (progn
-                    (spacemacs/set-leader-keys
-                               "xii" 'string-inflection-all-cycle
-                               "xiu" 'string-inflection-underscore
-                               "xiU" 'string-inflection-upcase
-                               "xik" 'string-inflection-kebab-case
-                               "xic" 'string-inflection-lower-camelcase
-                               "xiC" 'string-inflection-camelcase))))
+    (use-package string-inflection))
 
+(defun myediting/init-doxymacs ()
+  (use-package doxymacs
+    :init
+    (progn
+      (defun my-doxymacs-font-lock-hook ()
+        (if (or (eq major-mode 'c-mode)
+                (eq major-mode 'python-mode)
+                (eq major-mode 'c++-mode))
+            (doxymacs-font-lock)))
+      (add-hook 'prog-mode-hook '(lambda () (doxymacs-mode)))
+      (add-hook 'font-lock-mode-hook 'my-doxymacs-font-lock-hook)
+      (defun my-doxymacs-font-lock-hook ()
+        (if (or (eq major-mode 'c-mode) (eq major-mode 'c++-mode))
+            (doxymacs-font-lock)))
+      )))
 ;;; packages.el ends here

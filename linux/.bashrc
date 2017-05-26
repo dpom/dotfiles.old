@@ -149,3 +149,4 @@ export GTAGSLABEL=pygments
 alias ede='ssh dan.pomohaci@edeploy.emag.local'
 alias stage='ssh dan.pomohaci@gift-www1-ro-stage.emag.network'
 alias prod='ssh dan.pomohaci@gift-www1-ro-prod.emag.network'
+alias dev='ssh dan.pomohaci@eos-all6465-ro-dev.labs.c.emag.network'
