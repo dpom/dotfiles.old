@@ -1,0 +1,13 @@
+# name: docdefn
+# key: docdefn
+# --
+(defn $1
+  "Brief$0
+
+  Args:
+  name (type): desc
+
+  Returns:
+  type: desc"$>
+  [$3]$>
+  $0)$>

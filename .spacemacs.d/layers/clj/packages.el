@@ -31,6 +31,7 @@
 
 (defconst clj-packages
   '(clojure-mode
+    compile
     inf-clojure
     company-etags
     eldoc
@@ -78,6 +79,11 @@ Each entry is either:
               (add-hook 'inferior-lisp-mode-hook 'spacemacs/load-yasnippet)
               )))
 
+(defun clj/init-compile ()
+  (use-package compile
+    :defer t
+    ))
+
 (defun clj/init-inf-clojure ()
   (use-package inf-clojure
     :defer t
@@ -87,25 +93,7 @@ Each entry is either:
                         (lambda () (setq completion-at-point-functions nil)))
               (add-hook 'clojure-mode-hook 'inf-clojure-minor-mode)
 
-              (defun reload-current-clj-ns (next-p)
-                (interactive "P")
-                (let ((ns (clojure-find-ns)))
-                  (message (format "Loading %s ..." ns))
-                  (inf-clojure-eval-string (format "(require '%s :reload)" ns))
-                  (when (not next-p) (inf-clojure-eval-string (format "(in-ns '%s)" ns)))))
-
-              (defun find-tag-without-ns (next-p)
-                (interactive "P")
-                (find-tag (first (last (split-string (symbol-name (symbol-at-point)) "/")))
-                          next-p))
-
-              (defun erase-inf-buffer ()
-                (interactive)
-                (with-current-buffer (get-buffer "*inf-clojure*")
-                  (erase-buffer))
-                (inf-clojure-eval-string ""))
-
-              (add-hook 'clojure-mode-hook
+             (add-hook 'clojure-mode-hook
                         '(lambda ()
                            (define-key clojure-mode-map "\C-c\C-k" 'reload-current-clj-ns)
                            (define-key clojure-mode-map "\M-." 'find-tag-without-ns)
