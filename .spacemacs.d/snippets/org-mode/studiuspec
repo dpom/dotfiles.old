@@ -26,13 +26,18 @@ $0
 
 ** Reveal
 
-   #+OPTIONS: reveal_mathjax:nil
+   #+OPTIONS: reveal_center:t reveal_progress:t reveal_history:t reveal_control:t
+   #+OPTIONS: reveal_mathjax:t reveal_rolling_links:t reveal_keyboard:t reveal_overview:t num:nil
+   #+OPTIONS: reveal_width:1200 reveal_height:800
+   #+REVEAL_MARGIN: 0.2
+   #+REVEAL_MIN_SCALE: 0.5
+   #+REVEAL_MAX_SCALE: 2.5
+
    #+REVEAL_THEME: moon
-   #+REVEAL_TRANS: linear
+   #+REVEAL_TRANS: cube
    #+REVEAL_PLUGINS: (highlight)
    #+REVEAL_EXTRA_CSS: ./css/dpom.css
-   #+REVEAL_HLEVEL: 2
-
+ 
 ** Latex
 
    #+LATEX_CLASS: dpom-spec
@@ -42,6 +47,7 @@ $0
    #+LaTeX_HEADER: \newcommand{\docSubTitle}{Studiu}
    #+LaTeX_HEADER: \fancyhead[CE,CO,LE,LO,RE,RO]{} %% clear out all headers
    #+LaTeX_HEADER: \fancyhead[C]{\begin{tabular}{|m{3.0cm}|m{10.0cm}|m{2.5cm}|} \hline  & \centering \Large{\docTitle{} - \docSubTitle{}} & \centering \tiny{\ Data: {\today}\ Rev. \docVersion}\tabularnewline \hline \end{tabular}}
+   #+LaTeX_HEADER: \rfoot{} %% get rid of the page number
    #+LaTeX_HEADER: \fancyfoot[CE,CO,LE,LO,RE,RO]{} %% clear out all footers
    #+LaTeX_HEADER: \fancyfoot[C]{\begin{tabular}{|m{3.0cm}|m{10.0cm}|m{2.5cm}|} \hline  & \centering \small{eMAG IT Research} & \centering \small{Page \thepage\ of \pageref{LastPage}}\tabularnewline \hline \end{tabular}}
    #+LATEX_HEADER: \input{mytitle}
