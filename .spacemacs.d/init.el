@@ -59,7 +59,7 @@ values."
                                             git-enable-github-support t
                                             git-gutter-use-fringe t)
                                        (github :variables gh-profile-default-profile "dpom")
-                                       gtags
+                                       ;; gtags
                                        cscope 
                                        html
                                        latex
@@ -89,11 +89,10 @@ values."
                                        (syntax-checking :variables syntax-checking-enable-by-default nil)
                                        (version-control :variables version-control-diff-tool 'diff-hl)
                                        ;; specific
-                                       ;; clojure
+                                       clojure
                                        dpom
                                        ent
                                        ;; clj
-                                       clojure
                                        (python :variables
                                                python-test-runner 'pytest
                                                python-enable-yapf-format-on-save t )
