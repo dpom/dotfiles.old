@@ -1,6 +1,8 @@
+[[ -s "$HOME/.profile" ]] && source "$HOME/.profile" # Load the default .profile
 
-export PATH="/home/dan/.pyenv/bin:$PATH"
-ded by Anaconda3 4.2.0 installer
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+
+# export PATH="/home/dan/.pyenv/bin:$PATH"
 export PATH=$HOME/anaconda3/bin:$PATH
 
 
