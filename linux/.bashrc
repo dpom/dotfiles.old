@@ -151,3 +151,4 @@ alias dev='ssh dan.pomohaci@eos-all6465-ro-dev.labs.c.emag.network'
 alias e='emacsclient --no-wait'
 export EDITOR='e'
 export VISUAL='e'
+export LEIN_FAST_TRAMPOLINE=y
