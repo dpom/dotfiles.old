@@ -59,8 +59,8 @@ values."
                                             git-enable-github-support t
                                             git-gutter-use-fringe t)
                                        (github :variables gh-profile-default-profile "dpom")
-                                       ;; gtags
-                                       cscope 
+                                       gtags
+                                       ;; cscope 
                                        html
                                        latex
                                        markdown

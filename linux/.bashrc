@@ -119,7 +119,7 @@ if ! shopt -oq posix; then
   fi
 fi
 
- export PATH="/home/dan/.pyenv/bin:$PATH"
+export PATH="/home/dan/.pyenv/bin:$PATH"
 # eval "$(pyenv init -)"
 # eval "$(pyenv virtualenv-init -)"
 
