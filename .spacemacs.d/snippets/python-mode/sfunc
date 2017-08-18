@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # FSM State Functions
-# name: FSM States
+# name: FSM State Functions
 # key: sfuncs
 # type: snippet
 # --
@@ -11,12 +11,12 @@
     def $1_respond(cls, customer, customerInput, inputFromPostbackAction,
                       special_input):
         state = "$1"
-        state_params = cls.fsm[state]
-
-        fbid = customer.get_fbid()
-        return fbmes.get_text_message_json(fbid, text)
-
+        log.debug("*** state: {0}".format(state))
+        return cls.ask_state_respond(state, customer)
+        cls.set_state_respond(state, customer, customerInput)
+        return -1
+ 
     @classmethod
     def $1_next(cls, diss, customer, response):
+        cls.set_next_node(diss)
         diss.set_state("")
-        diss.set_current_node_id(cls.fsm[""]["id"])
