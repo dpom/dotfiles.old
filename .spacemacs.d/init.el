@@ -95,7 +95,7 @@ values."
                                        ;; clj
                                        (python :variables
                                                python-test-runner 'pytest
-                                               python-enable-yapf-format-on-save t )
+                                               python-enable-yapf-format-on-save nil)
                                        myediting
                                        yaml
                                        docker
@@ -429,7 +429,10 @@ values."
     (clojure-snippets clj-refactor inflections edn multiple-cursors paredit peg cider-eval-sexp-fu cider seq queue clojure-mode origami string-inflection org-jira helm-cscope xcscope helm-gtags ggtags web-mode tagedit sql-indent slim-mode scss-mode sass-mode ranger pug-mode plantuml-mode mmm-mode markdown-toc markdown-mode less-css-mode helm-css-scss haml-mode gh-md flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip flycheck emmet-mode dockerfile-mode docker json-mode tablist docker-tramp json-snatcher json-reformat company-web web-completion-data company-auctex auto-dictionary auctex-latexmk auctex zenburn-theme yapfify yaml-mode xterm-color ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline smex smeargle shell-pop restart-emacs rainbow-delimiters pyvenv python-django pytest pyenv-mode py-isort popwin pip-requirements persp-mode pcre2el paradox ox-rst ox-reveal ox-gfm orgit org-ref org-projectile org-present org-pomodoro org-download org-bullets open-junk-file neotree multi-term move-text magit-gitflow magit-gh-pulls macrostep lorem-ipsum live-py-mode linum-relative link-hint insert-shebang info+ inf-clojure indent-guide hy-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot github-search github-clone github-browse-file gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gist fuzzy flx-ido fish-mode fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-multiedit evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help elisp-slime-nav dumb-jump disaster diff-hl define-word cython-mode conda company-statistics company-shell company-c-headers company-anaconda column-enforce-mode cmake-mode clean-aindent-mode clang-format cdlatex auto-yasnippet auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell)))
  '(safe-local-variable-values
    (quote
-    ((cider-refresh-after-fn . "integrant.repl/resume")
+    ((python-shell-extra-pythonpaths quote
+                                     ("/home/dan/emag/emaproject/ema/apps"))
+     (python-shell-interpreter . "/home/dan/emag/emaproject/emashell")
+     (cider-refresh-after-fn . "integrant.repl/resume")
      (cider-refresh-before-fn . "integrant.repl/suspend")
      (python-shell-virtualenv-root . "/home/dan/anaconda3/envs/eMAG")
      (python-shell-interpreter-args . "/home/dan/emag/emaproject/manage.py shell --settings ema.settings.dan --no-color --interface python")
