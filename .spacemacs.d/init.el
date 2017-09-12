@@ -95,7 +95,7 @@ values."
                                        ;; clj
                                        (python :variables
                                                python-test-runner 'pytest
-                                               python-enable-yapf-format-on-save t )
+                                               python-enable-yapf-format-on-save nil)
                                        myediting
                                        yaml
                                        docker
