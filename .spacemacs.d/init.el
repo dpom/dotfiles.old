@@ -59,7 +59,7 @@ values."
                                             git-enable-github-support t
                                             git-gutter-use-fringe t)
                                        (github :variables gh-profile-default-profile "dpom")
-                                       gtags
+                                       ;; gtags
                                        ;; cscope 
                                        html
                                        latex
@@ -368,6 +368,7 @@ values."
 
 (defun dotspacemacs/user-config ()
   ;; (setq projectile-tags-command "ctags --exclude=log --exclude=doc --exclude=target --exclude=tmp -Re -f \"%s\" %s")
+  (require 'helm-bookmark)
   (defun ao/expand-completion-table (orig-fun &rest args)
     "Extract all symbols from COMPLETION-TABLE before calling projectile--tags."
     (let ((completion-table (all-completions "" (car args))))
@@ -414,7 +415,7 @@ values."
 
   (setq calendar-date-style 'european)
   (spacemacs/set-leader-keys "SPC" 'avy-goto-char-timer)
-  (spacemacs/helm-gtags-define-keys-for-mode 'python-mode)
+  ;; (spacemacs/helm-gtags-define-keys-for-mode 'python-mode)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -463,7 +464,7 @@ This function is called at the very end of Spacemacs initialization."
  '(safe-local-variable-values
    (quote
     ((python-shell-interpreter . "/home/dan/emag/emaproject/emashell")
-     (python-shell-virtualenv-root . "/home/dan/anaconda3/envs/eMAG")
+     (python-shell-virtualenv-root . "/home/dan/miniconda3/envs/eMAG")
      (cider-refresh-after-fn . "integrant.repl/resume")
      (cider-refresh-before-fn . "integrant.repl/suspend")))))
 (custom-set-faces

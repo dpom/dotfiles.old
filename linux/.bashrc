@@ -123,8 +123,6 @@ export PATH="/home/dan/.pyenv/bin:$PATH"
 # eval "$(pyenv init -)"
 # eval "$(pyenv virtualenv-init -)"
 
-# added by Anaconda3 4.2.0 installer
-export PATH=$HOME/anaconda3/bin:$PATH
 # conda_auto_env
 source $HOME/bin/conda_auto_env.sh
 
@@ -153,3 +151,6 @@ export EDITOR='e'
 export VISUAL='e'
 export LEIN_FAST_TRAMPOLINE=y
 eval `keychain --eval id_rsa`
+
+# added by Miniconda3 4.3.21 installer
+export PATH="$HOME/miniconda3/bin:$PATH"
