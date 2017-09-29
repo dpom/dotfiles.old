@@ -141,6 +141,14 @@ fi
 # source /usr/local/bin/virtualenvwrapper.sh
 
 eval "$(register-python-argcomplete conda)"
+export BOOT_JVM_OPTIONS='
+  -client
+  -XX:+TieredCompilation
+  -XX:TieredStopAtLevel=1
+  -Xmx2g
+  -XX:+UseConcMarkSweepGC
+  -XX:+CMSClassUnloadingEnabled
+  -Xverify:none'
 export GTAGSLABEL=pygments
 alias ede='ssh dan.pomohaci@edeploy.emag.local'
 alias stage='ssh dan.pomohaci@gift-www1-ro-stage.emag.network'
