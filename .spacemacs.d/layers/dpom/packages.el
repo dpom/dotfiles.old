@@ -20,6 +20,7 @@
         (ox-rst :location (recipe :fetcher github :repo "masayuko/ox-rst"))
         (conda :location (recipe :fetcher github :repo "necaris/conda.el"))
         (python-django :location (recipe :fetcher github :repo "fgallina/python-django.el"))
+        anaconda-mode 
         (org-jira)
         ))
 
@@ -599,5 +600,20 @@ citecolor=blue,filecolor=blue,menucolor=blue,urlcolor=blue"
               (setq jiralib-url  "http://jira.emag.local:8080/secure/")
               ))
   )
+
+
+(defun dpom/post-init-anaconda-mode ()
+  (defun python-send-line ()
+    (interactive)
+    (move-beginning-of-line nil)
+    (let ((beg (point)))
+      (forward-line 1)
+      (python-shell-send-region beg (point))))
+
+  (spacemacs/set-leader-keys-for-major-mode 'python-mode
+    "ss" 'python-start-or-switch-repl
+    "sl" 'python-send-line)
+)
+
 
 ;; dpom-package ends here
