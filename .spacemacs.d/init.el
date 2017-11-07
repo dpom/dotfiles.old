@@ -416,6 +416,12 @@ values."
   (setq calendar-date-style 'european)
   (spacemacs/set-leader-keys "SPC" 'avy-goto-char-timer)
   ;; (spacemacs/helm-gtags-define-keys-for-mode 'python-mode)
+
+
+  (magit-add-section-hook 'magit-status-sections-hook
+                          'magit-insert-unpushed-to-upstream
+                          'magit-insert-unpushed-to-upstream-or-recent
+                          'replace)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
