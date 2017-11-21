@@ -84,7 +84,7 @@ values."
                                        (shell-scripts :variables
                                                       sh-indentation 2
                                                       sh-basic-offset 2)
-                                       smex
+                                       ;; smex
                                        (spell-checking :variables spell-checking-enable-by-default nil)
                                        sql
                                        (syntax-checking :variables syntax-checking-enable-by-default nil)
@@ -230,7 +230,7 @@ values."
    dotspacemacs-default-layout-name "Default"
    ;; If non nil the default layout name is displayed in the mode-line.
    ;; (default nil)
-   dotspacemacs-display-default-layout nil
+   dotspacemacs-display-default-layout t
    ;; If non nil then the last auto saved layouts are resume automatically upon
    ;; start. (default nil)
    dotspacemacs-auto-resume-layouts t
@@ -369,7 +369,7 @@ values."
 
 (defun dotspacemacs/user-config ()
   ;; (setq projectile-tags-command "ctags --exclude=log --exclude=doc --exclude=target --exclude=tmp -Re -f \"%s\" %s")
-  (require 'helm-bookmark)
+  ;; (require 'helm-bookmark)
   (defun ao/expand-completion-table (orig-fun &rest args)
     "Extract all symbols from COMPLETION-TABLE before calling projectile--tags."
     (let ((completion-table (all-completions "" (car args))))
@@ -423,6 +423,10 @@ values."
                           'magit-insert-unpushed-to-upstream
                           'magit-insert-unpushed-to-upstream-or-recent
                           'replace)
+
+  (setq projectile-file-exists-local-cache-expire (* 5 60)
+        projectile-find-dir-includes-top-level t
+        projectile-switch-project-action 'projectile-dired)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
