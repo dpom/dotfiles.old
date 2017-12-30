@@ -1,21 +1,27 @@
+* dotfiles
+  :PROPERTIES:
+  :CUSTOM_ID: dotfiles
+  :END:
 
 Contains configuration files for my development tools.
 
-* linux
+** linux
 
-Linux specific configuration files
+Linux specific configuration files.
 
-* osx 
+** osx 
 
 Mac OS specific files.
 
-* .spacemacs.d
+** .spacemacs.d
+
+Spacemacs specific configuration files.
 
 My private layers:
 - clj :: clojure layer using inferior-lisp-mode 
 - dpom :: collect all my specific configurations
 - ent :: my build tool 
 
-* .lein
+** .lein
 
 Leiningen configurations
