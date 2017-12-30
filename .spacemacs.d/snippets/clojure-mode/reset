@@ -1,5 +1,5 @@
 # -*- mode: snippet -*-
-# name: user/reset
-# key: rs
+# name: reset
+# key: rt_reset
 # --
 (reset)

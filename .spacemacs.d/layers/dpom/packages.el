@@ -14,7 +14,16 @@
       '(org
         org-ref
         (org-redmine :location local)
-        (mu4e :location local)))
+        (mu4e :location local)
+        cdlatex
+        (ox-reveal :location (recipe :fetcher github :repo "yjwen/org-reveal"))
+        (ox-rst :location (recipe :fetcher github :repo "masayuko/ox-rst"))
+        (conda :location (recipe :fetcher github :repo "necaris/conda.el"))
+        (python-django :location (recipe :fetcher github :repo "fgallina/python-django.el"))
+        anaconda-mode 
+        (org-jira)
+        ))
+
 
 (defun dpom/post-init-org ()
   ;; org-basic-settings
@@ -40,6 +49,7 @@
         org-cycle-emulate-tab t
         org-outline-path-complete-in-steps nil)
   (setq org-refile-targets '((org-agenda-files . (:maxlevel . 5))))
+  (setq org-bullets-bullet-list '("○" "◙" "▲" "▶"))
 
   ;; org-custom-commands
   (setq org-agenda-custom-commands
@@ -131,19 +141,6 @@
   ;; Include current clocking task in clock reports
   (setq org-clock-report-include-clocking-task t)
 
-  ;; Pomodoro
-  (require 'org-timer)
-  (add-to-list 'org-modules 'org-timer)
-  (setq org-timer-default-timer 25)
-  (add-hook 'org-clock-in-hook '(lambda ()
-                                  (if (not org-timer-current-timer)
-                                      (org-timer-set-timer '(16)))))
-  (add-hook 'org-clock-out-hook '(lambda ()
-                                   (setq org-mode-line-string nil)))
-  (add-hook 'org-timer-done-hook '(lambda()
-                                    (start-process "orgmode" nil "/usr/bin/notify-send" "Pomodoro: Take a break")
-                                    (org-timer-stop)))
-
   ;; Reminders
   ;; Rebuild the reminders everytime the agenda is displayed
   (add-hook 'org-finalize-agenda-hook 'dpom/org-agenda-to-appt 'append)
@@ -196,7 +193,10 @@
   ;; (add-to-list 'org-src-lang-modes '("rb" . vbnet))
   (add-to-list 'org-src-lang-modes '("plantuml" . text))
   (setq org-plantuml-jar-path (expand-file-name "plantuml.jar" (expand-dir-name "scripts" dpom/dpom-layer))
+
         org-ditaa-jar-path (expand-file-name "ditaa.jar" (expand-dir-name "scripts" dpom/dpom-layer)))
+
+  (setq plantuml-jar-path org-plantuml-jar-path)
   (setq org-id-link-to-org-use-id nil)
 
   (require 'org-id)
@@ -211,7 +211,7 @@
   (setq org-src-fontify-natively t)
   (setq org-src-preserve-indentation t)
   (setq org-src-tab-acts-natively t)
-  
+
   (add-hook 'org-babel-after-execute-hook 'org-display-inline-images)
   ;; Now you just create a =begin-src= block for the appropriate tool, edit
   ;; the text, and build the pictures with =C-c C-c=.  After evaluating the
@@ -224,8 +224,7 @@
   ;; (require 'orgtbl-sqlinsert)
 
   (org-babel-lob-ingest (expand-file-name "library-of-babel.org" dpom/dpom-layer))
-  (org-babel-lob-ingest (expand-file-name "dpom-library-of-babel.org" dpom/dpom-layer))
-  
+
   ;; Exports
   (setq org-alphabetical-lists t)
 
@@ -259,23 +258,31 @@
           ("linenos" "")
           ))
 
-  ;; ;; (setq org-latex-pdf-process '("latexmk -pdflatex=xelatex -pdf -bibtex -quiet -latexoption=-shell-escape %f"))
-  ;; ;; (setq org-latex-pdf-process '("latexmk -xelatex -bibtex -diagnostics -f -latexoption=-shell-escape %f"))
-  ;; ;; (setq org-latex-pdf-process '("latexmk -xelatex -g -bibtex -latexoption=-shell-escape -f %f"))
-  ;; ;; (setq org-latex-pdf-process '("latexmk -g -xelatex -bibtex -shell-escape %f"))
-  ;; ;; (setq org-latex-pdf-process '("pdflatex -interaction nonstopmode -output-directory %o %f" "pdflatex -interaction nonstopmode -output-directory %o %f" "pdflatex -interaction nonstopmode -output-directory %o %f"))
-  ;; (setq org-latex-pdf-process '("xelatex -shell-escape -interaction nonstopmode %f"
-  ;;                               "bibtex %b"
-  ;;                               "xelatex -shell-escape -interaction nonstopmode %f"
-  ;;                               "xelatex -shell-escape -interaction nonstopmode %f"))
-  ;; ;; (setq org-latex-pdf-process '("latexmk -xelatex -g -gg -bibtex -latexoption=-shell-escape -f %f"))
-  ;; ;; (setq org-latex-pdf-process '("latexmk -pdflatex='pdflatex -interaction nonstopmode' -pdf -bibtex -f %f"))
-  (setq org-latex-pdf-process
-        '("pdflatex -interaction nonstopmode -output-directory %o -shell-escape %f"
-          "bibtex %b"
-          "pdflatex -interaction nonstopmode -output-directory %o -shell-escape %f"
-          "pdflatex -interaction nonstopmode -output-directory %o -shell-escape %f"))
+  ;; ;; ;; (setq org-latex-pdf-process '("latexmk -pdflatex=xelatex -pdf -bibtex -quiet -latexoption=-shell-escape %f"))
+  ;; ;; ;; (setq org-latex-pdf-process '("latexmk -xelatex -bibtex -diagnostics -f -latexoption=-shell-escape %f"))
+  ;; ;; ;; (setq org-latex-pdf-process '("latexmk -xelatex -g -bibtex -latexoption=-shell-escape -f %f"))
+  ;; ;; ;; (setq org-latex-pdf-process '("latexmk -g -xelatex -bibtex -shell-escape %f"))
+  ;; ;; ;; (setq org-latex-pdf-process '("pdflatex -interaction nonstopmode -output-directory %o %f" "pdflatex -interaction nonstopmode -output-directory %o %f" "pdflatex -interaction nonstopmode -output-directory %o %f"))
+  ;; ;; (setq org-latex-pdf-process '("xelatex -shell-escape -interaction nonstopmode %f"
+  ;; ;;                               "bibtex %b"
+  ;; ;;                               "xelatex -shell-escape -interaction nonstopmode %f"
+  ;; ;;                               "xelatex -shell-escape -interaction nonstopmode %f"))
+  ;; ;; ;; (setq org-latex-pdf-process '("latexmk -xelatex -g -gg -bibtex -latexoption=-shell-escape -f %f"))
+  ;; ;; ;; (setq org-latex-pdf-process '("latexmk -pdflatex='pdflatex -interaction nonstopmode' -pdf -bibtex -f %f"))
+  
+  ;; (setq org-latex-pdf-process
+  ;;       '("pdflatex -interaction nonstopmode -output-directory %o -shell-escape %f"
+  ;;         "bibtex %b"
+  ;;         "pdflatex -interaction nonstopmode -output-directory %o -shell-escape %f"
+  ;;         "pdflatex -interaction nonstopmode -output-directory %o -shell-escape %f"))
 
+  (setq bibtex-dialect 'biblatex)
+  
+  (setq  org-latex-pdf-process
+         '("latexmk -shell-escape -bibtex -pdf %f"))
+
+  ;; (setq org-latex-to-pdf-process
+  ;;       '("texi2dvi -p -b -c -V %f"))
 
   (setq org-latex-image-default-width nil)
 
@@ -299,7 +306,13 @@
                '("dpom-spec"
                  "\\documentclass[12pt,a4paper]{article}
       [NO-DEFAULT-PACKAGES]
+      \\usepackage[T1]{fontenc}
+      \\usepackage[utf8]{inputenc}
+      \\usepackage[AUTO]{babel}
       \\usepackage{minted}
+      \\usepackage{tgtermes}
+      \\usepackage[scale=.85]{tgheros}
+      \\usepackage{tgcursor}
       \\usemintedstyle{emacs}
       \\newminted{common-lisp}{fontsize=10}
       \\usepackage[hmargin=2cm,top=4cm,headheight=65pt,footskip=65pt]{geometry}
@@ -308,24 +321,32 @@
       \\usepackage{xcolor}
       \\usepackage{array}
       \\usepackage[parfill]{parskip}
+      \\usepackage{titlesec}
       \\usepackage{hyperref}
       \\pagestyle{fancy}
       \\fancyhead{}
       \\fancyfoot{}
-      \\renewcommand{\\headrulewidth}{0.5pt}
-      \\renewcommand{\\footrulewidth}{0.5pt}
+      \\renewcommand{\\headrulewidth}{0pt}
+      \\renewcommand{\\footrulewidth}{0pt}
       \\addtolength{\\headsep}{5pt}
       \\setlength{\\parindent}{0pt}
       \\setlength{\\headsep}{50pt}
-      \\rfoot{\\thepage/\\pageref{LastPage}}"
+
+      \\setcounter{secnumdepth}{4}
+\\titleformat{\\paragraph}
+{\\normalfont\\normalsize\\bfseries}{\\theparagraph}{1em}{}
+\\titlespacing*{\\paragraph}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+
+       \\rfoot{\\thepage/\\pageref{LastPage}}"
                  ("\\section{%s}" . "\\section*{%s}")
                  ("\\subsection{%s}" . "\\subsection*{%s}")
                  ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-                 ("\\subsubsubsection{%s}" . "\\subsubsubsection*{%s}")
                  ("\\paragraph{%s}" . "\\paragraph*{%s}")
                  ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
 
-
+  
   (add-to-list 'org-latex-classes
                '("letter"
                  "\\documentclass[12pt]{letter}
@@ -350,7 +371,7 @@
                  ))
 
   (add-to-list 'org-latex-classes
-               '("dpom/org-article"
+               '("dpom-org-article"
                  "\\documentclass[12pt,a4paper]{article}
       [NO-DEFAULT-PACKAGES]
       \\usepackage[hmargin=2cm,top=4cm,headheight=65pt,footskip=65pt]{geometry}
@@ -386,15 +407,14 @@
                  ("\\paragraph{%s}" . "\\paragraph*{%s}")
                  ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
 
+  (defun org-export-latex-remove-references-heading (contents backend info)
+    (if (not (eq backend 'latex))
+        contents
+      (replace-regexp-in-string "\\\\section\\*?{References}\\s-*\\\\label{.*?}" "" contents)
+      ))
 
+  (add-hook 'org-export-filter-final-output-functions 'org-export-latex-remove-references-heading)
 
-  (require 'ox-latex)
-  (add-to-list 'org-latex-classes
-               '("beamer"
-                 "\\documentclass\[presentation\]\{beamer\}"
-                 ("\\section\{%s\}" . "\\section*\{%s\}")
-                 ("\\subsection\{%s\}" . "\\subsection*\{%s\}")
-                 ("\\subsubsection\{%s\}" . "\\subsubsection*\{%s\}")))
 
   (require 'org-crypt)
   (org-crypt-use-before-save-magic)
@@ -407,16 +427,10 @@
                                         ;            (lambda ()
                                         ;              (local-set-key "\C-c\M-o" 'org-mime-htmlize)))
                                         ;
-  ;; Org Mobile
-  (setq org-mobile-directory "~/Dropbox/MobileOrg"
-        org-directory dpom/org-dir
-        org-mobile-inbox-for-pull dpom/org-notes-file
-        )
-
   )
 
 
-(defun dpom/init-org-ref ()
+(defun dpom/post-init-org-ref ()
   "Initialize org-ref extension"
   (use-package org-ref
     :config (progn
@@ -448,7 +462,7 @@
                      org-latex-default-packages-alist))
 
               ;; Append new packages
-              (add-to-list 'org-latex-default-packages-alist '("" "natbib" "") t)
+              ;; (add-to-list 'org-latex-default-packages-alist '("" "natbib" "") t)
               (add-to-list 'org-latex-default-packages-alist
                            '("linktocpage,pdfstartview=FitH,colorlinks,
 linkcolor=blue,anchorcolor=blue,
@@ -482,9 +496,7 @@ citecolor=blue,filecolor=blue,menucolor=blue,urlcolor=blue"
                                 . (lambda (issue) (org-redmine-insert-subtree issue))))))))
                 (while (re-search-forward "/" nil t)
                   (replace-match "-")))
-              (spacemacs/set-leader-keys  "oR" 'dpom-helm-redmine)
-              ))
-  )
+              (spacemacs/set-leader-keys  "oR" 'dpom-helm-redmine))))
 
 (defun dpom/init-mu4e ()
   "Initialize mu4e extension"
@@ -545,7 +557,63 @@ citecolor=blue,filecolor=blue,menucolor=blue,urlcolor=blue"
                            '("org-contact-add" . mu4e-action-add-org-contact) t)
               (setq mu4e-compose-complete-only-personal t)
               (setq message-kill-buffer-on-exit t)
-              (defalias 'org-mail 'org-mu4e-compose-org-mode)
+              (defalias 'org-mail 'org-mu4e-compose-org-mode))))
+
+(defun dpom/init-cdlatex ()
+  "Initialize cdlatex extension"
+  (use-package cdlatex))
+
+
+(defun dpom/post-init-ox-reveal ()
+  "Initialize ox-reveal package."
+  (use-package ox-reveal
+    :config (progn
+              (setq org-reveal-root ""))))
+
+(defun dpom/init-ox-rst ()
+  "Initialize ox-rst package."
+  (use-package ox-rst))
+
+(defun dpom/init-conda ()
+  "Initialize conda package"
+  (use-package conda
+    :config (progn
+              (setq conda-anaconda-home "~/anaconda3")
+              ;; if you want interactive shell support, include:
+              (conda-env-initialize-interactive-shells)
+              ;; if you want eshell support, include:
+              (conda-env-initialize-eshell)
+              ;; if you want auto-activation (see below for details), include:
+              (conda-env-autoactivate-mode t)
               ))
   )
+
+(defun dpom/init-python-django ()
+  "Initialize python-django package"
+  (use-package python-django))
+
+
+(defun dpom/init-org-jira ()
+  "Initialize conda package"
+  (use-package org-jira
+    :config (progn
+              (setq jiralib-url  "http://jira.emag.local:8080/secure/")
+              ))
+  )
+
+
+(defun dpom/post-init-anaconda-mode ()
+  (defun python-send-line ()
+    (interactive)
+    (move-beginning-of-line nil)
+    (let ((beg (point)))
+      (forward-line 1)
+      (python-shell-send-region beg (point))))
+
+  (spacemacs/set-leader-keys-for-major-mode 'python-mode
+    "ss" 'python-start-or-switch-repl
+    "sl" 'python-send-line)
+)
+
+
 ;; dpom-package ends here

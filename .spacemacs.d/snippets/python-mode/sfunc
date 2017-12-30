@@ -1,0 +1,22 @@
+# -*- mode: snippet -*-
+# FSM State Functions
+# name: FSM State Functions
+# key: sfuncs
+# type: snippet
+# --
+
+    ## $1 state
+
+    @classmethod
+    def $1_respond(cls, customer, customerInput, inputFromPostbackAction,
+                      special_input):
+        state = "$1"
+        log.debug("*** state: {0}".format(state))
+        return cls.ask_state_respond(state, customer)
+        cls.set_state_respond(state, customer, customerInput)
+        return -1
+ 
+    @classmethod
+    def $1_next(cls, diss, customer, response):
+        cls.set_next_node(diss)
+        diss.set_state("")

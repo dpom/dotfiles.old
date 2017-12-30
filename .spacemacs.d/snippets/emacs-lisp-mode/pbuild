@@ -1,0 +1,38 @@
+# -*- mode: snippet -*-
+# name: pbuild
+# key: pbuild
+# --
+;; project settings
+(setq ent-project-home (file-name-directory (if load-file-name load-file-name buffer-file-name)))
+(setq ent-project-name "${1:project}")
+(setq ent-clean-regexp "~$\\\\|\\\\.tex$")
+(setq ent-project-config-filename "${1:$(capitalize yas-text)}.org")
+
+;; local functions
+
+(defvar project-version)
+(defvar project-env)
+
+(setq project-env "$1")
+(setq project-version "0.1")
+
+;; tasks
+
+(load ent-init-file)
+
+(task 'makenv '() "make environment.yml" '(lambda (&optional x) (concat "conda env export > environment.yml --name " project-env)))
+(task 'updatenv '() "update environment" '(lambda (&optional x)  "conda env update"))
+;(task 'makereq '() "make requirements.txt" '(lambda (&optional x) "conda list --explicit > requirements.txt "))
+(task 'makereq '() "make requirements.txt" '(lambda (&optional x) "conda list --explicit > requirements.txt "))
+
+(task 'startcompose '() "start compose" '(lambda (&optional x) "docker-compose up -d"))
+(task 'stopcompose '() "stop compose" '(lambda (&optional x) "docker-compose stop"))
+
+
+
+$0
+
+;; Local Variables:
+;; no-byte-compile: t
+;; no-update-autoloads: t
+;; End:

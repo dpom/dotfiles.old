@@ -14,7 +14,7 @@
 (spacemacs|defvar-company-backends clojure-mode)
 (spacemacs|defvar-company-backends inferior-lisp-mode)
 
-(defvar clj-inf-lisp-buffer "*inferior-lisp*")
+(defvar clj-inf-lisp-buffer "*inf-clojure*")
 (defvar clj-inferior-lisp-program-lein "lein with-profile +dev repl")
 (defvar clj-inferior-lisp-program-figwheel "lein figwheel")
 (defvar clj-inferior-lisp-program-boot "boot repl")
@@ -22,3 +22,4 @@
 (defvar cljtest-error-regexp
   '(cljtest "FAIL in (.+) (\\(.+\\):\\([0-9,]+\\))" 1 2))
 
+ 

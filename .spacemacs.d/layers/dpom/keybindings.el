@@ -17,22 +17,31 @@
 ;;; Code:
 (spacemacs/declare-prefix "o" "personal")
 (spacemacs/declare-prefix "ob" "babel")
+(spacemacs/declare-prefix "om" "math")
 
 (spacemacs/set-leader-keys
   "oa" 'org-agenda
   "og" 'helm-org-agenda-files-headings
   "oo" 'org-clock-out
   "oc" 'org-capture
+  "op" 'org-pomodoro 
   "oC" 'helm-org-capture-templates ;requires templates to be defined.
   "ol" 'org-store-link
   "obd" 'org-babel-detangle
   "obt" 'org-babel-tangle
-  )
+  "omi" 'cdlatex-math-symbol
+  "omv" 'org-toggle-latex-fragment
+  "os" 'fixup-whitespace
+  "oi" 'dpom/insert-rom-char)
 
-(spacemacs/set-leader-keys "fE" 'dpom/sudo-edit)
 (spacemacs/set-leader-keys "xf" 'dpom/cleanup-buffer)
-(spacemacs/set-leader-keys-for-major-mode 'dired-mode
-  "w" 'wdired-change-to-wdired-mode)
+
 (spacemacs/set-leader-keys-for-major-mode 'web-mode
   "mrk" 'web-mode-element-kill)
- 
+
+(spacemacs/declare-prefix-for-mode 'python-mode "mv" "conda")
+
+(spacemacs/set-leader-keys-for-major-mode 'python-mode
+  "vl" 'conda-env-list
+  "va" 'conda-env-activate
+  "vd" 'conda-env-deactivate)

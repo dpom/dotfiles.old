@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: reveal_split
+# key: rev_split
+# --
+
+
+#+reveal: split
