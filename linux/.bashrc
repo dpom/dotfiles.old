@@ -119,12 +119,12 @@ if ! shopt -oq posix; then
   fi
 fi
 
-export PATH="/home/dan/.pyenv/bin:$PATH"
+# export PATH="/home/dan/.pyenv/bin:$PATH"
 # eval "$(pyenv init -)"
 # eval "$(pyenv virtualenv-init -)"
 
 # conda_auto_env
-source $HOME/bin/conda_auto_env.sh
+# source $HOME/bin/conda_auto_env.sh
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f /home/dan/Dropbox/emag/googlecloud/google-cloud-sdk/path.bash.inc ]; then
@@ -150,10 +150,6 @@ export BOOT_JVM_OPTIONS='
   -XX:+CMSClassUnloadingEnabled
   -Xverify:none'
 export GTAGSLABEL=pygments
-alias ede='ssh dan.pomohaci@edeploy.emag.local'
-alias stage='ssh dan.pomohaci@gift-www1-ro-stage.emag.network'
-alias prod='ssh dan.pomohaci@gift-www1-ro-prod.emag.network'
-alias dev='ssh dan.pomohaci@eos-all6566-ro-dev.labs.c.emag.network'
 alias e='emacsclient --no-wait'
 export EDITOR='e'
 export VISUAL='e'
@@ -161,4 +157,4 @@ export LEIN_FAST_TRAMPOLINE=y
 eval `keychain --eval id_rsa`
 
 # added by Miniconda3 4.3.21 installer
-export PATH="$HOME/miniconda3/bin:$PATH"
+# export PATH="$HOME/miniconda3/bin:$PATH"
