@@ -568,7 +568,8 @@ citecolor=blue,filecolor=blue,menucolor=blue,urlcolor=blue"
   "Initialize ox-reveal package."
   (use-package ox-reveal
     :config (progn
-              (setq org-reveal-root ""))))
+              ;; (setq org-reveal-root "")
+)))
 
 (defun dpom/init-ox-rst ()
   "Initialize ox-rst package."
