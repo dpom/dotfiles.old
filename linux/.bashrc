@@ -158,3 +158,6 @@ eval `keychain --eval id_rsa`
 
 # added by Miniconda3 4.3.21 installer
 # export PATH="$HOME/miniconda3/bin:$PATH"
+
+export SPARK_HOME="/home/dan/opt/spark"
+export PATH="$PATH:$SPARK_HOME/bin"

@@ -1,0 +1,16 @@
+# -*- mode: snippet -*-
+# name: tspec
+# key: tspec
+# --
+
+(s/fdef ${1:function}
+    :args (s/cat )
+    :ret
+    :fn #( ))
+
+(stest/instrument \`$1)
+
+;; (s/exercise-fn \`$1 1) 
+
+;; (stest/summarize-results (stest/check \`$1)) 
+
