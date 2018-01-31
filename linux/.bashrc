@@ -123,3 +123,29 @@ fi
 if [ -x /usr/bin/mint-fortune ]; then
      /usr/bin/mint-fortune
 fi
+# source ~/.autoenv/activate.sh
+# export WORKON_HOME=$HOME/.virtualenvs
+# export PROJECT_HOME=$HOME
+# source /usr/local/bin/virtualenvwrapper.sh
+
+eval "$(register-python-argcomplete conda)"
+export BOOT_JVM_OPTIONS='
+  -client
+  -XX:+TieredCompilation
+  -XX:TieredStopAtLevel=1
+  -Xmx2g
+  -XX:+UseConcMarkSweepGC
+  -XX:+CMSClassUnloadingEnabled
+  -Xverify:none'
+export GTAGSLABEL=pygments
+alias e='emacsclient --no-wait'
+export EDITOR='e'
+export VISUAL='e'
+export LEIN_FAST_TRAMPOLINE=y
+eval `keychain --eval id_rsa`
+
+# added by Miniconda3 4.3.21 installer
+# export PATH="$HOME/miniconda3/bin:$PATH"
+
+export SPARK_HOME="/home/dan/opt/spark"
+export PATH="$PATH:$SPARK_HOME/bin"

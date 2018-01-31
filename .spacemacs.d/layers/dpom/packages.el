@@ -286,6 +286,7 @@
   ;;       '("texi2dvi -p -b -c -V %f"))
 
   (setq org-latex-image-default-width nil)
+  (setq org-image-actual-width nil)
 
   ;;Specify default packages to be included in every tex file, whether pdflatex or xelatex
   (setq org-latex-packages-alist
