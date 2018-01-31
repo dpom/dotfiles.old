@@ -1,4 +1,5 @@
-# ~/.bashrc: executed by bash(1) for non-login shells. # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
+# ~/.bashrc: executed by bash(1) for non-login shells.
+# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
 # If not running interactively, don't do anything
@@ -119,42 +120,6 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# export PATH="/home/dan/.pyenv/bin:$PATH"
-# eval "$(pyenv init -)"
-# eval "$(pyenv virtualenv-init -)"
-
-# conda_auto_env
-# source $HOME/bin/conda_auto_env.sh
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f /home/dan/Dropbox/emag/googlecloud/google-cloud-sdk/path.bash.inc ]; then
-  source '/home/dan/Dropbox/emag/googlecloud/google-cloud-sdk/path.bash.inc'
+if [ -x /usr/bin/mint-fortune ]; then
+     /usr/bin/mint-fortune
 fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f /home/dan/Dropbox/emag/googlecloud/google-cloud-sdk/completion.bash.inc ]; then
-  source '/home/dan/Dropbox/emag/googlecloud/google-cloud-sdk/completion.bash.inc'
-fi
-# source ~/.autoenv/activate.sh
-# export WORKON_HOME=$HOME/.virtualenvs
-# export PROJECT_HOME=$HOME
-# source /usr/local/bin/virtualenvwrapper.sh
-
-eval "$(register-python-argcomplete conda)"
-export BOOT_JVM_OPTIONS='
-  -client
-  -XX:+TieredCompilation
-  -XX:TieredStopAtLevel=1
-  -Xmx2g
-  -XX:+UseConcMarkSweepGC
-  -XX:+CMSClassUnloadingEnabled
-  -Xverify:none'
-export GTAGSLABEL=pygments
-alias e='emacsclient --no-wait'
-export EDITOR='e'
-export VISUAL='e'
-export LEIN_FAST_TRAMPOLINE=y
-eval `keychain --eval id_rsa`
-
-# added by Miniconda3 4.3.21 installer
-# export PATH="$HOME/miniconda3/bin:$PATH"

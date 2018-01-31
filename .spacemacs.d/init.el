@@ -40,6 +40,7 @@ values."
                                                         auto-completion-enable-company-help-tooltip 'manual
                                                         auto-completion-enable-sort-by-usage t
                                                         company-show-numbers t)
+                                       javascript
                                        ivy
                                        bibtex
                                        (c-c++ :variables
@@ -49,19 +50,19 @@ values."
                                        ;; common-lisp
                                        emacs-lisp
                                        ;; (evil-snipe :variables evil-snipe-enable-alternate-f-and-t-behaviors t)
-                                       ;(erc :variables
-                                       ;     erc-server-list
-                                        ;    '(("irc.freenode.net" 
-                                         ;      :port "6697"
-                                          ;     :ssl t
-                                          ;     :nick "dpom")
-                                          ;    ))
+                                        ;(erc :variables
+                                        ;     erc-server-list
+                                        ;    '(("irc.freenode.net"
+                                        ;      :port "6697"
+                                        ;     :ssl t
+                                        ;     :nick "dpom")
+                                        ;    ))
                                        (git :variables
                                             git-enable-github-support t
                                             git-gutter-use-fringe t)
                                        (github :variables gh-profile-default-profile "dpom")
                                        ;; gtags
-                                       ;; cscope 
+                                       ;; cscope
                                        html
                                        latex
                                        markdown
@@ -91,12 +92,13 @@ values."
                                        (version-control :variables version-control-diff-tool 'diff-hl)
                                        ;; specific
                                        clojure
+                                       ;; confluence
                                        dpom
                                        ent
                                        ;; clj
-                                       (python :variables
-                                               python-test-runner 'pytest
-                                               python-enable-yapf-format-on-save nil)
+                                       ;; (python :variables
+                                       ;;         python-test-runner 'pytest
+                                       ;;         python-enable-yapf-format-on-save nil)
                                        myediting
                                        yaml
                                        docker
@@ -377,9 +379,10 @@ values."
   (advice-add 'projectile--tags :around #'ao/expand-completion-table)
 
 
-  (global-company-mode)
-  (define-key company-active-map [tab] 'company-complete-common)
-                                        ;(global-set-key (kbd "TAB") 'hippie-expand)
+  ;; (global-company-mode)
+  ;; (define-key company-active-map [tab] 'company-complete-common)
+  ;;(global-set-key (kbd "TAB") 'hippie-expand)
+
   (setq spacemacs-mode-line-org-clock-current-taskp t)
   (setq dired-dwim-target t)
   (spacemacs/toggle-truncate-lines-on)
@@ -388,23 +391,27 @@ values."
   (spacemacs/toggle-mode-line-org-clock)
   (spacemacs|defvar-company-backends sh-mode)
   (spacemacs|add-company-hook sh-mode)
+
   (setq eclim-eclipse-dirs "~/eclipse"
         eclim-executable "~/eclipse/eclim")
+
   (load (expand-file-name ".config.el" "~/pers/.private/"))
   ;;(setq yas-snippet-dirs '("")
   (eval-after-load 'yasnippet '(yas-reload-all))
 
-  ;; Add yasnippet support for all company backends
-  (defvar company-mode/enable-yas t
-    "Enable yasnippet for all backends.")
+  (with-eval-after-load 'company
+    ;; Add yasnippet support for all company backends
+    (defvar company-mode/enable-yas t
+      "Enable yasnippet for all backends.")
 
-  (defun company-mode/backend-with-yas (backend)
-    (if (or (not company-mode/enable-yas) (and (listp backend) (member 'company-yasnippet backend)))
-        backend
-      (append (if (consp backend) backend (list backend))
-              '(:with company-yasnippet))))
+    (defun company-mode/backend-with-yas (backend)
+      (if (or (not company-mode/enable-yas) (and (listp backend) (member 'company-yasnippet backend)))
+          backend
+        (append (if (consp backend) backend (list backend))
+                '(:with company-yasnippet))))
 
-  (setq company-backends (mapcar #'company-mode/backend-with-yas company-backends))
+    (setq company-backends (mapcar #'company-mode/backend-with-yas company-backends))
+    )
 
   (add-hook 'c-mode-common-hook
             (lambda ()
@@ -414,7 +421,10 @@ values."
         org-ref-pdf-directory "~/pers/bibliography/pdfs/"
         org-ref-bibliography-notes "~/pers/bibliography/notes.org")
 
+  (add-hook 'tex-mode-hook (function (lambda () (setq ispell-parser 'tex))))
+
   (setq calendar-date-style 'european)
+
   (spacemacs/set-leader-keys "SPC" 'avy-goto-char-timer)
   ;; (spacemacs/helm-gtags-define-keys-for-mode 'python-mode)
 
@@ -427,11 +437,16 @@ values."
   (setq projectile-file-exists-local-cache-expire (* 5 60)
         projectile-find-dir-includes-top-level t
         projectile-switch-project-action 'projectile-dired)
+
+  ;; (setq confluence-url "http://confluence.emag.local:8090/confluence/rpc/xmlrpc")
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
 ;; spacemacs ends here
+
+
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -439,16 +454,7 @@ values."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (ghub let-alist wgrep ivy-hydra flyspell-correct-ivy counsel-projectile counsel swiper powerline pdf-tools key-chord ivy org-category-capture alert log4e gntp org-plus-contrib dash-functional parent-mode projectile request helm-bibtex parsebib gitignore-mode fringe-helper git-gutter+ git-gutter gh marshal logito pcache ht flx magit git-commit with-editor smartparens iedit anzu evil goto-chg undo-tree magit-popup diminish company hydra highlight spinner pkg-info epl bind-map bind-key biblio biblio-core yasnippet packed anaconda-mode pythonic f dash s helm avy helm-core async auto-complete popup clojure-snippets clj-refactor inflections edn multiple-cursors paredit peg cider-eval-sexp-fu cider seq queue clojure-mode origami string-inflection org-jira helm-cscope xcscope helm-gtags ggtags web-mode tagedit sql-indent slim-mode scss-mode sass-mode ranger pug-mode plantuml-mode mmm-mode markdown-toc markdown-mode less-css-mode helm-css-scss haml-mode gh-md flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip flycheck emmet-mode dockerfile-mode docker json-mode tablist docker-tramp json-snatcher json-reformat company-web web-completion-data company-auctex auto-dictionary auctex-latexmk auctex zenburn-theme yapfify yaml-mode xterm-color ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline smex smeargle shell-pop restart-emacs rainbow-delimiters pyvenv python-django pytest pyenv-mode py-isort popwin pip-requirements persp-mode pcre2el paradox ox-rst ox-reveal ox-gfm orgit org-ref org-projectile org-present org-pomodoro org-download org-bullets open-junk-file neotree multi-term move-text magit-gitflow magit-gh-pulls macrostep lorem-ipsum live-py-mode linum-relative link-hint insert-shebang info+ inf-clojure indent-guide hy-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot github-search github-clone github-browse-file gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gist fuzzy flx-ido fish-mode fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-multiedit evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help elisp-slime-nav dumb-jump disaster diff-hl define-word cython-mode conda company-statistics company-shell company-c-headers company-anaconda column-enforce-mode cmake-mode clean-aindent-mode clang-format cdlatex auto-yasnippet auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell)))
- '(projectile-globally-ignored-directories
-   (quote
-    (".idea" ".ensime_cache" ".eunit" ".git" ".hg" ".fslckout" "_FOSSIL_" ".bzr" "_darcs" ".tox" ".svn" ".stack-work" "log" "doc" "tmp" "target")))
- '(safe-local-variable-values
-   (quote
-    ((python-shell-interpreter . "/home/dan/emag/emaproject/emashell")
-     (python-shell-virtualenv-root . "/home/dan/anaconda3/envs/eMAG")
-     (cider-refresh-after-fn . "integrant.repl/resume")
-     (cider-refresh-before-fn . "integrant.repl/suspend")))))
+    (company-tern dash-functional tern fuzzy company-web web-completion-data company-statistics company-shell company-c-headers company-auctex company clojure-snippets auto-yasnippet ac-ispell auto-complete web-beautify livid-mode skewer-mode simple-httpd js2-refactor js2-mode js-doc coffee-mode zenburn-theme yaml-mode xterm-color ws-butler winum which-key wgrep web-mode volatile-highlights vi-tilde-fringe uuidgen use-package toc-org tagedit string-inflection sql-indent spaceline smex smeargle slim-mode shell-pop scss-mode sass-mode restart-emacs request rainbow-delimiters pug-mode popwin plantuml-mode persp-mode pcre2el paradox ox-rst ox-reveal ox-gfm origami orgit org-ref org-projectile org-present org-pomodoro org-mime org-download org-bullets open-junk-file neotree multi-term move-text mmm-mode markdown-toc magit-gitflow magit-gh-pulls macrostep lorem-ipsum linum-relative link-hint less-css-mode ivy-hydra insert-shebang indent-guide hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-make google-translate golden-ratio gnuplot gitignore-mode github-search github-clone github-browse-file gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gist gh-md flyspell-correct-ivy flycheck-pos-tip flx-ido fish-mode fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-multiedit evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eshell-z eshell-prompt-extras esh-help emmet-mode elisp-slime-nav dumb-jump dockerfile-mode docker disaster diminish diff-hl define-word counsel-projectile column-enforce-mode cmake-mode clj-refactor clean-aindent-mode clang-format cider-eval-sexp-fu cdlatex auto-highlight-symbol auto-dictionary auto-compile auctex-latexmk aggressive-indent adaptive-wrap ace-window ace-link))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -456,33 +462,3 @@ values."
  ;; If there is more than one, they won't work right.
  '(org-done ((t (:foreground "PaleGreen" :weight normal :strike-through t))))
  '(org-headline-done ((((class color) (min-colors 16) (background dark)) (:foreground "LightSalmon" :strike-through t)))))
-(defun dotspacemacs/emacs-custom-settings ()
-  "Emacs custom settings.
-This is an auto-generated function, do not modify its content directly, use
-Emacs customize menu instead.
-This function is called at the very end of Spacemacs initialization."
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   (quote
-    (symon sayid realgud test-simple loc-changes load-relative password-generator org-brain monokai-theme impatient-mode simple-httpd helm-purpose window-purpose imenu-list flycheck-bashate evil-org evil-lion editorconfig cmake-ide levenshtein browse-at-remote powerline pdf-tools key-chord ivy org-category-capture alert log4e gntp org-plus-contrib dash-functional parent-mode projectile request helm-bibtex parsebib gitignore-mode fringe-helper git-gutter+ git-gutter gh marshal logito pcache ht flx magit git-commit with-editor smartparens iedit anzu evil goto-chg undo-tree magit-popup diminish company hydra highlight spinner pkg-info epl bind-map bind-key biblio biblio-core yasnippet packed anaconda-mode pythonic f dash s helm avy helm-core async auto-complete popup clojure-snippets clj-refactor inflections edn multiple-cursors paredit peg cider-eval-sexp-fu cider seq queue clojure-mode origami string-inflection org-jira helm-cscope xcscope helm-gtags ggtags web-mode tagedit sql-indent slim-mode scss-mode sass-mode ranger pug-mode plantuml-mode mmm-mode markdown-toc markdown-mode less-css-mode helm-css-scss haml-mode gh-md flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip flycheck emmet-mode dockerfile-mode docker json-mode tablist docker-tramp json-snatcher json-reformat company-web web-completion-data company-auctex auto-dictionary auctex-latexmk auctex zenburn-theme yapfify yaml-mode xterm-color ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline smex smeargle shell-pop restart-emacs rainbow-delimiters pyvenv python-django pytest pyenv-mode py-isort popwin pip-requirements persp-mode pcre2el paradox ox-rst ox-reveal ox-gfm orgit org-ref org-projectile org-present org-pomodoro org-download org-bullets open-junk-file neotree multi-term move-text magit-gitflow magit-gh-pulls macrostep lorem-ipsum live-py-mode linum-relative link-hint insert-shebang info+ inf-clojure indent-guide hy-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot github-search github-clone github-browse-file gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gist fuzzy flx-ido fish-mode fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-multiedit evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help elisp-slime-nav dumb-jump disaster diff-hl define-word cython-mode conda company-statistics company-shell company-c-headers company-anaconda column-enforce-mode cmake-mode clean-aindent-mode clang-format cdlatex auto-yasnippet auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell)))
- '(projectile-globally-ignored-directories
-   (quote
-    (".idea" ".ensime_cache" ".eunit" ".git" ".hg" ".fslckout" "_FOSSIL_" ".bzr" "_darcs" ".tox" ".svn" ".stack-work" "log" "doc" "tmp" "target")))
- '(safe-local-variable-values
-   (quote
-    ((python-shell-interpreter . "/home/dan/emag/emaproject/emashell")
-     (python-shell-virtualenv-root . "/home/dan/miniconda3/envs/eMAG")
-     (cider-refresh-after-fn . "integrant.repl/resume")
-     (cider-refresh-before-fn . "integrant.repl/suspend")))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(org-done ((t (:foreground "PaleGreen" :weight normal :strike-through t))))
- '(org-headline-done ((((class color) (min-colors 16) (background dark)) (:foreground "LightSalmon" :strike-through t)))))
-)
