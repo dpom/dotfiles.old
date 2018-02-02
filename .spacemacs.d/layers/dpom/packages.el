@@ -13,15 +13,16 @@
 (setq dpom-packages
       '(org
         org-ref
-        (org-redmine :location local)
-        (mu4e :location local)
+        ;; (org-redmine :location local)
+        ;; (mu4e :location local)
+        ;; (confluence)
         cdlatex
         (ox-reveal :location (recipe :fetcher github :repo "yjwen/org-reveal"))
         (ox-rst :location (recipe :fetcher github :repo "masayuko/ox-rst"))
-        (conda :location (recipe :fetcher github :repo "necaris/conda.el"))
-        (python-django :location (recipe :fetcher github :repo "fgallina/python-django.el"))
-        anaconda-mode 
-        (org-jira)
+        ;; (conda :location (recipe :fetcher github :repo "necaris/conda.el"))
+        ;; (python-django :location (recipe :fetcher github :repo "fgallina/python-django.el"))
+        ;; anaconda-mode 
+        ;; (org-jira)
         ))
 
 
