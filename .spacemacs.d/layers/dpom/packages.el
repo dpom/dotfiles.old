@@ -14,7 +14,6 @@
       '(org
         org-ref
         ;; (org-redmine :location local)
-        ;; (mu4e :location local)
         ;; (confluence)
         cdlatex
         (ox-reveal :location (recipe :fetcher github :repo "yjwen/org-reveal"))
@@ -170,6 +169,9 @@
   ;; (require 'ob-xml)
   ;; (add-to-list 'org-src-lang-modes '("xml" . nxml))
 
+  (require 'ob-clojure)
+  (require 'ob-org)
+
   (org-babel-do-load-languages
    'org-babel-load-languages
    '((emacs-lisp . t)
@@ -184,6 +186,7 @@
      ;; (perl . t)
      (plantuml . t)
      (python . t)
+     (org . t)
      ;; (rb . t)
      (sql . t)
      ;; (xml . t)
@@ -500,66 +503,7 @@ citecolor=blue,filecolor=blue,menucolor=blue,urlcolor=blue"
                   (replace-match "-")))
               (spacemacs/set-leader-keys  "oR" 'dpom-helm-redmine))))
 
-(defun dpom/init-mu4e ()
-  "Initialize mu4e extension"
-  (use-package mu4e
-    :config (progn
-              (setq mu4e-maildir "~/Maildir"
-                    mu4e-drafts-folder "/[Gmail].Drafts"
-                    mu4e-sent-folder   "/[Gmail].Sent Mail"
-                    mu4e-trash-folder  "/[Gmail].Trash"
-                    mu4e-sent-messages-behavior 'delete
-                    mu4e-get-mail-command "offlineimap"
-                    mu4e-attachment-dir  "~/Downloads"
-                    mu4e-view-show-images t
-                    mu4e-maildir-shortcuts
-                    '( ("/INBOX"               . ?i)
-                       ("/new.emacs"           . ?e)
-                       ("/new.debian"          . ?d)
-                       ("/new.clojure"         . ?c)
-                       ("/new.realsoftware"    . ?r)
-                       ("/new.arm"             . ?m)
-                       ("/cogito.letec"        . ?l)
-                       ("/[Gmail].Sent Mail"   . ?s)
-                       ("/[Gmail].Trash"       . ?t)
-                       )
-                    )
-              ;; use imagemagick, if available
-              (when (fboundp 'imagemagick-register-types)
-                (imagemagick-register-types))
 
-              ;; message view action
-              (defun mu4e-msgv-action-view-in-browser (msg)
-                "View the body of the message in a web browser."
-                (interactive)
-                (let ((html (mu4e-msg-field (mu4e-message-at-point t) :body-html))
-                      (tmpfile (format "%s/%d.html" temporary-file-directory (random))))
-                  (unless html (error "No html part for this message"))
-                  (with-temp-file tmpfile
-                    (insert
-                     "<html>"
-                     "<head><meta http-equiv=\"content-type\""
-                     "content=\"text/html;charset=UTF-8\">"
-                     html))
-                  (browse-url (concat "file://" tmpfile))))
-
-              (add-to-list 'mu4e-view-actions
-                           '("View in browser" . mu4e-msgv-action-view-in-browser) t)
-
-              (require 'smtpmail)
-
-              ;; org interaction
-              (require 'org-contacts)
-              (require 'org-mu4e)
-              (require 'mu4e-actions)
-              (setq mu4e-org-contacts-file  dpom/org-contacts-file)
-              (add-to-list 'mu4e-headers-actions
-                           '("org-contact-add" . mu4e-action-add-org-contact) t)
-              (add-to-list 'mu4e-view-actions
-                           '("org-contact-add" . mu4e-action-add-org-contact) t)
-              (setq mu4e-compose-complete-only-personal t)
-              (setq message-kill-buffer-on-exit t)
-              (defalias 'org-mail 'org-mu4e-compose-org-mode))))
 
 (defun dpom/init-cdlatex ()
   "Initialize cdlatex extension"
