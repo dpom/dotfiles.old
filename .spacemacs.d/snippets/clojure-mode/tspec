@@ -4,7 +4,7 @@
 # --
 
 (s/fdef ${1:function}
-    :args (s/cat )
+    :args (s/cat $0)
     :ret
     :fn #( ))
 
@@ -14,3 +14,4 @@
 
 ;; (stest/summarize-results (stest/check \`$1)) 
 
+(defspec-test test-$1 [\`$1])
