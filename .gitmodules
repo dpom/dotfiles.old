@@ -1,0 +1,3 @@
+[submodule ".spacemacs.d/layers/mydb/local/ejc-sql"]
+	path = .spacemacs.d/layers/mydb/local/ejc-sql
+	url = git@github.com:dpom/ejc-sql.git
