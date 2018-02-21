@@ -105,7 +105,7 @@ values."
                                        yaml
                                        docker
                                        plantuml
-                                       octave
+                                       ;; octave
                                        ;; osx  ; for mac
                                        )
    ;; List of additional packages that will be installed without being

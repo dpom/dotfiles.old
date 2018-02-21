@@ -17,30 +17,58 @@
 
 (defconst mydb-packages
   '(
+    direx
+    clomacs 
     (ejc-sql :location local)
     )
   "The list of Lisp packages required by the mydb layer.")
 
 (defun mydb/init-ejc-sql ()
   (use-package ejc-sql
+    :requires (direx clomacs)
     :config (progn
               (ejc-set-rows-limit 100)
+              
               (setq nrepl-sync-request-timeout 60)
+
               (ejc-create-connection
-               "Simba-db-connection"
-               :classpath (concat "~/emag/lib/"
-                                  "SparkJDBC41.jar")
-               :classname "com.simba.spark.jdbc41.Driver"
-               :subprotocol "postgresql"
+               "Spark-db-connection"
+               :classpath (concat "~/opt/"
+                                  "hive-jdbc-uber-2.6.3.0-235.jar")
+               :classname "org.apache.hive.jdbc.HiveDriver"
                :subname "jdbc:spark://84.40.60.42:10000/"
                :user "root"
                :password "")
 
+              (ejc-create-connetion
+               "RecEngineML-connection"
+               :classpath (concat "~/.m2/repository/postgresql/postgresql/9.3.1102.jdbc41/"
+                                  "postgresql-9.3-1102.jdbc41.jar")
+               :classname "org.postgresql.Driver"
+               :subprotocol "postgresql"
+               :subname "//localhost:5432/my_db_name"
+               :user "a_user"
+               :password "secret")
               )
     
     )
   )
 
+(defun mydb/init-direx ()
+  (use-package direx
+    :init
+    ;; This block executes before the package has been loaded
+    :config
+    ;; This block executes after the package has been loaded
+    ))
+
+(defun mydb/init-clomacs ()
+  (use-package clomacs
+    :init
+    ;; This block executes before the package has been loaded
+    :config
+    ;; This block executes after the package has been loaded
+    ))
 
 
 ;;; packages.el ends here
