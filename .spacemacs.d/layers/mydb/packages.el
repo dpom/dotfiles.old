@@ -25,7 +25,9 @@
 
 (defun mydb/init-ejc-sql ()
   (use-package ejc-sql
-    :requires (direx clomacs)
+    :after (direx clomacs)
+    :bind (("C-c q" . ejc-switch-to-sql-editor-buffer)
+          )
     :config (progn
               (ejc-set-rows-limit 100)
               
@@ -42,13 +44,11 @@
 
               (ejc-create-connetion
                "RecEngineML-connection"
-               :classpath (concat "~/.m2/repository/postgresql/postgresql/9.3.1102.jdbc41/"
-                                  "postgresql-9.3-1102.jdbc41.jar")
                :classname "org.postgresql.Driver"
                :subprotocol "postgresql"
-               :subname "//localhost:5432/my_db_name"
-               :user "a_user"
-               :password "secret")
+               :subname "//localhost:5432/pgdb"
+               :user "pguser"
+               :password "pguser")
               )
     
     )
