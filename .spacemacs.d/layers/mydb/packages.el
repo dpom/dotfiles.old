@@ -26,8 +26,9 @@
 (defun mydb/init-ejc-sql ()
   (use-package ejc-sql
     :after (direx clomacs)
+    :mode ("\\.sql\\'" . sql-mode)
     :bind (("C-c q" . ejc-switch-to-sql-editor-buffer)
-          )
+           ("C-c n" . ejc-connect))
     :config (progn
               (ejc-set-rows-limit 100)
               
@@ -35,38 +36,57 @@
 
               (ejc-create-connection
                "Spark-db-connection"
-               :classpath (concat "~/opt/"
-                                  "hive-jdbc-uber-2.6.3.0-235.jar")
+               :classpath (file-truename "~/opt/hive-jdbc-uber-2.6.3.0-235.jar")
                :classname "org.apache.hive.jdbc.HiveDriver"
                :subname "jdbc:spark://84.40.60.42:10000/"
                :user "root"
                :password "")
 
-              (ejc-create-connetion
+              (ejc-create-connection
                "RecEngineML-connection"
+               :classpath (file-truename "~/.m2/repository/org/postgresql/postgresql/42.2.1.jre7/postgresql-42.2.1.jre7.jar")
                :classname "org.postgresql.Driver"
                :subprotocol "postgresql"
                :subname "//localhost:5432/pgdb"
                :user "pguser"
                :password "pguser")
-              )
-    
-    )
-  )
+
+              (spacemacs/set-leader-keys-for-major-mode 'sql-mode
+                "'"    'ejc-connect
+                
+                "hl"  'ejc-show-tables-list
+                "ht"  'ejc-describe-table
+                "he"  'ejc-describe-entity
+                "hc"  'ejc-show-constraints-list
+                "hp"  'ejc-show-procedures-list
+
+                "sl"  'ejc-open-log
+                "sq"  'ejc-quit-connection
+                "se"  'ejc-eval-user-sql-at-point
+                "sr"  'ejc-eval-user-sql-region
+                "sd"  'ejc-direx:pop-to-buffer
+
+                "mk"  'ejc-previous-sql
+                "mj"  'ejc-next-sql
+                "mm"  'ejc-mark-this-sql
+                "mp"  'ejc-previous-sql
+                "mn"  'ejc-next-sql
+                )
+              )))
 
 (defun mydb/init-direx ()
   (use-package direx
-    :init
+    ;; :init
     ;; This block executes before the package has been loaded
-    :config
+    ;; :config
     ;; This block executes after the package has been loaded
     ))
 
 (defun mydb/init-clomacs ()
   (use-package clomacs
-    :init
+    ;; :init
     ;; This block executes before the package has been loaded
-    :config
+    ;; :config
     ;; This block executes after the package has been loaded
     ))
 

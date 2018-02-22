@@ -88,7 +88,6 @@ values."
                                                       sh-basic-offset 2)
                                        ;; smex
                                        (spell-checking :variables spell-checking-enable-by-default nil)
-                                       sql
                                        (syntax-checking :variables syntax-checking-enable-by-default nil)
                                        (version-control :variables version-control-diff-tool 'diff-hl)
                                        ;; specific
