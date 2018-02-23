@@ -131,5 +131,7 @@ export VISUAL='e'
 export LEIN_FAST_TRAMPOLINE=y
 eval `keychain --eval id_rsa`
 
-export SPARK_HOME="/home/dan/opt/spark"
-export PATH="$PATH:$SPARK_HOME/bin"
+# include .local if it exists
+if [ -f "$HOME/.bashrc_local" ]; then
+	. "$HOME/.bashrc_local"
+fi
