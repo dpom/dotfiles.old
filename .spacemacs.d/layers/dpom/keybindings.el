@@ -39,9 +39,5 @@
 (spacemacs/set-leader-keys-for-major-mode 'web-mode
   "mrk" 'web-mode-element-kill)
 
-(spacemacs/declare-prefix-for-mode 'python-mode "mv" "conda")
 
-(spacemacs/set-leader-keys-for-major-mode 'python-mode
-  "vl" 'conda-env-list
-  "va" 'conda-env-activate
-  "vd" 'conda-env-deactivate)
+

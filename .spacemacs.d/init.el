@@ -30,7 +30,9 @@ values."
    dotspacemacs-configuration-layer-path (list (expand-file-name "layers/" dotspacemacs-directory))
    ;; List of configuration layers to load. If it is the symbol `all' instead
    ;; of a list then all discovered layers will be installed.
-   dotspacemacs-configuration-layers '((auto-completion :variables
+   dotspacemacs-configuration-layers '(
+                                       ;; core
+                                       (auto-completion :variables
                                                         auto-completion-enable-snippets-in-popup t
                                                         auto-completion-return-key-behavior nil
                                                         auto-completion-tab-key-behavior 'complete
@@ -40,45 +42,11 @@ values."
                                                         auto-completion-enable-company-help-tooltip 'manual
                                                         auto-completion-enable-sort-by-usage t
                                                         company-show-numbers t)
-                                       javascript
                                        ivy
-                                       spacemacs-org 
-                                       bibtex
-                                       (c-c++ :variables
-                                              c-c++-enable-clang-support t
-                                              c-default-style "linux"
-                                              c-basic-offset 2)
-                                       ;; common-lisp
-                                       emacs-lisp
-                                       ;; (evil-snipe :variables evil-snipe-enable-alternate-f-and-t-behaviors t)
-                                        ;(erc :variables
-                                        ;     erc-server-list
-                                        ;    '(("irc.freenode.net"
-                                        ;      :port "6697"
-                                        ;     :ssl t
-                                        ;     :nick "dpom")
-                                        ;    ))
                                        (git :variables
                                             git-enable-github-support t
                                             git-gutter-use-fringe t)
                                        (github :variables gh-profile-default-profile "dpom")
-                                       ;; gtags
-                                       ;; cscope
-                                       html
-                                       latex
-                                       markdown
-                                       (org :variables
-                                            org-enable-github-support t
-                                            org-enable-reveal-js-support t)
-                                       ;; (ranger :variables ranger-override-dired t)
-                                       ;; (rcirc :variables
-                                       ;;        rcirc-enable-authinfo-support t
-                                       ;;        rcirc-server-alist
-                                       ;;        '(("irc.freenode.net"
-                                       ;;           :user "dpom"
-                                       ;;           :channels ("#emacs #yetibot")))
-                                       ;;        )
-                                       ;; semantic
                                        (shell :variables
                                               shell-default-shell 'eshell
                                               shell-default-height 30
@@ -87,25 +55,34 @@ values."
                                                       sh-indentation 2
                                                       sh-basic-offset 2)
                                        ;; smex
+                                       (org :variables
+                                            org-enable-github-support t
+                                            org-enable-reveal-js-support t)
+                                       dpom
+
+                                       ;; editing
+                                       latex
+                                       bibtex
+                                       markdown
                                        (spell-checking :variables spell-checking-enable-by-default nil)
                                        (syntax-checking :variables syntax-checking-enable-by-default nil)
-                                       (version-control :variables version-control-diff-tool 'diff-hl)
-                                       ;; specific
-                                       clojure
-                                       ;; confluence
-                                       dpom
-                                       ent
-                                       ;; clj
-                                       ;; (python :variables
-                                       ;;         python-test-runner 'pytest
-                                       ;;         python-enable-yapf-format-on-save nil)
-                                       myediting
-                                       mydb
-                                       yaml
-                                       docker
                                        plantuml
-                                       ;; octave
-                                       ;; osx  ; for mac
+                                       myediting
+
+                                       ;; lang
+                                       emacs-lisp
+                                       clojure
+                                       javascript
+                                       spacemacs-org 
+                                       (c-c++ :variables
+                                              c-c++-enable-clang-support t
+                                              c-default-style "linux"
+                                              c-basic-offset 2)
+                                       html
+                                       mydb
+                                       ent
+                                       docker
+                                       yaml
                                        )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
