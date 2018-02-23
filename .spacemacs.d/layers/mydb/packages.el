@@ -26,7 +26,7 @@
 (defun mydb/init-ejc-sql ()
   (use-package ejc-sql
     :after (direx clomacs)
-    :mode ("\\.sql\\'" . sql-mode)
+    :mode ("\\.sql\\'" . ejc-sql-mode)
     :bind (("C-c q" . ejc-switch-to-sql-editor-buffer)
            ("C-c n" . ejc-connect))
     :config (progn
@@ -35,10 +35,11 @@
               (setq nrepl-sync-request-timeout 60)
 
               (ejc-create-connection
-               "Spark-db-connection"
+               "BigDataSpark-connection"
                :classpath (file-truename "~/opt/hive-jdbc-uber-2.6.3.0-235.jar")
                :classname "org.apache.hive.jdbc.HiveDriver"
-               :subname "jdbc:spark://84.40.60.42:10000/"
+               :subprotocol "hive2"
+               :subname "//84.40.60.42:10000/"
                :user "root"
                :password "")
 

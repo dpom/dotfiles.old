@@ -15,4 +15,7 @@
 (defvar dpom/org-todo-file (expand-file-name "todo.org" dpom/org-dir))
 (defvar dpom/org-notes-file (expand-file-name "notes.org" dpom/org-dir))
 (defvar dpom/org-contacts-file (expand-file-name "contacts.org" dpom/pers-dir))
+(defvar dpom/bibliography-dir (expand-dir-name "bibliography/" dpom/pers-dir))
+(defvar dpom/default-bibliography (expand-file-name "dpom.bib" dpom/bibliography-dir))
+(defvar dpom/bibliography-pdfs-dir (expand-dir-name "pdfs/" dpom/bibliography-dir))
 ;; dpom-config ends here
