@@ -368,6 +368,14 @@ values."
   (defun expand-dir-name (dir path)
     "Expand a local dir NAME using his PATH."
     (file-name-as-directory (expand-file-name dir path)))
+
+  (setq spacemacs-mode-line-org-clock-current-taskp t)
+  (setq dired-dwim-target t)
+  (setq truncate-lines t)
+  (menu-bar-mode 1)
+  (setq exec-path-from-shell-check-startup-files nil)
+
+
   )
 
 (defun dotspacemacs/user-config ()
@@ -379,19 +387,15 @@ values."
       (funcall orig-fun completion-table)))
   (advice-add 'projectile--tags :around #'ao/expand-completion-table)
 
-
-  ;; (global-company-mode)
-  ;; (define-key company-active-map [tab] 'company-complete-common)
-  ;;(global-set-key (kbd "TAB") 'hippie-expand)
-
-  (setq spacemacs-mode-line-org-clock-current-taskp t)
-  (setq dired-dwim-target t)
-  (spacemacs/toggle-truncate-lines-on)
-  (spacemacs/toggle-auto-fill-mode-on)
-  (menu-bar-mode 1)
   (spacemacs/toggle-mode-line-org-clock)
   (spacemacs|defvar-company-backends sh-mode)
   (spacemacs|add-company-hook sh-mode)
+
+
+
+  (global-company-mode)
+  (define-key company-active-map [tab] 'company-complete-common)
+  ;;(global-set-key (kbd "TAB") 'hippie-expand)
 
   (setq eclim-eclipse-dirs "~/eclipse"
         eclim-executable "~/eclipse/eclim")
@@ -435,6 +439,7 @@ values."
                           'magit-insert-unpushed-to-upstream-or-recent
                           'replace)
 
+
   (setq projectile-file-exists-local-cache-expire (* 5 60)
         projectile-find-dir-includes-top-level t
         projectile-switch-project-action 'projectile-dired)
@@ -453,6 +458,7 @@ values."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(exec-path-from-shell-check-startup-files nil)
  '(package-selected-packages
    (quote
     (ejc-sql direx clomacs powerline pdf-tools key-chord org-category-capture alert log4e gntp markdown-mode parent-mode helm-bibtex parsebib helm helm-core haml-mode fringe-helper git-gutter+ git-gutter gh marshal logito pcache ht flyspell-correct pos-tip flycheck flx magit git-commit ghub let-alist with-editor smartparens iedit anzu evil goto-chg tablist magit-popup docker-tramp json-snatcher json-reformat projectile counsel swiper inflections edn multiple-cursors paredit peg eval-sexp-fu highlight cider seq spinner queue pkg-info clojure-mode epl bind-map bind-key biblio biblio-core packed popup yasnippet undo-tree org-plus-contrib json-mode ivy hydra f s dash auctex async avy company-tern dash-functional tern fuzzy company-web web-completion-data company-statistics company-shell company-c-headers company-auctex company clojure-snippets auto-yasnippet ac-ispell auto-complete web-beautify livid-mode skewer-mode simple-httpd js2-refactor js2-mode js-doc coffee-mode zenburn-theme yaml-mode xterm-color ws-butler winum which-key wgrep web-mode volatile-highlights vi-tilde-fringe uuidgen use-package toc-org tagedit string-inflection sql-indent spaceline smex smeargle slim-mode shell-pop scss-mode sass-mode restart-emacs request rainbow-delimiters pug-mode popwin plantuml-mode persp-mode pcre2el paradox ox-rst ox-reveal ox-gfm origami orgit org-ref org-projectile org-present org-pomodoro org-mime org-download org-bullets open-junk-file neotree multi-term move-text mmm-mode markdown-toc magit-gitflow magit-gh-pulls macrostep lorem-ipsum linum-relative link-hint less-css-mode ivy-hydra insert-shebang indent-guide hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-make google-translate golden-ratio gnuplot gitignore-mode github-search github-clone github-browse-file gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gist gh-md flyspell-correct-ivy flycheck-pos-tip flx-ido fish-mode fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-multiedit evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eshell-z eshell-prompt-extras esh-help emmet-mode elisp-slime-nav dumb-jump dockerfile-mode docker disaster diminish diff-hl define-word counsel-projectile column-enforce-mode cmake-mode clj-refactor clean-aindent-mode clang-format cider-eval-sexp-fu cdlatex auto-highlight-symbol auto-dictionary auto-compile auctex-latexmk aggressive-indent adaptive-wrap ace-window ace-link)))

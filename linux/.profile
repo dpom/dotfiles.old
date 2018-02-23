@@ -21,8 +21,5 @@ if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
 
-export SPARK_HOME="/home/dan/opt/spark"
-export PATH="$PATH:$SPARK_HOME/bin"
-
 
 

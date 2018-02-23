@@ -131,6 +131,9 @@ export VISUAL='e'
 export LEIN_FAST_TRAMPOLINE=y
 eval `keychain --eval id_rsa`
 
+
+export SCRIPTS="$SCRIPTS:.bashrc"
+
 # include .local if it exists
 if [ -f "$HOME/.bashrc_local" ]; then
 	. "$HOME/.bashrc_local"
