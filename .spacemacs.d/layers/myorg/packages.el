@@ -1,4 +1,4 @@
-;;; packages.el --- dpom Layer packages File for Spacemacs
+;;; packages.el --- myorg Layer packages File for Spacemacs
 ;;
 ;; Copyright (c) 2012-2014 Sylvain Benner
 ;; Copyright (c) 2014-2015 Dan Pomohaci & Contributors
@@ -10,13 +10,13 @@
 ;;
     ;;; License: GPLv3
 
-(setq dpom-packages
+(setq myorg-packages
       '(org
         org-ref
         ))
 
 
-(defun dpom/post-init-org ()
+(defun myorg/post-init-org ()
   ;; org-basic-settings
   (add-to-list 'auto-mode-alist '("\\.\\(org\\|org_archive\\|txt\\)$" . org-mode))
   (setq org-modules (quote (org-docview org-info org-mac-message org-protocol
@@ -187,9 +187,9 @@
   (add-to-list 'org-src-lang-modes '("make" . makefile))
   ;; (add-to-list 'org-src-lang-modes '("rb" . vbnet))
   (add-to-list 'org-src-lang-modes '("plantuml" . text))
-  (setq org-plantuml-jar-path (expand-file-name "plantuml.jar" (expand-dir-name "scripts" dpom/dpom-layer))
+  (setq org-plantuml-jar-path (expand-file-name "plantuml.jar" (expand-dir-name "scripts" dpom/myorg-layer))
 
-        org-ditaa-jar-path (expand-file-name "ditaa.jar" (expand-dir-name "scripts" dpom/dpom-layer)))
+        org-ditaa-jar-path (expand-file-name "ditaa.jar" (expand-dir-name "scripts" dpom/myorg-layer)))
 
   (setq plantuml-jar-path org-plantuml-jar-path)
   (setq org-id-link-to-org-use-id nil)
@@ -218,7 +218,7 @@
   ;; (require 'org-table)
   ;; (require 'orgtbl-sqlinsert)
 
-  (org-babel-lob-ingest (expand-file-name "library-of-babel.org" dpom/dpom-layer))
+  (org-babel-lob-ingest (expand-file-name "library-of-babel.org" dpom/myorg-layer))
 
   ;; Exports
   (setq org-alphabetical-lists t)
@@ -238,55 +238,7 @@
 
 
 
-
-(defun dpom/init-org-redmine ()
-  "Initialize org-redmine extension"
-  (use-package org-redmine
-    :config (progn
-              (setq org-redmine-template-header "TODO %t_n%%i% - %s% :%p_n%: \nSCHEDULED: <%s_date%>")
-              (setq org-redmine-template-property '(( "assigned" . "%as_n%" )
-                                                    ( "version" . "%v_n%" )
-                                                    ( "project" . "%p_n%")))
-              (defun dpom-helm-redmine (&optional me)
-                "Display recent issues using `helm'"
-                (interactive "P")
-                (push-mark)
-                (helm
-                 `(((name . "Issues")
-                    (candidates . ,(org-redmine-get-issue-all me))
-                    (candidate-transformer . org-redmine-transformer-issues-source)
-                    (volatile)
-                    (action . (("Insert Subtree"
-                                . (lambda (issue) (org-redmine-insert-subtree issue))))))))
-                (while (re-search-forward "/" nil t)
-                  (replace-match "-")))
-              (spacemacs/set-leader-keys  "oR" 'dpom-helm-redmine))))
-
-
-
-
-
-
-
-
-
-
-(defun dpom/init-conda ()
-  "Initialize conda package"
-  (use-package conda
-    :config (progn
-              (setq conda-anaconda-home "~/anaconda3")
-              ;; if you want interactive shell support, include:
-              (conda-env-initialize-interactive-shells)
-              ;; if you want eshell support, include:
-              (conda-env-initialize-eshell)
-              ;; if you want auto-activation (see below for details), include:
-              (conda-env-autoactivate-mode t)
-              ))
-  )
-
-
-(defun dpom/post-init-org-ref ()
+(defun myorg/post-init-org-ref ()
   "Initialize org-ref extension"
   (use-package org-ref
     :config (progn
@@ -334,4 +286,4 @@ citecolor=blue,filecolor=blue,menucolor=blue,urlcolor=blue"
 
 
 
-;; dpom-package ends here
+;; myorg-package ends here

@@ -1,1 +1,1 @@
-(configuration-layer/declare-layer 'dpom)
+(configuration-layer/declare-layer 'myorg)

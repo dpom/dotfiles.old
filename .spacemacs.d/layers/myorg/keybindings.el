@@ -17,7 +17,6 @@
 ;;; Code:
 (spacemacs/declare-prefix "o" "personal")
 (spacemacs/declare-prefix "ob" "babel")
-(spacemacs/declare-prefix "om" "math")
 
 (spacemacs/set-leader-keys
   "oa" 'org-agenda
@@ -28,16 +27,7 @@
   "oC" 'helm-org-capture-templates ;requires templates to be defined.
   "ol" 'org-store-link
   "obd" 'org-babel-detangle
-  "obt" 'org-babel-tangle
-  "omi" 'cdlatex-math-symbol
-  "omv" 'org-toggle-latex-fragment
-  "os" 'fixup-whitespace
-  "oi" 'dpom/insert-rom-char)
-
-(spacemacs/set-leader-keys "xf" 'dpom/cleanup-buffer)
-
-(spacemacs/set-leader-keys-for-major-mode 'web-mode
-  "mrk" 'web-mode-element-kill)
+  "obt" 'org-babel-tangle)
 
 
 

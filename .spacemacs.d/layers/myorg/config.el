@@ -11,7 +11,7 @@
   ;;; License: GPLv3
 (defvar dpom/pers-dir "~/pers/")
 (defvar dpom/org-dir (expand-dir-name "plan/" dpom/pers-dir))
-(defvar dpom/dpom-layer (expand-dir-name "dpom/" (expand-file-name "layers/" dotspacemacs-directory)))
+(defvar dpom/myorg-layer (expand-dir-name "myorg/" (expand-file-name "layers/" dotspacemacs-directory)))
 (defvar dpom/org-todo-file (expand-file-name "todo.org" dpom/org-dir))
 (defvar dpom/org-notes-file (expand-file-name "notes.org" dpom/org-dir))
 (defvar dpom/org-contacts-file (expand-file-name "contacts.org" dpom/pers-dir))

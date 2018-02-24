@@ -36,3 +36,16 @@
   "odm" 'doxymacs-insert-blank-multiline-comment
   "ods" 'doxymacs-insert-blank-singleline-comment
   "od@" 'doxymacs-insert-grouping-comments)
+
+(spacemacs/declare-prefix "om" "math")
+(spacemacs/set-leader-keys
+  "omi" 'cdlatex-math-symbol
+  "omv" 'org-toggle-latex-fragment
+  "os" 'fixup-whitespace
+  "oi" 'dpom/insert-rom-char)
+
+(spacemacs/set-leader-keys "xf" 'dpom/cleanup-buffer)
+
+(spacemacs/set-leader-keys-for-major-mode 'web-mode
+  "mrk" 'web-mode-element-kill)
+

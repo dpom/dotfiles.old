@@ -58,7 +58,7 @@ values."
                                        (org :variables
                                             org-enable-github-support t
                                             org-enable-reveal-js-support t)
-                                       dpom
+                                       myorg
 
                                        ;; editing
                                        latex
