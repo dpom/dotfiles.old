@@ -1,4 +1,3 @@
-
 ;;; packages.el --- template layer packages file for Spacemacs.
 ;;
 ;; Copyright (c) 2012-2016 Sylvain Benner & Contributors

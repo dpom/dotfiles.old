@@ -1,1 +1,4 @@
-(configuration-layer/declare-layer 'myorg)
+(configuration-layer/declare-layer
+ '(
+   myorg
+   ))

@@ -3,4 +3,5 @@
 
 (configuration-layer/declare-layer
  '(
+   myconfig
    ))
