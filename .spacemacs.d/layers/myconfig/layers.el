@@ -5,5 +5,4 @@
 
    ;; Core Config layers
    org
-   treemacs
    ))

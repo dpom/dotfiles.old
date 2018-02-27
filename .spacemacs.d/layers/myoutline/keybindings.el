@@ -12,3 +12,7 @@
   "nk" 'outline-move-subtree-up
   "nh" 'outline-promote
   "nl" 'outline-demote)
+
+(spacemacs/set-leader-keys
+  "jo" 'oi-jump)
+ 

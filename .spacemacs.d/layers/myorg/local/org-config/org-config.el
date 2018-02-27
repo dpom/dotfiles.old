@@ -33,7 +33,7 @@
 
 (setq org-refile-targets '((org-agenda-files . (:maxlevel . 5))))
 
-(setq org-bullets-bullet-list '("○" "◙" "▲" "▶"))
+(setq org-bullets-bullet-list '("○" "◙" "✸" "▲"))
 
 
 ;;; Custom Commands
@@ -167,50 +167,50 @@
   (setq-local org-blocks-hidden (not org-blocks-hidden)))
 
 ;;; Clocking
-  (setq org-clock-persistence-insinuate t)
-  ;; Do not prompt to resume an active clock
-  (setq org-clock-persist-query-resume nil)
-  ;; Save the running clock and all clock history when exiting Emacs, load it on startup
-  (setq org-clock-persist t)
-  (setq org-clock-history-length 28)
-  ;; Resume clocking task on clock-in if the clock is open
-  (setq org-clock-in-resume t)
-  ;; Change task state to NEXT when clocking in
-  (setq org-clock-in-switch-to-state (quote dpom/clock-in-to-started))
-  ;; Separate drawers for clocking and logs
-  (setq org-drawers (quote ("PROPERTIES" "LOGBOOK")))
-  ;; Sometimes I change tasks I'm clocking quickly - this removes clocked tasks with 0:00 duration
-  (setq org-clock-out-remove-zero-time-clocks t)
-  ;; Clock out when moving task to a done state
-  (setq org-clock-out-when-done t)
-  ;; Enable auto clock resolution for finding open clocks
-  (setq org-clock-auto-clock-resolution (quote when-no-clock-is-running))
-  ;; Include current clocking task in clock reports
-  (setq org-clock-report-include-clocking-task t)
+(setq org-clock-persistence-insinuate t)
+;; Do not prompt to resume an active clock
+(setq org-clock-persist-query-resume nil)
+;; Save the running clock and all clock history when exiting Emacs, load it on startup
+(setq org-clock-persist t)
+(setq org-clock-history-length 28)
+;; Resume clocking task on clock-in if the clock is open
+(setq org-clock-in-resume t)
+;; Change task state to NEXT when clocking in
+(setq org-clock-in-switch-to-state (quote dpom/clock-in-to-started))
+;; Separate drawers for clocking and logs
+(setq org-drawers (quote ("PROPERTIES" "LOGBOOK")))
+;; Sometimes I change tasks I'm clocking quickly - this removes clocked tasks with 0:00 duration
+(setq org-clock-out-remove-zero-time-clocks t)
+;; Clock out when moving task to a done state
+(setq org-clock-out-when-done t)
+;; Enable auto clock resolution for finding open clocks
+(setq org-clock-auto-clock-resolution (quote when-no-clock-is-running))
+;; Include current clocking task in clock reports
+(setq org-clock-report-include-clocking-task t)
 
 ;;; Reminders
 
-  ;; Rebuild the reminders everytime the agenda is displayed
-  (add-hook 'org-finalize-agenda-hook 'dpom/org-agenda-to-appt 'append)
+;; Rebuild the reminders everytime the agenda is displayed
+(add-hook 'org-finalize-agenda-hook 'dpom/org-agenda-to-appt 'append)
 
-  (dpom/org-agenda-to-appt)
+(dpom/org-agenda-to-appt)
 
-  ;; Activate appointments so we get notifications
-  (appt-activate t)
+;; Activate appointments so we get notifications
+(appt-activate t)
 
-  ;; If we leave Emacs running overnight - reset the appointments one minute after midnight
-  (run-at-time "00:01" nil 'dpom/org-agenda-to-appt)
+;; If we leave Emacs running overnight - reset the appointments one minute after midnight
+(run-at-time "00:01" nil 'dpom/org-agenda-to-appt)
 
-  (setq appt-display-format 'window)
-  (setq appt-disp-window-function (function dpom/appt-disp-window))
+(setq appt-display-format 'window)
+(setq appt-disp-window-function (function dpom/appt-disp-window))
 
-  (defun dpom/appt-disp-window (min-to-app new-time msg)
-    (save-window-excursion
-      (shell-command
-       (concat "~/bin/org-appt-notify '" msg "'  '" min-to-app "'&")
-       nil nil)
-      )
+(defun dpom/appt-disp-window (min-to-app new-time msg)
+  (save-window-excursion
+    (shell-command
+     (concat "~/bin/org-appt-notify '" msg "'  '" min-to-app "'&")
+     nil nil)
     )
+  )
 
 
 (setq org-alphabetical-lists t)
@@ -227,7 +227,7 @@
                                         ;  (add-hook 'message-mode-hook
                                         ;            (lambda ()
                                         ;              (local-set-key "\C-c\M-o" 'org-mime-htmlize)))
- 
+
 
 ;;; Export
 
@@ -265,74 +265,74 @@
 ;; (setq org-latex-pdf-process
 ;;       '("latexmk -pdflatex='lualatex -shell-escape -interaction nonstopmode' -pdf -f  %f"))
 
-  (setq org-latex-listings 'listings)
-  (setq org-latex-listings-options
-        '(("frame" "single")
-          ("basicstyle" "\\small\\sffamily")
-          ("numbers" "left")
-          ("numberstyle" "\\tiny")
-          ("columns" "fullflexible")
-          ("backgroundcolor" "\\color{lightgray}")
-          ))
-  (setq org-export-latex-listings 'minted)
-  (setq org-export-latex-custom-lang-environments
-        '(
-          (emacs-lisp "common-lispcode")
-          ))
-  (setq org-export-latex-minted-options
-        '(("frame" "lines")
-          ("fontsize" "\\scriptsize")
-          ("linenos" "")
-          ))
+(setq org-latex-listings 'listings)
+(setq org-latex-listings-options
+      '(("frame" "single")
+        ("basicstyle" "\\small\\sffamily")
+        ("numbers" "left")
+        ("numberstyle" "\\tiny")
+        ("columns" "fullflexible")
+        ("backgroundcolor" "\\color{lightgray}")
+        ))
+(setq org-export-latex-listings 'minted)
+(setq org-export-latex-custom-lang-environments
+      '(
+        (emacs-lisp "common-lispcode")
+        ))
+(setq org-export-latex-minted-options
+      '(("frame" "lines")
+        ("fontsize" "\\scriptsize")
+        ("linenos" "")
+        ))
 
-  ;; ;; ;; (setq org-latex-pdf-process '("latexmk -pdflatex=xelatex -pdf -bibtex -quiet -latexoption=-shell-escape %f"))
-  ;; ;; ;; (setq org-latex-pdf-process '("latexmk -xelatex -bibtex -diagnostics -f -latexoption=-shell-escape %f"))
-  ;; ;; ;; (setq org-latex-pdf-process '("latexmk -xelatex -g -bibtex -latexoption=-shell-escape -f %f"))
-  ;; ;; ;; (setq org-latex-pdf-process '("latexmk -g -xelatex -bibtex -shell-escape %f"))
-  ;; ;; ;; (setq org-latex-pdf-process '("pdflatex -interaction nonstopmode -output-directory %o %f" "pdflatex -interaction nonstopmode -output-directory %o %f" "pdflatex -interaction nonstopmode -output-directory %o %f"))
-  ;; ;; (setq org-latex-pdf-process '("xelatex -shell-escape -interaction nonstopmode %f"
-  ;; ;;                               "bibtex %b"
-  ;; ;;                               "xelatex -shell-escape -interaction nonstopmode %f"
-  ;; ;;                               "xelatex -shell-escape -interaction nonstopmode %f"))
-  ;; ;; ;; (setq org-latex-pdf-process '("latexmk -xelatex -g -gg -bibtex -latexoption=-shell-escape -f %f"))
-  ;; ;; ;; (setq org-latex-pdf-process '("latexmk -pdflatex='pdflatex -interaction nonstopmode' -pdf -bibtex -f %f"))
-  
-  ;; (setq org-latex-pdf-process
-  ;;       '("pdflatex -interaction nonstopmode -output-directory %o -shell-escape %f"
-  ;;         "bibtex %b"
-  ;;         "pdflatex -interaction nonstopmode -output-directory %o -shell-escape %f"
-  ;;         "pdflatex -interaction nonstopmode -output-directory %o -shell-escape %f"))
+;; ;; ;; (setq org-latex-pdf-process '("latexmk -pdflatex=xelatex -pdf -bibtex -quiet -latexoption=-shell-escape %f"))
+;; ;; ;; (setq org-latex-pdf-process '("latexmk -xelatex -bibtex -diagnostics -f -latexoption=-shell-escape %f"))
+;; ;; ;; (setq org-latex-pdf-process '("latexmk -xelatex -g -bibtex -latexoption=-shell-escape -f %f"))
+;; ;; ;; (setq org-latex-pdf-process '("latexmk -g -xelatex -bibtex -shell-escape %f"))
+;; ;; ;; (setq org-latex-pdf-process '("pdflatex -interaction nonstopmode -output-directory %o %f" "pdflatex -interaction nonstopmode -output-directory %o %f" "pdflatex -interaction nonstopmode -output-directory %o %f"))
+;; ;; (setq org-latex-pdf-process '("xelatex -shell-escape -interaction nonstopmode %f"
+;; ;;                               "bibtex %b"
+;; ;;                               "xelatex -shell-escape -interaction nonstopmode %f"
+;; ;;                               "xelatex -shell-escape -interaction nonstopmode %f"))
+;; ;; ;; (setq org-latex-pdf-process '("latexmk -xelatex -g -gg -bibtex -latexoption=-shell-escape -f %f"))
+;; ;; ;; (setq org-latex-pdf-process '("latexmk -pdflatex='pdflatex -interaction nonstopmode' -pdf -bibtex -f %f"))
 
-  (setq bibtex-dialect 'biblatex)
-  
-  (setq  org-latex-pdf-process
-         '("latexmk -shell-escape -bibtex -pdf %f"))
+;; (setq org-latex-pdf-process
+;;       '("pdflatex -interaction nonstopmode -output-directory %o -shell-escape %f"
+;;         "bibtex %b"
+;;         "pdflatex -interaction nonstopmode -output-directory %o -shell-escape %f"
+;;         "pdflatex -interaction nonstopmode -output-directory %o -shell-escape %f"))
 
-  ;; (setq org-latex-to-pdf-process
-  ;;       '("texi2dvi -p -b -c -V %f"))
+(setq bibtex-dialect 'biblatex)
 
-  (setq org-latex-image-default-width nil)
-  (setq org-image-actual-width nil)
+(setq  org-latex-pdf-process
+       '("latexmk -shell-escape -bibtex -pdf %f"))
 
-  ;;Specify default packages to be included in every tex file, whether pdflatex or xelatex
-  (setq org-latex-packages-alist
-        '(("" "graphicx" t)
-          ("" "listings" nil)
-          ("" "longtable" nil)
-          ("" "color" nil)
-          ("" "float" nil)))
+;; (setq org-latex-to-pdf-process
+;;       '("texi2dvi -p -b -c -V %f"))
 
+(setq org-latex-image-default-width nil)
+(setq org-image-actual-width nil)
 
-  (defun org-export-latex-no-toc (depth)
-    (when depth
-      (format "%% Org-mode is exporting headings to %s levels.\n"
-              depth)))
-  (setq org-export-latex-format-toc-function 'org-export-latex-no-toc)
+;;Specify default packages to be included in every tex file, whether pdflatex or xelatex
+(setq org-latex-packages-alist
+      '(("" "graphicx" t)
+        ("" "listings" nil)
+        ("" "longtable" nil)
+        ("" "color" nil)
+        ("" "float" nil)))
 
 
-  (add-to-list 'org-latex-classes
-               '("dpom-spec"
-                 "\\documentclass[12pt,a4paper]{article}
+(defun org-export-latex-no-toc (depth)
+  (when depth
+    (format "%% Org-mode is exporting headings to %s levels.\n"
+            depth)))
+(setq org-export-latex-format-toc-function 'org-export-latex-no-toc)
+
+
+(add-to-list 'org-latex-classes
+             '("dpom-spec"
+               "\\documentclass[12pt,a4paper]{article}
       [NO-DEFAULT-PACKAGES]
       \\usepackage[T1]{fontenc}
       \\usepackage[utf8]{inputenc}
@@ -368,16 +368,16 @@
 
 
        \\rfoot{\\thepage/\\pageref{LastPage}}"
-                 ("\\section{%s}" . "\\section*{%s}")
-                 ("\\subsection{%s}" . "\\subsection*{%s}")
-                 ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-                 ("\\paragraph{%s}" . "\\paragraph*{%s}")
-                 ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+               ("\\section{%s}" . "\\section*{%s}")
+               ("\\subsection{%s}" . "\\subsection*{%s}")
+               ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+               ("\\paragraph{%s}" . "\\paragraph*{%s}")
+               ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
 
-  
-  (add-to-list 'org-latex-classes
-               '("letter"
-                 "\\documentclass[12pt]{letter}
+
+(add-to-list 'org-latex-classes
+             '("letter"
+               "\\documentclass[12pt]{letter}
       [NO-DEFAULT-PACKAGES]
       \\usepackage[english,romanian]{babel}
       \\usepackage{ucs}
@@ -394,13 +394,13 @@
       \\signature{{{{author}}}}
       \\address{{{{address}}}}
       "
-                 ("\\section{%s}" . "\\section{%s}")
-                 ("\\subsection{%s}" . "\\subsection{%s}")
-                 ))
+               ("\\section{%s}" . "\\section{%s}")
+               ("\\subsection{%s}" . "\\subsection{%s}")
+               ))
 
-  (add-to-list 'org-latex-classes
-               '("dpom-org-article"
-                 "\\documentclass[12pt,a4paper]{article}
+(add-to-list 'org-latex-classes
+             '("dpom-org-article"
+               "\\documentclass[12pt,a4paper]{article}
       [NO-DEFAULT-PACKAGES]
       \\usepackage[hmargin=2cm,top=4cm,headheight=65pt,footskip=65pt]{geometry}
       \\usepackage{fancyhdr}
@@ -412,38 +412,36 @@
       \\defaultfontfeatures{Mapping=tex-text}
       \\pagestyle{empty}
             "
-                 ("\\section{%s}" . "\\section*{%s}")
-                 ("\\subsection{%s}" . "\\subsection*{%s}")
-                 ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-                 ("\\subsubsubsection{%s}" . "\\subsubsubsection*{%s}")
-                 ("\\paragraph{%s}" . "\\paragraph*{%s}")
-                 ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+               ("\\section{%s}" . "\\section*{%s}")
+               ("\\subsection{%s}" . "\\subsection*{%s}")
+               ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+               ("\\subsubsubsection{%s}" . "\\subsubsubsection*{%s}")
+               ("\\paragraph{%s}" . "\\paragraph*{%s}")
+               ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
 
-  (add-to-list 'org-latex-classes
-               '("plain"
-                 "\\documentclass[12pt,a4paper]{article}
+(add-to-list 'org-latex-classes
+             '("plain"
+               "\\documentclass[12pt,a4paper]{article}
       [NO-DEFAULT-PACKAGES]
       \\usepackage{xcolor}
       \\usepackage{hyperref}
       \\usepackage[romanian]{babel}
       \\usepackage[parfill]{parskip}
             "
-                 ("\\section{%s}" . "\\section*{%s}")
-                 ("\\subsection{%s}" . "\\subsection*{%s}")
-                 ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-                 ("\\subsubsubsection{%s}" . "\\subsubsubsection*{%s}")
-                 ("\\paragraph{%s}" . "\\paragraph*{%s}")
-                 ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+               ("\\section{%s}" . "\\section*{%s}")
+               ("\\subsection{%s}" . "\\subsection*{%s}")
+               ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+               ("\\subsubsubsection{%s}" . "\\subsubsubsection*{%s}")
+               ("\\paragraph{%s}" . "\\paragraph*{%s}")
+               ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
 
-  (defun org-export-latex-remove-references-heading (contents backend info)
-    (if (not (eq backend 'latex))
-        contents
-      (replace-regexp-in-string "\\\\section\\*?{References}\\s-*\\\\label{.*?}" "" contents)
-      ))
+(defun org-export-latex-remove-references-heading (contents backend info)
+  (if (not (eq backend 'latex))
+      contents
+    (replace-regexp-in-string "\\\\section\\*?{References}\\s-*\\\\label{.*?}" "" contents)
+    ))
 
-  (add-hook 'org-export-filter-final-output-functions 'org-export-latex-remove-references-heading)
-
-
+(add-hook 'org-export-filter-final-output-functions 'org-export-latex-remove-references-heading)
 
 
 ;;; Babel
@@ -475,40 +473,39 @@
 (setq org-confirm-babel-evaluate nil)
 (setq org-src-window-setup 'current-window)
 
-  (add-to-list 'org-src-lang-modes '("dot" . graphviz-dot))
-  (add-to-list 'org-src-lang-modes '("make" . makefile))
-  ;; (add-to-list 'org-src-lang-modes '("rb" . vbnet))
-  (add-to-list 'org-src-lang-modes '("plantuml" . text))
-  (setq org-plantuml-jar-path (expand-file-name "plantuml.jar" (expand-dir-name "scripts" dpom/myorg-layer))
+(add-to-list 'org-src-lang-modes '("dot" . graphviz-dot))
+(add-to-list 'org-src-lang-modes '("make" . makefile))
+;; (add-to-list 'org-src-lang-modes '("rb" . vbnet))
+(add-to-list 'org-src-lang-modes '("plantuml" . text))
+(setq org-plantuml-jar-path (expand-file-name "plantuml.jar" (expand-dir-name "scripts" dpom/myorg-layer))
 
-        org-ditaa-jar-path (expand-file-name "ditaa.jar" (expand-dir-name "scripts" dpom/myorg-layer)))
+      org-ditaa-jar-path (expand-file-name "ditaa.jar" (expand-dir-name "scripts" dpom/myorg-layer)))
 
-  (setq plantuml-jar-path org-plantuml-jar-path)
-  (setq org-id-link-to-org-use-id nil)
+(setq plantuml-jar-path org-plantuml-jar-path)
+(setq org-id-link-to-org-use-id nil)
 
-  (require 'org-id)
-  (setq org-confirm-babel-evaluate nil)
-  (setq org-id-link-to-org-use-id nil)
+(require 'org-id)
+(setq org-confirm-babel-evaluate nil)
+(setq org-id-link-to-org-use-id nil)
 
-  ;; The following displays the contents of code blocks in Org-mode files
-  ;; using the major-mode of the code.  It also changes the behavior of
-  ;; =TAB= to as if it were used in the appropriate major mode.  This means
-  ;; that reading and editing code form inside of your Org-mode files is
-  ;; much more like reading and editing of code using its major mode.
-  (setq org-src-fontify-natively t)
-  (setq org-src-preserve-indentation t)
-  (setq org-src-tab-acts-natively t)
+;; The following displays the contents of code blocks in Org-mode files
+;; using the major-mode of the code.  It also changes the behavior of
+;; =TAB= to as if it were used in the appropriate major mode.  This means
+;; that reading and editing code form inside of your Org-mode files is
+;; much more like reading and editing of code using its major mode.
+(setq org-src-fontify-natively t)
+(setq org-src-preserve-indentation t)
+(setq org-src-tab-acts-natively t)
 
-  (add-hook 'org-babel-after-execute-hook 'org-display-inline-images)
-  ;; Now you just create a =begin-src= block for the appropriate tool, edit
-  ;; the text, and build the pictures with =C-c C-c=.  After evaluating the
-  ;; block results are displayed.  You can toggle display of inline images
-  ;; with =C-c C-x C-v=
+(add-hook 'org-babel-after-execute-hook 'org-display-inline-images)
+;; Now you just create a =begin-src= block for the appropriate tool, edit
+;; the text, and build the pictures with =C-c C-c=.  After evaluating the
+;; block results are displayed.  You can toggle display of inline images
+;; with =C-c C-x C-v=
 
 
-  ;; In order to generate sql statements from org table you must enable:
-  ;; (require 'org-table)
-  ;; (require 'orgtbl-sqlinsert)
+;; In order to generate sql statements from org table you must enable:
+;; (require 'org-table)
+;; (require 'orgtbl-sqlinsert)
 
-  (org-babel-lob-ingest (expand-file-name "library-of-babel.org" dpom/myorg-layer))
-
+(org-babel-lob-ingest (expand-file-name "library-of-babel.org" dpom/myorg-layer))

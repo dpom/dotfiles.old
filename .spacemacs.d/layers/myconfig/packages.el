@@ -32,8 +32,11 @@
         "aspell"))
 
 (defun myconfig/post-init-projectile ()
+  (setq projectile-file-exists-local-cache-expire (* 5 60)
+        projectile-find-dir-includes-top-level t
+        projectile-switch-project-action 'projectile-dired)
   (setq projectile-indexing-method
-        'native))
+        'alien))
 
 (defun myconfig/pre-init-yasnippet ()
   (global-set-key (kbd "C-SPC") 'hippie-expand))
@@ -57,9 +60,7 @@
   (use-package ivy-config
     :after ivy macros))
 
-(defun myconfig/init-treemacs-config ()
-  (use-package treemacs-config
-    :after treemacs treemacs-evil macros))
+
 
 
 
