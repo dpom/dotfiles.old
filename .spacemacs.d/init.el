@@ -61,9 +61,6 @@ values."
                                             org-enable-reveal-js-support t)
                                        (ibuffer :variables
                                                 ibuffer-group-buffers-by 'projects)
-                                       (ranger :variables
-                                                ranger-show-preview t
-                                                ranger-show-dotfiles t)
                                        myconfig
                                        myorg
                                        myoutline

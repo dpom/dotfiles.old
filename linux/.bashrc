@@ -135,6 +135,6 @@ eval `keychain --eval id_rsa`
 export SCRIPTS="$SCRIPTS:.bashrc"
 
 # include .local if it exists
-if [ -f "$HOME/.bashrc_local" ]; then
-	. "$HOME/.bashrc_local"
+if [ -f "$HOME/.local/.bashrc" ]; then
+	. "$HOME/.local/.bashrc"
 fi
