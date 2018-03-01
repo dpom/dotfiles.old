@@ -36,7 +36,7 @@
 
               (ejc-create-connection
                "BigDataSpark-connection"
-               :classpath (file-truename "~/opt/hive-jdbc-uber-2.6.3.0-235.jar")
+               :classpath (file-truename "~/.local/lib/hive-jdbc-uber-2.6.3.0-235.jar")
                :classname "org.apache.hive.jdbc.HiveDriver"
                :subprotocol "hive2"
                :subname "//84.40.60.42:10000/"
