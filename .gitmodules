@@ -1,3 +1,6 @@
 [submodule ".spacemacs.d/layers/mydb/local/ejc-sql"]
 	path = .spacemacs.d/layers/mydb/local/ejc-sql
 	url = git@github.com:dpom/ejc-sql.git
+[submodule ".spacemacs.d/layers/clojure-lint"]
+	path = .spacemacs.d/layers/clojure-lint
+	url = https://github.com/dpom/clojure-lint-spacemacs-layer
