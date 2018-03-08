@@ -26,7 +26,6 @@
 (defun mydb/init-ejc-sql ()
   (use-package ejc-sql
     :after (direx clomacs)
-    :mode ("\\.sql\\'" . ejc-sql-mode)
     :bind (("C-c q" . ejc-switch-to-sql-editor-buffer)
            ("C-c n" . ejc-connect))
     :config (progn

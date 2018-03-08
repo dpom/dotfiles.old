@@ -85,6 +85,7 @@ values."
                                               c-default-style "linux"
                                               c-basic-offset 2)
                                        html
+                                       sql
                                        mydb
                                        ent
                                        docker
