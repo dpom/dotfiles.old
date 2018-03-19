@@ -125,9 +125,6 @@ if [ -x /usr/bin/mint-fortune ]; then
 fi
 
 export GTAGSLABEL=pygments
-alias e='emacsclient --no-wait'
-export EDITOR='e'
-export VISUAL='e'
 export LEIN_FAST_TRAMPOLINE=y
 eval `keychain --eval id_rsa`
 
