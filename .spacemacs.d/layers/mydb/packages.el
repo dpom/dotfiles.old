@@ -33,24 +33,6 @@
               
               (setq nrepl-sync-request-timeout 60)
 
-              (ejc-create-connection
-               "BigDataSpark-connection"
-               :classpath (file-truename "~/.local/lib/hive-jdbc-uber-2.6.3.0-235.jar")
-               :classname "org.apache.hive.jdbc.HiveDriver"
-               :subprotocol "hive2"
-               :subname "//84.40.60.42:10000/"
-               :user "root"
-               :password "")
-
-              (ejc-create-connection
-               "RecEngineML-connection"
-               :classpath (file-truename "~/.m2/repository/org/postgresql/postgresql/42.2.1.jre7/postgresql-42.2.1.jre7.jar")
-               :classname "org.postgresql.Driver"
-               :subprotocol "postgresql"
-               :subname "//localhost:5432/pgdb"
-               :user "pguser"
-               :password "pguser")
-
               (spacemacs/set-leader-keys-for-major-mode 'sql-mode
                 "'"    'ejc-connect
                 
@@ -60,11 +42,11 @@
                 "hc"  'ejc-show-constraints-list
                 "hp"  'ejc-show-procedures-list
 
-                "sl"  'ejc-open-log
-                "sq"  'ejc-quit-connection
-                "se"  'ejc-eval-user-sql-at-point
-                "sr"  'ejc-eval-user-sql-region
-                "sd"  'ejc-direx:pop-to-buffer
+                "el"  'ejc-open-log
+                "eq"  'ejc-quit-connection
+                "ee"  'ejc-eval-user-sql-at-point
+                "er"  'ejc-eval-user-sql-region
+                "ed"  'ejc-direx:pop-to-buffer
 
                 "mk"  'ejc-previous-sql
                 "mj"  'ejc-next-sql

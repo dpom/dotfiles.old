@@ -86,8 +86,6 @@ values."
                                               c-default-style "linux"
                                               c-basic-offset 2)
                                        html
-                                       php
-                                       python 
                                        sql
                                        mydb
                                        ent
