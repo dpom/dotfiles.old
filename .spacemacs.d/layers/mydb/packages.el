@@ -17,8 +17,9 @@
 
 (defconst mydb-packages
   '(
+    sql
     direx
-    clomacs 
+    clomacs
     (ejc-sql :location local)
     )
   "The list of Lisp packages required by the mydb layer.")
@@ -30,12 +31,12 @@
            ("C-c n" . ejc-connect))
     :config (progn
               (ejc-set-rows-limit 100)
-              
+
               (setq nrepl-sync-request-timeout 60)
 
               (spacemacs/set-leader-keys-for-major-mode 'sql-mode
                 "'"    'ejc-connect
-                
+
                 "hl"  'ejc-show-tables-list
                 "ht"  'ejc-describe-table
                 "he"  'ejc-describe-entity
@@ -73,4 +74,28 @@
     ))
 
 
+(defun myorg/post-init-sql ()
+  (defun sql-format-region (beg end)
+    "Format SQL in region between beg and END."
+    (interactive "r")
+    (save-excursion
+      (shell-command-on-region beg end "pg_format -" nil t)))
+
+  (defun sql-format-buffer ()
+    "Format SQL in buffer."
+    (interactive)
+    (sql-format-region (point-min) (point-max)))
+
+  (defun sql-format-region-or-buffer ()
+    "Format SQL for the entire buffer or the marked region between beg and end"
+    (interactive)
+    (if (use-region-p)
+        (sql-format-region (region-beginning) (region-end))
+      (sql-format-buffer)))
+
+  (add-hook 'sql-mode-hook '(lambda ()
+                              ;; format region or buffer
+                              (local-set-key (kbd "C-M-]") 'sql-format-region-or-buffer)))
+
+  )
 ;;; packages.el ends here
