@@ -120,14 +120,12 @@ if ! shopt -oq posix; then
   fi
 fi
 
-if [ -x /usr/bin/mint-fortune ]; then
-     /usr/bin/mint-fortune
+# Set LS_COLORS environment by Deepin
+if [[ ("$TERM" = *256color || "$TERM" = screen* || "$TERM" = xterm* ) && -f /etc/lscolor-256color ]]; then
+  eval $(dircolors -b /etc/lscolor-256color)
+else
+  eval $(dircolors)
 fi
-
-export GTAGSLABEL=pygments
-export LEIN_FAST_TRAMPOLINE=y
-eval `keychain --eval id_rsa`
-
 
 export SCRIPTS="$SCRIPTS:.bashrc"
 
