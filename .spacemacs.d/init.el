@@ -103,6 +103,7 @@ values."
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
    dotspacemacs-excluded-packages '(
+                                    ;; exec-path-from-shell
                                     org-projectile
                                     )
    ;; Defines the behaviour of Spacemacs when installing packages.
@@ -362,9 +363,18 @@ values."
   (setq dired-dwim-target t)
   (setq truncate-lines t)
   (menu-bar-mode 1)
-  (setq exec-path-from-shell-check-startup-files nil)
+  ;; (shell-command "source ~/.bash_profile")
+  ;; (setq exec-path-from-shell-check-startup-files nil)
 
-
+  (setq exec-path-from-shell-variables
+        '("PATH" "MANPATH"
+          "SCRIPTS"
+          "http_proxy"
+          "ftp_proxy"
+          "https_proxy"
+          "no_proxy"
+          ))
+  
   )
 
 (defun dotspacemacs/user-config ()
