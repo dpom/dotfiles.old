@@ -46,7 +46,7 @@ values."
                                                         auto-completion-enable-sort-by-usage t
                                                         company-show-numbers t)
                                        ;; (ivy :variables
-                                            ;; ivy-extra-directories nil)
+                                       ;; ivy-extra-directories nil)
                                        (git :variables
                                             git-enable-github-support t
                                             git-gutter-use-fringe t)
@@ -67,6 +67,9 @@ values."
                                        myconfig
                                        myorg
                                        myoutline
+                                       (journal :variables
+                                                org-journal-dir "~/pers/journal/")
+
 
                                        ;; editing
                                        latex
@@ -83,7 +86,7 @@ values."
                                        clojure
                                        clojure-lint
                                        javascript
-                                       spacemacs-org 
+                                       spacemacs-org
                                        (c-c++ :variables
                                               c-c++-enable-clang-support t
                                               c-default-style "linux"
@@ -375,7 +378,7 @@ values."
           "https_proxy"
           "no_proxy"
           ))
-  
+
   )
 
 (defun dotspacemacs/user-config ()
@@ -440,7 +443,18 @@ values."
                           'replace)
 
 
-  
+  (with-eval-after-load 'org-journal
+    (defun org-journal-find-location ()
+      ;; Open today's journal, but specify a non-nil prefix argument in order to
+      ;; inhibit inserting the heading; org-capture will insert the heading.
+      (org-journal-new-entry t)
+      ;; Position point on the journal's top-level heading so that org-capture
+      ;; will add the new entry as a child entry.
+      (goto-char (point-min)))
+
+    (setq org-capture-templates '(("j" "Journal entry" entry (function org-journal-find-location)
+                                   "* %(format-time-string org-journal-time-format)%^{Title}\n%i%?"))))
+
 
   ;; (setq confluence-url "http://confluence.emag.local:8090/confluence/rpc/xmlrpc")
   )
@@ -459,7 +473,7 @@ values."
  '(exec-path-from-shell-check-startup-files nil)
  '(package-selected-packages
    (quote
-    (parinfer adoc-mode markup-faces csv-mode yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode helm-pydoc cython-mode company-anaconda anaconda-mode pythonic phpunit phpcbf php-extras php-auto-yasnippets drupal-mode php-mode flycheck-joker ranger outshine outorg ibuffer-projectile ejc-sql direx clomacs powerline pdf-tools key-chord org-category-capture alert log4e gntp markdown-mode parent-mode helm-bibtex parsebib helm helm-core haml-mode fringe-helper git-gutter+ git-gutter gh marshal logito pcache ht flyspell-correct pos-tip flycheck flx magit git-commit ghub let-alist with-editor smartparens iedit anzu evil goto-chg tablist magit-popup docker-tramp json-snatcher json-reformat projectile counsel swiper inflections edn multiple-cursors paredit peg eval-sexp-fu highlight cider seq spinner queue pkg-info clojure-mode epl bind-map bind-key biblio biblio-core packed popup yasnippet undo-tree org-plus-contrib json-mode ivy hydra f s dash auctex async avy company-tern dash-functional tern fuzzy company-web web-completion-data company-statistics company-shell company-c-headers company-auctex company clojure-snippets auto-yasnippet ac-ispell auto-complete web-beautify livid-mode skewer-mode simple-httpd js2-refactor js2-mode js-doc coffee-mode zenburn-theme yaml-mode xterm-color ws-butler winum which-key wgrep web-mode volatile-highlights vi-tilde-fringe uuidgen use-package toc-org tagedit string-inflection sql-indent spaceline smex smeargle slim-mode shell-pop scss-mode sass-mode restart-emacs request rainbow-delimiters pug-mode popwin plantuml-mode persp-mode pcre2el paradox ox-rst ox-reveal ox-gfm origami orgit org-ref org-projectile org-present org-pomodoro org-mime org-download org-bullets open-junk-file neotree multi-term move-text mmm-mode markdown-toc magit-gitflow magit-gh-pulls macrostep lorem-ipsum linum-relative link-hint less-css-mode ivy-hydra insert-shebang indent-guide hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-make google-translate golden-ratio gnuplot gitignore-mode github-search github-clone github-browse-file gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gist gh-md flyspell-correct-ivy flycheck-pos-tip flx-ido fish-mode fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-multiedit evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eshell-z eshell-prompt-extras esh-help emmet-mode elisp-slime-nav dumb-jump dockerfile-mode docker disaster diminish diff-hl define-word counsel-projectile column-enforce-mode cmake-mode clj-refactor clean-aindent-mode clang-format cider-eval-sexp-fu cdlatex auto-highlight-symbol auto-dictionary auto-compile auctex-latexmk aggressive-indent adaptive-wrap ace-window ace-link)))
+    (org-journal parinfer adoc-mode markup-faces csv-mode yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode helm-pydoc cython-mode company-anaconda anaconda-mode pythonic phpunit phpcbf php-extras php-auto-yasnippets drupal-mode php-mode flycheck-joker ranger outshine outorg ibuffer-projectile ejc-sql direx clomacs powerline pdf-tools key-chord org-category-capture alert log4e gntp markdown-mode parent-mode helm-bibtex parsebib helm helm-core haml-mode fringe-helper git-gutter+ git-gutter gh marshal logito pcache ht flyspell-correct pos-tip flycheck flx magit git-commit ghub let-alist with-editor smartparens iedit anzu evil goto-chg tablist magit-popup docker-tramp json-snatcher json-reformat projectile counsel swiper inflections edn multiple-cursors paredit peg eval-sexp-fu highlight cider seq spinner queue pkg-info clojure-mode epl bind-map bind-key biblio biblio-core packed popup yasnippet undo-tree org-plus-contrib json-mode ivy hydra f s dash auctex async avy company-tern dash-functional tern fuzzy company-web web-completion-data company-statistics company-shell company-c-headers company-auctex company clojure-snippets auto-yasnippet ac-ispell auto-complete web-beautify livid-mode skewer-mode simple-httpd js2-refactor js2-mode js-doc coffee-mode zenburn-theme yaml-mode xterm-color ws-butler winum which-key wgrep web-mode volatile-highlights vi-tilde-fringe uuidgen use-package toc-org tagedit string-inflection sql-indent spaceline smex smeargle slim-mode shell-pop scss-mode sass-mode restart-emacs request rainbow-delimiters pug-mode popwin plantuml-mode persp-mode pcre2el paradox ox-rst ox-reveal ox-gfm origami orgit org-ref org-projectile org-present org-pomodoro org-mime org-download org-bullets open-junk-file neotree multi-term move-text mmm-mode markdown-toc magit-gitflow magit-gh-pulls macrostep lorem-ipsum linum-relative link-hint less-css-mode ivy-hydra insert-shebang indent-guide hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-make google-translate golden-ratio gnuplot gitignore-mode github-search github-clone github-browse-file gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gist gh-md flyspell-correct-ivy flycheck-pos-tip flx-ido fish-mode fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-multiedit evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eshell-z eshell-prompt-extras esh-help emmet-mode elisp-slime-nav dumb-jump dockerfile-mode docker disaster diminish diff-hl define-word counsel-projectile column-enforce-mode cmake-mode clj-refactor clean-aindent-mode clang-format cider-eval-sexp-fu cdlatex auto-highlight-symbol auto-dictionary auto-compile auctex-latexmk aggressive-indent adaptive-wrap ace-window ace-link)))
  '(safe-local-variable-values
    (quote
     ((cider-refresh-after-fn . "integrant.repl/resume")

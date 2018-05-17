@@ -145,6 +145,7 @@
    ("c" "#+BEGIN_SRC clojure\n\n#+END_SRC")
    ("d" "#+BEGIN_SRC dot\n\n#+END_SRC")
    ("e" "#+BEGIN_SRC emacs-lisp\n\n#+END_SRC")
+   ("j" "#+BEGIN_SRC js\n\n#+END_SRC")
    ("s" "#+BEGIN_SRC sh\n\n#+END_SRC")
    ("l" "#+BEGIN_SRC lisp\n\n#+END_SRC")
    ("p" "#+BEGIN_SRC python\n\n#+END_SRC")

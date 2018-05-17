@@ -4,3 +4,6 @@
 [submodule ".spacemacs.d/layers/clojure-lint"]
 	path = .spacemacs.d/layers/clojure-lint
 	url = https://github.com/dpom/clojure-lint-spacemacs-layer
+[submodule ".spacemacs.d/layers/journal"]
+	path = .spacemacs.d/layers/journal
+	url = https://github.com/borgnix/spacemacs-journal.git
