@@ -7,3 +7,6 @@
 [submodule ".spacemacs.d/layers/journal"]
 	path = .spacemacs.d/layers/journal
 	url = https://github.com/borgnix/spacemacs-journal.git
+[submodule ".spacemacs.d/layers/calendar"]
+	path = .spacemacs.d/layers/calendar
+	url = https://github.com/dudelson/spacemacs-calendar-layer.git
