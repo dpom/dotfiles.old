@@ -25,6 +25,11 @@
         :status (eq parinfer--mode 'indent)
         :on (parinfer-toggle-mode)
         :off (parinfer-toggle-mode))
-      (setq parinfer-extensions '(defaults pretty-parens evil smart-yank)))))
+      (setq parinfer-extensions '(defaults pretty-parens evil smart-yank))
+      (add-hook 'clojure-mode-hook #'parinfer-mode)
+      (add-hook 'emacs-lisp-mode-hook #'parinfer-mode)
+      (add-hook 'common-lisp-mode-hook #'parinfer-mode)
+      (add-hook 'scheme-mode-hook #'parinfer-mode)
+      (add-hook 'lisp-mode-hook #'parinfer-mode))))
 
 ;;; packages.el ends here
