@@ -45,6 +45,7 @@ values."
                                                         auto-completion-enable-company-help-tooltip 'manual
                                                         auto-completion-enable-sort-by-usage t
                                                         company-show-numbers t)
+
                                        ;; (ivy :variables
                                        ;; ivy-extra-directories nil)
                                        (git :variables
@@ -82,7 +83,6 @@ values."
                                        myediting
 
                                        ;; lang
-                                       parinfer
                                        emacs-lisp
                                        clojure
                                        clojure-lint
@@ -98,6 +98,7 @@ values."
                                        ent
                                        docker
                                        yaml
+                                       parinfer
                                        )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -207,7 +208,7 @@ values."
    ;; (default "C-M-m")
    dotspacemacs-major-mode-emacs-leader-key "C-M-m"
    ;; These variables control whether separate commands are bound in the GUI to
-   ;; the key pairs C-i, TAB and C-m, RET.
+    ;; the key pairs C-i, TAB and C-m, RET.
    ;; Setting it to a non-nil value, allows for separate commands under <C-i>
    ;; and TAB or <C-m> and RET.
    ;; In the terminal, these pairs are generally indistinguishable, so this only
@@ -425,8 +426,7 @@ values."
         (append (if (consp backend) backend (list backend))
                 '(:with company-yasnippet))))
 
-    (setq company-backends (mapcar #'company-mode/backend-with-yas company-backends))
-    )
+    (setq company-backends (mapcar #'company-mode/backend-with-yas company-backends)))
 
 
   (with-eval-after-load 'clj-refactor
@@ -450,6 +450,7 @@ values."
                           'replace)
 
 
+
   (with-eval-after-load 'org-journal
     (defun org-journal-find-location ()
       ;; Open today's journal, but specify a non-nil prefix argument in order to
@@ -462,8 +463,8 @@ values."
     (setq org-capture-templates '(("j" "Journal entry" entry (function org-journal-find-location)
                                    "* %(format-time-string org-journal-time-format)%^{Title}\n%i%?"))))
 
-
-  ;; (setq confluence-url "http://confluence.emag.local:8090/confluence/rpc/xmlrpc")
+  (clean-aindent-mode -1)
+  ;; (spacemacs/set-leader-keys-for-major-mode 'c++-mode "<tab>" 'clang-format-buffer)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will

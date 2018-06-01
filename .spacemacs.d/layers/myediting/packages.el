@@ -27,7 +27,7 @@
 
 (defconst myediting-packages
   '(evil-multiedit
-    (doxymacs :location local)
+    ;; (doxymacs :location local)
     string-inflection)
   "The list of Lisp packages required by the myediting layer.")
 
