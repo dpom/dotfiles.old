@@ -74,7 +74,7 @@
     ))
 
 
-(defun myorg/post-init-sql ()
+(defun mydb/post-init-sql ()
   (defun sql-format-region (beg end)
     "Format SQL in region between beg and END."
     (interactive "r")
