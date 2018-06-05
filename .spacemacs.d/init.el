@@ -70,7 +70,7 @@ values."
                                        myoutline
                                        (journal :variables
                                                 org-journal-dir "~/pers/journal/")
-                                       calendar 
+                                       ;; calendar 
 
 
                                        ;; editing

@@ -1,8 +1,6 @@
 (require 'org)
 (require 'org-contacts)
 (require 'org-bullets)
-(require 'ox-bibtex)
-(require 'ox-extra)
 (require 'bibtex)
 
 (provide 'org-config)
@@ -237,14 +235,18 @@
 (require 'ox-latex)
 (require 'ox-ascii)
 (require 'ox-md)
-;; (require 'ox-bibtex)
+(require 'ox-bibtex)
+(require 'ox-extra)
+(require 'ox-confluence)
 
 (setq org-table-export-default-format 'orgtbl-to-csv
       org-md-headline-style 'atx)
 
 (ox-extras-activate '(ignore-headlines))
 
-
+(evil-define-key '(normal visual motion) org-mode-map
+  "ec" 'org-confluence-export-as-confluence)
+ 
 ;; (when linux?
 ;;   (setq org-file-apps '((auto-mode . emacs)
 ;;                         ("\\.mm\\'" . default)

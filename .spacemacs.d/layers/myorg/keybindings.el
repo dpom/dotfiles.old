@@ -30,4 +30,6 @@
   "obt" 'org-babel-tangle)
 
 
+(spacemacs/set-leader-keys-for-major-mode 'org-mode
+  "ec" 'org-confluence-export-as-confluence)
 
