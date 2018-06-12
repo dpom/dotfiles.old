@@ -244,9 +244,6 @@
 
 (ox-extras-activate '(ignore-headlines))
 
-(evil-define-key '(normal visual motion) org-mode-map
-  "ec" 'org-confluence-export-as-confluence)
- 
 ;; (when linux?
 ;;   (setq org-file-apps '((auto-mode . emacs)
 ;;                         ("\\.mm\\'" . default)
