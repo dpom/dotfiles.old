@@ -432,6 +432,10 @@ values."
   (with-eval-after-load 'clj-refactor
     (setq cljr-warn-on-eval nil ))
 
+  (with-eval-after-load 'clojure-mode
+    (spacemacs/set-leader-keys-for-major-mode 'clojure-mode
+      "gg" 'cider-find-var))
+  
   (add-hook 'c-mode-common-hook
             (lambda ()
               (c-set-offset 'case-label '+)))
@@ -485,7 +489,8 @@ values."
  '(safe-local-variable-values
    (quote
     ((cider-refresh-after-fn . "integrant.repl/resume")
-     (cider-refresh-before-fn . "integrant.repl/suspend")))))
+     (cider-refresh-before-fn . "integrant.repl/suspend"))))
+ '(tramp-default-method "ssh" nil (tramp)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
