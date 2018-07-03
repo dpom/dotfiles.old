@@ -1,13 +1,13 @@
 # name: docdefn
 # key: docdefn
 # --
-(defn $1
-  "Brief$0
+(defn ${1:function}
+  "${2:brief}
 
   Args:
-  name (type): desc
+    ${3:name} (${4:type}): $0
 
   Returns:
-  type: desc"$>
+    (${5:ret}): "$>
   [$3]$>
-  $0)$>
+)$>
