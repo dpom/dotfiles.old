@@ -23,6 +23,7 @@
     (eshell-config   :location local)
     (evil-config     :location local)
     (ivy-config      :location local)
+    (package-config      :location local)
     )
   "The list of Lisp packages required by the myconfig layer.")
 
@@ -60,7 +61,8 @@
   (use-package ivy-config
     :after ivy macros))
 
-
+(defun myconfig/init-package-config ()
+  (use-package package-config))
 
 
 
