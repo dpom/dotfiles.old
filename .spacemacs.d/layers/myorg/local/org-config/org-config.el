@@ -448,6 +448,7 @@
 
 (require 'ob-clojure)
 (require 'ob-org)
+(require 'ob-shell)
 
 (org-babel-do-load-languages
  'org-babel-load-languages
