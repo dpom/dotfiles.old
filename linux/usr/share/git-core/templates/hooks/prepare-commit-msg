@@ -1,0 +1,13 @@
+#!/bin/sh
+# prepend a JIRA to a commit message automatically
+#
+[ -n "$3" ] && exit; # if amend, don't do anything
+fname=$1
+branch=$(git rev-parse --symbolic-full-name --abbrev-ref HEAD)
+# parse JIRA ticket assuming git branch name follows CENX recommended pattern from
+# https://cenx-cf.atlassian.net/wiki/display/KB/Git+Workflow
+# i.e. "f/<issue-ID>-<issue-summary>"
+jira=$(echo $branch | sed -n 's_[^/]*/\([^-]*-[0-9]*\).*$_\1_p')
+# if JIRA ticket found prepend ticket number enclosed in brackets to the temp message file
+[ -n "$jira" ] && $(sed "1s/^/[${jira}] /" $fname > $fname.$$; mv $fname.$$ $fname)
+exit 0

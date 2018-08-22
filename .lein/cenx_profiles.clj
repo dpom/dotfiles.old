@@ -1,4 +1,5 @@
 {:user {:plugins [[lein-licenses "0.2.0"]
+                  [lein-cljfmt "0.6.0"]
                   [lein-ancient "0.6.15"]
                   [jonase/eastwood "0.2.6"]
                   [lein-kibit "0.1.6"]
