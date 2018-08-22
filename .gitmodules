@@ -10,3 +10,6 @@
 [submodule ".spacemacs.d/layers/calendar"]
 	path = .spacemacs.d/layers/calendar
 	url = https://github.com/dudelson/spacemacs-calendar-layer.git
+[submodule ".spacemacs.d/layers/org-jira/local/org-jira"]
+	path = .spacemacs.d/layers/org-jira/local/org-jira
+	url = git@github.com:dpom/org-jira.git
