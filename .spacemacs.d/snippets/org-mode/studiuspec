@@ -37,6 +37,7 @@ $0
    #+REVEAL_TRANS: cube
    #+REVEAL_PLUGINS: (highlight)
    #+REVEAL_EXTRA_CSS: ./css/dpom.css
+   #+REVEAL_HLEVEL: 2
  
 ** Latex
 
@@ -49,7 +50,7 @@ $0
    #+LaTeX_HEADER: \fancyhead[C]{\begin{tabular}{|m{3.0cm}|m{10.0cm}|m{2.5cm}|} \hline  & \centering \Large{\docTitle{} - \docSubTitle{}} & \centering \tiny{\ Data: {\today}\ Rev. \docVersion}\tabularnewline \hline \end{tabular}}
    #+LaTeX_HEADER: \rfoot{} %% get rid of the page number
    #+LaTeX_HEADER: \fancyfoot[CE,CO,LE,LO,RE,RO]{} %% clear out all footers
-   #+LaTeX_HEADER: \fancyfoot[C]{\begin{tabular}{|m{3.0cm}|m{10.0cm}|m{2.5cm}|} \hline  & \centering \small{eMAG IT Research} & \centering \small{Page \thepage\ of \pageref{LastPage}}\tabularnewline \hline \end{tabular}}
+   #+LaTeX_HEADER: \fancyfoot[C]{\begin{tabular}{|m{3.0cm}|m{10.0cm}|m{2.5cm}|} \hline  & \centering \small{dpom} & \centering \small{Page \thepage\ of \pageref{LastPage}}\tabularnewline \hline \end{tabular}}
    #+LATEX_HEADER: \input{mytitle}
    #+latex_header: \usepackage[style=alphabetic,hyperref=true,backref=true,maxcitenames=3,url=true,backend=bibtex,natbib=false]{biblatex}
    #+latex_header: \addbibresource{~/pers/bibliography/dpom.bib}
