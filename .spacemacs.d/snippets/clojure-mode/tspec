@@ -14,4 +14,4 @@
 
 ;; (stest/summarize-results (stest/check \`$1)) 
 
-(defspec-test test-$1 [\`$1])
+(defspec-test test-$1 \`$1)

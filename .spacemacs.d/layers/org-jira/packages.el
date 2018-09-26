@@ -16,7 +16,6 @@
 
 (defun org-jira/init-org-jira ()
   (use-package org-jira
-    :defer t
     :config
     (progn
       (spacemacs/declare-prefix-for-mode 'org-mode "mj" "jira")
