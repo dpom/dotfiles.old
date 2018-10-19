@@ -16,6 +16,7 @@
 
 (defconst myconfig-packages
   '(
+    company
     ispell
     projectile
     yasnippet
@@ -27,7 +28,28 @@
     )
   "The list of Lisp packages required by the myconfig layer.")
 
+(defun myconfig/post-init-company ()
 
+  (global-company-mode)
+
+  (spacemacs|add-company-backends :modes sh-mode )
+
+  (define-key company-active-map [tab] 'company-complete-common)
+  ;;(global-set-key (kbd "TAB") 'hippie-expand)
+
+
+
+  (defvar company-mode/enable-yas t
+    "Enable yasnippet for all backends.")
+
+  (defun company-mode/backend-with-yas (backend)
+    (if (or (not company-mode/enable-yas) (and (listp backend) (member 'company-yasnippet backend)))
+        backend
+      (append (if (consp backend) backend (list backend))
+              '(:with company-yasnippet))))
+
+  (setq company-backends (mapcar #'company-mode/backend-with-yas company-backends)))
+  
 (defun myconfig/post-init-ispell ()
   (setq ispell-program-name
         "aspell"))
