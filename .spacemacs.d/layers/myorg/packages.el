@@ -27,6 +27,7 @@
   "Initialize ox-reveal package."
   (use-package ox-reveal
     :config (progn
+              (setq org-reveal-external-plugins  '((menu . "{src: '%splugin/menu/menu.js'}")))
               ;; (setq org-reveal-root "")
               )))
 

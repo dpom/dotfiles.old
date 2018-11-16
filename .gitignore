@@ -10,3 +10,4 @@
 /.spacemacs.d/auto/EmacsConfig.el
 /.lein/credentials.clj.gpg
 /.lein/self-installs
+/.spacemacs.d/.spacemacs.env
