@@ -13,7 +13,7 @@
 (setq myorg-packages
       '(
         cdlatex
-        (ox-reveal :location local)
+        (ox-reveal :location (recipe :fetcher local))
         ox-rst
         org-ref
         (org-config      :location local)
