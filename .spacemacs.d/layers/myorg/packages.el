@@ -13,7 +13,7 @@
 (setq myorg-packages
       '(
         cdlatex
-        (ox-reveal :location (recipe :fetcher github :repo "yjwen/org-reveal"))
+        (ox-reveal :location local)
         ox-rst
         org-ref
         (org-config      :location local)
@@ -27,7 +27,8 @@
   "Initialize ox-reveal package."
   (use-package ox-reveal
     :config (progn
-              (setq org-reveal-external-plugins  '((menu . "{src: '%splugin/menu/menu.js'}")))
+              (setq org-reveal-external-plugins  '((menu . "{ src: './plugins/menu/menu.js', async: true}")
+                                                   (toolbar . "{ src: './plugins/toolbar/toolbar.js', async: true}")))
               ;; (setq org-reveal-root "")
               )))
 

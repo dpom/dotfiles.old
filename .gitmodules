@@ -1,12 +1,9 @@
 [submodule ".spacemacs.d/layers/mydb/local/ejc-sql"]
 	path = .spacemacs.d/layers/mydb/local/ejc-sql
 	url = git@github.com:dpom/ejc-sql.git
-[submodule ".spacemacs.d/layers/journal"]
-	path = .spacemacs.d/layers/journal
-	url = https://github.com/borgnix/spacemacs-journal.git
-[submodule ".spacemacs.d/layers/calendar"]
-	path = .spacemacs.d/layers/calendar
-	url = https://github.com/dudelson/spacemacs-calendar-layer.git
 [submodule ".spacemacs.d/layers/org-jira/local/org-jira"]
 	path = .spacemacs.d/layers/org-jira/local/org-jira
 	url = git@github.com:dpom/org-jira.git
+[submodule ".spacemacs.d/layers/myorg/local/ox-reveal"]
+	path = .spacemacs.d/layers/myorg/local/ox-reveal
+	url = git@github.com:dpom/org-reveal.git
