@@ -136,7 +136,7 @@
 
 (setq
  org-structure-template-alist
- '(("n" "#+NAME: ?")
+ '(("n" "#+BEGIN_NOTES\n\n#+END_NOTES")
    ("q" "#+BEGIN_QUOTE\n\n#+END_QUOTE")
 
    ;; Language Blocks

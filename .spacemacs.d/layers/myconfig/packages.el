@@ -25,6 +25,7 @@
     (evil-config     :location local)
     (ivy-config      :location local)
     (package-config      :location local)
+    zprint-mode
     )
   "The list of Lisp packages required by the myconfig layer.")
 
@@ -64,6 +65,11 @@
 (defun myconfig/pre-init-yasnippet ()
   (global-set-key (kbd "C-SPC") 'hippie-expand))
 
+(defun myconfig/init-zprint-mode()
+  (use-package zprint-mode
+    :config (progn
+              (evil-leader/set-key "op" 'zprint))))
+
 ;;; Local Config
 
 (defun myconfig/init-avy-config ()
@@ -85,6 +91,7 @@
 
 (defun myconfig/init-package-config ()
   (use-package package-config))
+
 
 
 

@@ -29,7 +29,6 @@
     :config (progn
               (setq org-reveal-external-plugins  '((menu . "{ src: './plugins/menu/menu.js', async: true}")
                                                    (toolbar . "{ src: './plugins/toolbar/toolbar.js', async: true}")))
-              ;; (setq org-reveal-root "")
               )))
 
 (defun myorg/init-cdlatex ()
