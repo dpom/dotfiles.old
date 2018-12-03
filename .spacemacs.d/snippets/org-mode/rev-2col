@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# name: rev-2col
+# key: rev-2col
+# --
+
+#+begin_twocolumn
+#+begin_left
+$0
+#+end_left
+#+begin_right
+
+#+end_right
+#+end_twocolumn
+
