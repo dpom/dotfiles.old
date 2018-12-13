@@ -144,15 +144,11 @@
    ("d" "#+BEGIN_SRC dot\n\n#+END_SRC")
    ("e" "#+BEGIN_SRC emacs-lisp\n\n#+END_SRC")
    ("j" "#+BEGIN_SRC js\n\n#+END_SRC")
-   ("s" "#+BEGIN_SRC shell\n\n#+END_SRC")
    ("l" "#+BEGIN_SRC lisp\n\n#+END_SRC")
    ("p" "#+BEGIN_SRC python\n\n#+END_SRC")
-
-   ;; Collapse previous header by default in themed html export
-   ("clps" ":PROPERTIES:\n :HTML_CONTAINER_CLASS: hsCollapsed\n :END:\n")
-   ;; Hugo title template
-   ("b" "#+TITLE: \n#+SLUG: \n#+DATE: 2017-mm-dd
-#+CATEGORIES: \n#+SUMMARY: \n#+DRAFT: false")))
+   ("s" "#+BEGIN_SRC shell\n\n#+END_SRC")
+   ("x" "#+BEGIN_SRC xml\n\n#+END_SRC")
+   ))
 
 ;;; Org Blocks
 
