@@ -1,16 +1,11 @@
-{ :user {:plugins [[lein-licenses "0.2.0"]
-                  [lein-cljfmt "0.6.0"]
+{ :user {:plugins [
                   [lein-ancient "0.6.15"]
-                  [jonase/eastwood "0.2.6"]
+                  [jonase/eastwood "0.3.4"]
                   [lein-kibit "0.1.6"]
-                  [codox "0.7.2"]
-                  [lein-test-out "0.3.1"]
-                  [lein-cloverage "1.0.6"]
-                  [lein-release "1.0.5"]
-                  [test2junit "1.2.1"]]
+                  [codox "0.10.5"]]
         ;; change snapshot update policy so that bamboo always downloads snapshots from Nexus
         :update :always
-        :dependencies [[pjstadig/humane-test-output "0.7.0"]]
+        :dependencies [[pjstadig/humane-test-output "0.9.0"]]
         :injections [(require 'pjstadig.humane-test-output)
                      (pjstadig.humane-test-output/activate!)]
         ;; By default lein will run a clean before deploying to prevent

@@ -11,8 +11,10 @@
 ;;; License: GPLv3
 
 
-(spacemacs|defvar-company-backends clojure-mode)
-(spacemacs|defvar-company-backends inferior-lisp-mode)
+(spacemacs|define-jump-handlers clojure-mode)
+(spacemacs|define-jump-handlers clojurec-mode)
+(spacemacs|define-jump-handlers clojurescript-mode)
+(spacemacs|define-jump-handlers clojurex-mode)
 
 (defvar clj-inf-lisp-buffer "*inf-clojure*")
 (defvar clj-inferior-lisp-program-lein "lein with-profile +dev repl")

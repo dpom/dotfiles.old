@@ -31,37 +31,12 @@
 
 (defconst clj-packages
   '(clojure-mode
-    compile
     inf-clojure
     company-etags
     eldoc
-    )
-  "The list of Lisp packages required by the clj layer.
-
-Each entry is either:
-
-1. A symbol, which is interpreted as a package to be installed, or
-
-2. A list of the form (PACKAGE KEYS...), where PACKAGE is the
-    name of the package to be installed or loaded, and KEYS are
-    any number of keyword-value-pairs.
-
-    The following keys are accepted:
-
-    - :excluded (t or nil): Prevent the package from being loaded
-      if value is non-nil
-
-    - :location: Specify a custom installation location.
-      The following values are legal:
-
-      - The symbol `elpa' (default) means PACKAGE will be
-        installed using the Emacs package manager.
-
-      - The symbol `local' directs Spacemacs to load the file at
-        `./local/PACKAGE/PACKAGE.el'
-
-      - A list beginning with the symbol `recipe' is a melpa
-        recipe.  See: https://github.com/milkypostman/melpa#recipe-format")
+    org
+    parinfer
+    projectile))
 
 (defun clj/init-clojure-mode ()
   (use-package clojure-mode
@@ -79,10 +54,6 @@ Each entry is either:
               (add-hook 'inferior-lisp-mode-hook 'spacemacs/load-yasnippet)
               )))
 
-(defun clj/init-compile ()
-  (use-package compile
-    :defer t
-    ))
 
 (defun clj/init-inf-clojure ()
   (use-package inf-clojure
@@ -93,7 +64,7 @@ Each entry is either:
                         (lambda () (setq completion-at-point-functions nil)))
               (add-hook 'clojure-mode-hook 'inf-clojure-minor-mode)
 
-             (add-hook 'clojure-mode-hook
+              (add-hook 'clojure-mode-hook
                         '(lambda ()
                            (define-key clojure-mode-map "\C-c\C-k" 'reload-current-clj-ns)
                            (define-key clojure-mode-map "\M-." 'find-tag-without-ns)
@@ -122,9 +93,23 @@ Each entry is either:
     :defer t
     :config (progn
               (add-hook 'clojure-mode-hook #'eldoc-mode)
-              (add-hook 'inf-clojure-mode-hook #'eldoc-mode)
-              ))
-  )
+              (add-hook 'inf-clojure-mode-hook #'eldoc-mode))))
 
+;; projectile-mode
+(defun clj/post-init-projectile ()
+  (use-package projectile
+    :defer t
+    :config (progn
+              (add-hook 'clojure-mode-hook #'projectile-mode))))
+
+
+(defun clj/pre-init-org ()
+  (spacemacs|use-package-add-hook org
+    :post-config (add-to-list 'org-babel-load-languages '(clojure . t))
+    (setq org-babel-clojure-backend 'slime)))
+
+(defun clj/post-init-parinfer ()
+  (spacemacs|forall-clojure-modes m
+    (add-hook m 'parinfer-mode)))
 
 ;;; packages.el ends here

@@ -137,3 +137,13 @@
     (erase-buffer)
     (lisp-eval-string "")))
 )
+
+(defmacro spacemacs|forall-clojure-modes (m &rest body)
+  "Executes BODY with M bound to all clojure derived modes."
+  (declare (indent 1))
+  `(dolist (,m '(clojure-mode
+                 clojurec-mode
+                 clojurescript-mode
+                 clojurex-mode
+                 inf-clojure-mode))
+     ,@body))

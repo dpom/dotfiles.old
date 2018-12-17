@@ -44,10 +44,15 @@
     "er" 'inf-clojure-eval-region
     "en" 'inf-clojure-set-ns
     ;; "ew" 'cider-eval-last-sexp-and-replace
+    ;; help
+    "hh" 'inf-clojure-show-var-documentation
+    "ha" 'inf-clojure-apropos
+    "hs" 'inf-clojure-show-var-source
+    "hp" 'inf-clojure-show-arglists
     ;; repl
     ;; "sb" 'cider-load-buffer
     ;; "sB" 'spacemacs/cider-send-buffer-in-repl-and-focus
-    ;; "sc" 'cider-connect
+    "sc" 'inf-clojure-connect
     ;; "se" 'spacemacs/cider-send-last-sexp-to-repl
     ;; "sE" 'spacemacs/cider-send-last-sexp-to-repl-focus
     ;; "sf" 'spacemacs/cider-send-function-to-repl
@@ -59,27 +64,27 @@
     ;; "sI" 'cider-jack-in-clojurescript
     ;; "sn" 'spacemacs/cider-send-ns-form-to-repl
     ;; "sN" 'spacemacs/cider-send-ns-form-to-repl-focus
-    ;; "sq" 'cider-quit
+    "sq" 'inf-clojure-quit
     ;; "sr" 'spacemacs/cider-send-region-to-repl
     ;; "sR" 'spacemacs/cider-send-region-to-repl-focus
     "ss" 'inf-clojure-switch-to-repl
-    ;; "sx" 'cider-refresh
-  ;; start repl
-  "ll"  'clj-run-lisp
-  "lb"  'clj-run-boot
-  "lf"  'clj-run-figwheel
-  ;; tags
-  "jR" 'projectile-regenerate-tags
-  "jf" 'find-tag
-  "ja" 'tags-apropos
-  "jg" 'find-tag-without-ns
-  "js" 'tags-search
-  "jh" 'pop-tag-mark
-  "jl" 'list-tags
-  "jo" 'find-tag-other-window
-  "jr" 'tags-query-replace)
+    "sx" 'inf-clojure-restart
+    ;; start repl
+    "ll"  'clj-run-lisp
+    "lb"  'clj-run-boot
+    "lf"  'clj-run-figwheel
+    ;; tags
+    "jR" 'projectile-regenerate-tags
+    "jf" 'find-tag
+    "ja" 'tags-apropos
+    "jg" 'find-tag-without-ns
+    "js" 'tags-search
+    "jh" 'pop-tag-mark
+    "jl" 'list-tags
+    "jo" 'find-tag-other-window
+    "jr" 'tags-query-replace))
 
-  )
+  
 
 
 (spacemacs/set-leader-keys-for-major-mode 'java-mode
@@ -121,10 +126,9 @@
   )
 
 
-;;; global mode 
+;;; global mode
 (spacemacs/declare-prefix "or" "repl")
 (spacemacs/set-leader-keys
   "ork" 'spacemacs/comint-clear-buffer
   "ori" 'clj-switch-to-inf-lisp
   "orr" 'clj-reimport)
-
