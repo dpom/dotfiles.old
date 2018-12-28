@@ -58,9 +58,12 @@
     ;; "sf" 'spacemacs/cider-send-function-to-repl
     ;; "sF" 'spacemacs/cider-send-function-to-repl-focus
     "se" 'clj-insert-last-sexp-in-repl
+    "sg" 'clj-go
     "sn" 'reload-current-clj-ns
-    "sr" 'clj-load-current-cljs-ns
+    "sr" 'clj-refresh
+    "sR" 'clj-refresh-all
     "si" 'inf-clojure
+    "sk" 'erase-inf-buffer
     ;; "sI" 'cider-jack-in-clojurescript
     ;; "sn" 'spacemacs/cider-send-ns-form-to-repl
     ;; "sN" 'spacemacs/cider-send-ns-form-to-repl-focus
@@ -84,7 +87,7 @@
     "jo" 'find-tag-other-window
     "jr" 'tags-query-replace))
 
-  
+
 
 
 (spacemacs/set-leader-keys-for-major-mode 'java-mode
@@ -122,6 +125,7 @@
 
 (spacemacs/set-leader-keys-for-major-mode 'inf-clojure-mode
   ;; "sk" 'spacemacs/comint-clear-buffer
+  "sg" 'clj-go
   "sk" 'inf-clojure-clear-repl-buffer
   )
 

@@ -147,3 +147,20 @@
                  clojurex-mode
                  inf-clojure-mode))
      ,@body))
+
+(defun clj-eval-form (form)
+  "Eval forms in repl."
+  (inf-clojure--send-string (inf-clojure-proc) form)
+  (inf-clojure-switch-to-repl t))
+
+(defun clj-go ()
+  (interactive)
+  (clj-eval-form "(go)"))
+
+(defun clj-refresh ()
+  (interactive)
+  (clj-eval-form "(refresh)"))
+
+(defun clj-refresh-all ()
+  (interactive)
+  (clj-eval-form "(refresh-all)"))

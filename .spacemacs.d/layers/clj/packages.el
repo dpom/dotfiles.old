@@ -43,6 +43,7 @@
     :defer t
     :init (progn
             (add-to-list 'auto-mode-alist '("\\.cljs$" . clojure-mode))
+            (add-to-list 'auto-mode-alist '("\\.edn$" . clojure-mode))
             (add-to-list 'auto-mode-alist '("\\.boot\\'" . clojure-mode))
             ;; This regexp matches shebang expressions like `#!/usr/bin/env boot'
             (add-to-list 'magic-mode-alist '("#!.*boot\\s-*$" . clojure-mode)))
