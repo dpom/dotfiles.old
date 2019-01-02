@@ -27,67 +27,71 @@
                                      ("mru" . "unwind/update")
                                      ))
 
-(dolist (mode '(clojure-mode
-                clojurec-mode
-                clojurescript-mode
-                clojurex-mode))
-  (mapc (lambda (x) (spacemacs/declare-prefix-for-mode
-                     mode (car x) (cdr x)))
-        clojure/key-binding-prefixes))
+(spacemacs|forall-clojure-modes m
+  (mapc (lambda (x) (spacemacs/declare-prefix-for-mode m (car x) (cdr x))) clojure/key-binding-prefixes))
 
-(dolist (m '(clojure-mode clojurec-mode clojurescript-mode clojurex-mode))
-  (spacemacs/set-leader-keys-for-major-mode m
-    ;; eval
-    "eb" 'inf-clojure-eval-buffer
-    "ee" 'inf-clojure-eval-last-sexp
-    "ef" 'inf-clojure-eval-defun
-    "er" 'inf-clojure-eval-region
-    "en" 'inf-clojure-set-ns
-    ;; "ew" 'cider-eval-last-sexp-and-replace
-    ;; help
-    "hh" 'inf-clojure-show-var-documentation
-    "ha" 'inf-clojure-apropos
-    "hs" 'inf-clojure-show-var-source
-    "hp" 'inf-clojure-show-arglists
-    ;; repl
-    ;; "sb" 'cider-load-buffer
-    ;; "sB" 'spacemacs/cider-send-buffer-in-repl-and-focus
-    "sc" 'inf-clojure-connect
-    ;; "se" 'spacemacs/cider-send-last-sexp-to-repl
-    ;; "sE" 'spacemacs/cider-send-last-sexp-to-repl-focus
-    ;; "sf" 'spacemacs/cider-send-function-to-repl
-    ;; "sF" 'spacemacs/cider-send-function-to-repl-focus
-    "se" 'clj-insert-last-sexp-in-repl
-    "sg" 'clj-go
-    "sn" 'reload-current-clj-ns
-    "sr" 'clj-refresh
-    "sR" 'clj-refresh-all
-    "si" 'inf-clojure
-    "sk" 'erase-inf-buffer
-    ;; "sI" 'cider-jack-in-clojurescript
-    ;; "sn" 'spacemacs/cider-send-ns-form-to-repl
-    ;; "sN" 'spacemacs/cider-send-ns-form-to-repl-focus
-    "sq" 'inf-clojure-quit
-    ;; "sr" 'spacemacs/cider-send-region-to-repl
-    ;; "sR" 'spacemacs/cider-send-region-to-repl-focus
-    "ss" 'inf-clojure-switch-to-repl
-    "sx" 'inf-clojure-restart
-    ;; start repl
-    "ll"  'clj-run-lisp
-    "lb"  'clj-run-boot
-    "lf"  'clj-run-figwheel
-    ;; tags
-    "jR" 'projectile-regenerate-tags
-    "jf" 'find-tag
-    "ja" 'tags-apropos
-    "jg" 'find-tag-without-ns
-    "js" 'tags-search
-    "jh" 'pop-tag-mark
-    "jl" 'list-tags
-    "jo" 'find-tag-other-window
-    "jr" 'tags-query-replace))
-
-
+(spacemacs|forall-clojure-modes m
+    (spacemacs/set-leader-keys-for-major-mode m
+      ;; eval
+      "eb" 'inf-clojure-eval-buffer
+      "ee" 'inf-clojure-eval-last-sexp
+      "ef" 'inf-clojure-eval-defun
+      "er" 'inf-clojure-eval-region
+      "en" 'inf-clojure-set-ns
+      ;; help
+      "hh" 'inf-clojure-show-var-documentation
+      "ha" 'inf-clojure-apropos
+      "hs" 'inf-clojure-show-var-source
+      "hp" 'inf-clojure-show-arglists
+      ;; repl
+      "sc" 'inf-clojure-connect
+      "se" 'clj-insert-last-sexp-in-repl
+      "sg" 'clj-go
+      "si" 'inf-clojure
+      "sk" 'erase-inf-buffer
+      "sn" 'reload-current-clj-ns
+      "sr" 'clj-refresh
+      "sR" 'clj-refresh-all
+      "sq" 'inf-clojure-quit
+      "ss" 'inf-clojure-switch-to-repl
+      "sx" 'inf-clojure-restart
+      ;; start repl
+      "ll"  'clj-run-lisp
+      "lb"  'clj-run-boot
+      "lf"  'clj-run-figwheel
+      ;; tags
+      "jR" 'projectile-regenerate-tags
+      "jf" 'find-tag
+      "ja" 'tags-apropos
+      "jg" 'find-tag-without-ns
+      "js" 'tags-search
+      "jh" 'pop-tag-mark
+      "jl" 'list-tags
+      "jo" 'find-tag-other-window
+      "jr" 'tags-query-replace
+      ;;
+      "r?"  'cljr-describe-refactoring
+      "rap" 'cljr-add-project-dependency
+      "ras" 'cljr-add-stubs
+      "rcc" 'cljr-cycle-coll
+      "rci" 'cljr-cycle-if
+      "rcp" 'cljr-cycle-privacy
+      "rdk" 'cljr-destructure-keys
+      "rel" 'cljr-expand-let
+      "rfu" 'cljr-find-usages
+      "rhd" 'cljr-hotload-dependency
+      "ril" 'cljr-introduce-let
+      "rml" 'cljr-move-to-let
+      "rpc" 'cljr-project-clean
+      "rrl" 'cljr-remove-let
+      "rsp" 'cljr-sort-project-dependencies
+      "rsc" 'cljr-show-changelog
+      "rtf" 'cljr-thread-first-all
+      "rth" 'cljr-thread
+      "rtl" 'cljr-thread-last-all
+      "rua" 'cljr-unwind-all
+      "rup" 'cljr-update-project-dependencies
+      "ruw" 'cljr-unwind))
 
 
 (spacemacs/set-leader-keys-for-major-mode 'java-mode
@@ -98,28 +102,6 @@
 (spacemacs/set-leader-keys-for-major-mode 'inferior-lisp-mode
   "sk" 'spacemacs/comint-clear-buffer
   "sr" 'clj-reimport
-    "r?"  'cljr-describe-refactoring
-    "rap" 'cljr-add-project-dependency
-    "ras" 'cljr-add-stubs
-    "rcc" 'cljr-cycle-coll
-    "rci" 'cljr-cycle-if
-    "rcp" 'cljr-cycle-privacy
-    "rdk" 'cljr-destructure-keys
-    "rel" 'cljr-expand-let
-    "rfu" 'cljr-find-usages
-    "rhd" 'cljr-hotload-dependency
-    "ril" 'cljr-introduce-let
-    "rml" 'cljr-move-to-let
-    "rpc" 'cljr-project-clean
-    "rrl" 'cljr-remove-let
-    "rsp" 'cljr-sort-project-dependencies
-    "rsc" 'cljr-show-changelog
-    "rtf" 'cljr-thread-first-all
-    "rth" 'cljr-thread
-    "rtl" 'cljr-thread-last-all
-    "rua" 'cljr-unwind-all
-    "rup" 'cljr-update-project-dependencies
-    "ruw" 'cljr-unwind
   )
 
 

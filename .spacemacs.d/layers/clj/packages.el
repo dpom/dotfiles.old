@@ -35,6 +35,7 @@
     company-etags
     eldoc
     org
+    clj-refactor
     parinfer
     projectile))
 
@@ -84,6 +85,7 @@
     :defer t
     :config (progn
               (add-to-list 'company-etags-modes 'clojure-mode)
+              (add-to-list 'company-backends 'company-infclj)
               (add-hook 'after-init-hook 'global-company-mode)
               ))
   )
@@ -112,5 +114,42 @@
 (defun clj/post-init-parinfer ()
   (spacemacs|forall-clojure-modes m
     (add-hook m 'parinfer-mode)))
+
+(defun clj/init-clj-refactor ()
+  (use-package clj-refactor
+    :defer t
+    :init (add-hook 'clojure-mode-hook 'clj-refactor-mode)
+    :config (progn
+              (add-hook 'clojure-mode-hook (lambda ()
+                                             (clj-refactor-mode 1)
+                                             (cljr-add-keybindings-with-prefix "C-c C-f")))
+              (setq clj-refactor--key-binding-prefixes
+                    '(("mr" . "refactor")
+                      ("mra" . "add")
+                      ("mrc" . "cycle/clean/convert")
+                      ("mrd" . "destructure")
+                      ("mre" . "extract/expand")
+                      ("mrf" . "find/function")
+                      ("mrh" . "hotload")
+                      ("mri" . "introduce/inline")
+                      ("mrm" . "move")
+                      ("mrp" . "project/promote")
+                      ("mrr" . "remove/rename/replace")
+                      ("mrs" . "show/sort/stop")
+                      ("mrt" . "thread")
+                      ("mru" . "unwind/update")))
+              (dolist (m '(clojure-mode
+                           clojurec-mode
+                           clojurescript-mode
+                           clojurex-mode))
+                (mapc (lambda (x) (spacemacs/declare-prefix-for-mode
+                                    m (car x) (cdr x)))
+                      clj-refactor--key-binding-prefixes)
+                (dolist (r cljr--all-helpers)
+                  (let* ((binding (car r))
+                         (func (car (cdr r))))
+                    (when (not (string-prefix-p "hydra" (symbol-name func)))
+                      (spacemacs/set-leader-keys-for-major-mode m
+                        (concat "r" binding) func))))))))
 
 ;;; packages.el ends here

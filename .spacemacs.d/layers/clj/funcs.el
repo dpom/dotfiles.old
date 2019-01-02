@@ -144,8 +144,7 @@
   `(dolist (,m '(clojure-mode
                  clojurec-mode
                  clojurescript-mode
-                 clojurex-mode
-                 inf-clojure-mode))
+                 clojurex-mode))
      ,@body))
 
 (defun clj-eval-form (form)
