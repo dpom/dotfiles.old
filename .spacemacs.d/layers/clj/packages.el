@@ -54,6 +54,8 @@
                 (setq compilation-error-regexp-alist-alist (cons cljtest-error-regexp compilation-error-regexp-alist-alist)))
               (setq compilation-error-regexp-alist (mapcar 'car compilation-error-regexp-alist-alist))
               (add-hook 'inferior-lisp-mode-hook 'spacemacs/load-yasnippet)
+
+              (setq clojure-align-forms-automatically t)
               )))
 
 
