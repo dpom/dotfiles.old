@@ -45,7 +45,7 @@
       (advice-add 'outshine-narrow-to-subtree :before
                   'advise-outshine-narrow-start-pos)
 
-      (add-hook 'outline-minor-mode-hook 'outshine-hook-function)
+      (add-hook 'outline-minor-mode-hook 'outshine-mode)
       (add-hook 'prog-mode-hook 'outline-minor-mode))))
 
 
