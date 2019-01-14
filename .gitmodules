@@ -7,3 +7,6 @@
 [submodule ".spacemacs.d/layers/myorg/local/ox-reveal"]
 	path = .spacemacs.d/layers/myorg/local/ox-reveal
 	url = git@github.com:dpom/org-reveal.git
+[submodule ".spacemacs.d/layers/clojure-lint"]
+	path = .spacemacs.d/layers/clojure-lint
+	url = https://github.com/dpom/clojure-lint-spacemacs-layer.git
