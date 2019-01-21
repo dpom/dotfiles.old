@@ -77,6 +77,7 @@
               (add-hook 'inf-clojure-mode-hook
                         '(lambda ()
                            (define-key inf-clojure-mode-map "\C-cl" 'erase-inf-buffer)))
+              ;; (setf inf-clojure-lein-cmd '("localhost" . 5555))
 
               )))
 
