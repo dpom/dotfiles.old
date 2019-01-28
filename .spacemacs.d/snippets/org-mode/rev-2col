@@ -3,12 +3,11 @@
 # key: rev-2col
 # --
 
-#+begin_twocolumn
-#+begin_left
+#+begin_multicol
+#+begin_col
 $0
-#+end_left
-#+begin_right
+#+end_col
+#+begin_col
 
-#+end_right
-#+end_twocolumn
-
+#+end_col
+#+end_multicol
