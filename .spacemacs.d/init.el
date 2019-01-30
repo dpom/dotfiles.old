@@ -46,7 +46,7 @@ This function should only modify configuration layer settings."
                                                         auto-completion-enable-company-help-tooltip 'manual
                                                         auto-completion-enable-sort-by-usage t
                                                         company-show-numbers t)
-
+                                       evil-snipe
                                        ;; (ivy :variables
                                        ;; ivy-extra-directories nil)
                                        (git :variables

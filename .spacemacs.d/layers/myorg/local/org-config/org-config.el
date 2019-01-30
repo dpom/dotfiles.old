@@ -136,19 +136,21 @@
 
 (setq
  org-structure-template-alist
- '(("n" "#+BEGIN_NOTES\n\n#+END_NOTES")
-   ("q" "#+BEGIN_QUOTE\n\n#+END_QUOTE")
-
-   ;; Language Blocks
-   ("c" "#+BEGIN_SRC clojure\n\n#+END_SRC")
-   ("d" "#+BEGIN_SRC dot\n\n#+END_SRC")
-   ("e" "#+BEGIN_SRC emacs-lisp\n\n#+END_SRC")
-   ("j" "#+BEGIN_SRC js\n\n#+END_SRC")
-   ("l" "#+BEGIN_SRC lisp\n\n#+END_SRC")
-   ("p" "#+BEGIN_SRC python\n\n#+END_SRC")
-   ("s" "#+BEGIN_SRC shell\n\n#+END_SRC")
-   ("x" "#+BEGIN_SRC xml\n\n#+END_SRC")
-   ))
+ '(("a" . "export ascii")
+   ("c" . "src clojure")
+   ("C" . "comment")
+   ("d" . "src dot")
+   ("e" . "src elisp")
+   ("E" . "example")
+   ("h" . "export html")
+   ("j" . "src js")
+   ("l" . "export latex")
+   ("n" . "notes")
+   ("q" . "quote")
+   ("s" . "src shell")
+   ("v" . "verse")
+   ("x" . "src xml")))
+(require 'org-tempo)
 
 ;;; Org Blocks
 
