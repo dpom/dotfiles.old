@@ -33,6 +33,9 @@
   '(clojure-mode
     inf-clojure
     company-etags
+    ggtags
+    counsel-gtags
+    helm-gtags
     eldoc
     org
     clj-refactor
@@ -54,7 +57,7 @@
                 (setq compilation-error-regexp-alist-alist (cons cljtest-error-regexp compilation-error-regexp-alist-alist)))
               (setq compilation-error-regexp-alist (mapcar 'car compilation-error-regexp-alist-alist))
               (add-hook 'inferior-lisp-mode-hook 'spacemacs/load-yasnippet)
-
+              (add-hook 'clojure-mode-hook #'inf-clojure-minor-mode)
               (setq clojure-align-forms-automatically t)
               )))
 
@@ -66,7 +69,7 @@
               (setq inf-clojure-prompt-read-only nil)
               (add-hook 'inf-clojure-minor-mode-hook   ;; prevent company-mode from freezing Emacs when the REPL is busy
                         (lambda () (setq completion-at-point-functions nil)))
-              (add-hook 'clojure-mode-hook 'inf-clojure-minor-mode)
+              ;; (add-hook 'clojure-mode-hook 'inf-clojure-minor-mode)
 
               (add-hook 'clojure-mode-hook
                         '(lambda ()
@@ -95,11 +98,8 @@
 
 ;; eldoc-mode
 (defun clj/post-init-eldoc ()
-  (use-package eldoc
-    :defer t
-    :config (progn
-              (add-hook 'clojure-mode-hook #'eldoc-mode)
-              (add-hook 'inf-clojure-mode-hook #'eldoc-mode))))
+  (add-hook 'clojure-mode-hook #'eldoc-mode)
+  (add-hook 'inf-clojure-mode-hook #'eldoc-mode))
 
 ;; projectile-mode
 (defun clj/post-init-projectile ()
@@ -154,5 +154,14 @@
                     (when (not (string-prefix-p "hydra" (symbol-name func)))
                       (spacemacs/set-leader-keys-for-major-mode m
                         (concat "r" binding) func))))))))
+
+(defun clj/post-init-ggtags ()
+  (add-hook 'clojure-mode-local-vars-hook #'spacemacs/ggtags-mode-enable))
+
+(defun clj/post-init-counsel-gtags ()
+  (spacemacs/counsel-gtags-define-keys-for-mode 'clojure-mode))
+
+(defun clj/post-init-helm-gtags ()
+  (spacemacs/helm-gtags-define-keys-for-mode 'clojure-mode))
 
 ;;; packages.el ends here
