@@ -52,7 +52,6 @@ This function should only modify configuration layer settings."
                                        (git :variables
                                             git-enable-github-support t
                                             git-gutter-use-fringe t)
-                                       (github :variables gh-profile-default-profile "dpom")
                                        (shell :variables
                                               shell-default-shell 'eshell
                                               shell-default-height 30
