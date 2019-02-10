@@ -62,7 +62,7 @@ This function should only modify configuration layer settings."
                                        ;; smex
                                        (org :variables
                                             org-enable-github-support t
-                                            org-enable-reveal-js-support t)
+                                            org-enable-reveal-js-support nil)
                                        (ibuffer :variables
                                                 ibuffer-group-buffers-by 'projects)
                                        myconfig
@@ -106,6 +106,7 @@ This function should only modify configuration layer settings."
                                        docker
                                        yaml
                                        parinfer
+                                       outshine
                                        )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -116,6 +117,7 @@ This function should only modify configuration layer settings."
    ;; Also include the dependencies as they will not be resolved automatically.
    dotspacemacs-additional-packages '(zprint-mode
                                       keychain-environment
+                                      org-re-reveal
                                       nodejs-repl)
 
    ;; A list of packages that cannot be updated.
@@ -240,7 +242,7 @@ It should only modify the values of Spacemacs settings."
    dotspacemacs-initial-scratch-message nil
 
    ;; List of themes, the first of the list is loaded when spacemacs starts.
-   ;; Press <SPC> T n to cycle to the next theme in the list (works great
+   ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(zenburn
                          spacemacs-dark
@@ -303,9 +305,14 @@ It should only modify the values of Spacemacs settings."
    ;; (default nil)
    dotspacemacs-display-default-layout t
 
-   ;; If non nil then the last auto saved layouts are resume automatically upon
+   ;; If non-nil then the last auto saved layouts are resumed automatically upon
    ;; start. (default nil)
    dotspacemacs-auto-resume-layouts t
+
+   ;; If non-nil, auto-generate layout name when creating new layouts. Only has
+   ;; effect when using the "jump to layout by number" commands. (default nil)
+   dotspacemacs-auto-generate-layout-names nil
+
    ;; Size (in MB) above which spacemacs will prompt to open the large file
    ;; literally to avoid performance issues. Opening a file literally means that
    ;; no major mode or minor modes are active. (default is 1)
@@ -491,7 +498,7 @@ This function is called immediately after `dotspacemacs/init', before layer
 configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
-  ;;jk fs(setq dotspacemacs-use-spacelpa t)
+  ;;(setq dotspacemacs-use-spacelpa t)
   (setq-default evil-escape-delay 0.5)
 
   (defun expand-dir-name (dir path)
@@ -597,7 +604,35 @@ before packages are loaded."
   (keychain-refresh-environment)
 
   ;; (spacemacs/toggle-evil-safe-lisp-structural-editing-on-register-hooks)
+  (use-package org-re-reveal
+    :after org
+    :config (progn
+              (setq org-re-reveal-external-plugins  '((menu . "{ src: './plugins/menu/menu.js', async: true}")
+                                                      (jump . "{ src: './plugins/jump/jump.js', async: true}")
+                                                      (toolbar . "{ src: './plugins/toolbar/toolbar.js', async: true}")))
+              ))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
+(defun dotspacemacs/emacs-custom-settings ()
+  "Emacs custom settings.
+This is an auto-generated function, do not modify its content directly, use
+Emacs customize menu instead.
+This function is called at the very end of Spacemacs initialization."
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (treemacs-projectile treemacs-evil treemacs ht pfuture zprint-mode zenburn-theme yasnippet-snippets yapfify yaml-mode xterm-color ws-butler writeroom-mode winum which-key web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package toc-org tagedit symon string-inflection sql-indent spaceline-all-the-icons smeargle slim-mode shell-pop scss-mode sass-mode restart-emacs rainbow-delimiters pyvenv pytest pyenv-mode py-isort pug-mode prettier-js popwin plantuml-mode pippel pipenv pip-requirements persp-mode pcre2el password-generator parinfer paradox ox-rst ox-gfm overseer origami orgit org-ref org-re-reveal org-present org-pomodoro org-mime org-download org-bullets org-brain open-junk-file nodejs-repl neotree nameless multi-term move-text mmm-mode markdown-toc magit-svn magit-gitflow macrostep lorem-ipsum livid-mode live-py-mode link-hint keychain-environment json-navigator js2-refactor js-doc insert-shebang inf-clojure indent-guide importmagic impatient-mode ibuffer-projectile hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-rtags helm-pydoc helm-purpose helm-projectile helm-org-rifle helm-mode-manager helm-make helm-gitignore helm-git-grep helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag google-translate google-c-style golden-ratio gnuplot gitignore-templates gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md fuzzy font-lock+ flyspell-correct-helm flycheck-rtags flycheck-pos-tip flycheck-joker flycheck-bashate flx-ido fish-mode fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-snipe evil-org evil-numbers evil-nerd-commenter evil-multiedit evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help emmet-mode elisp-slime-nav editorconfig dumb-jump dotenv-mode doom-modeline dockerfile-mode docker disaster direx diminish define-word cython-mode csv-mode counsel-projectile company-web company-tern company-statistics company-shell company-rtags company-c-headers company-auctex company-anaconda column-enforce-mode clomacs clj-refactor clean-aindent-mode clang-format centered-cursor-mode cdlatex auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile auctex-latexmk aggressive-indent ace-window ace-link ace-jump-helm-line ac-ispell))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(org-done ((t (:foreground "PaleGreen" :weight normal :strike-through t))))
+ '(org-headline-done ((((class color) (min-colors 16) (background dark)) (:foreground "LightSalmon" :strike-through t)))))
+)

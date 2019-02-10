@@ -27,9 +27,9 @@
   "Initialize ox-reveal package."
   (use-package ox-reveal
     :config (progn
-              (setq org-reveal-external-plugins  '((menu . "{ src: './plugins/menu/menu.js', async: true}")
-                                                   (jump . "{ src: './plugins/jump/jump.js', async: true}")
-                                                   (toolbar . "{ src: './plugins/toolbar/toolbar.js', async: true}")))
+              (setq org-re-reveal-external-plugins  '((menu . "{ src: './plugins/menu/menu.js', async: true}")
+                                                      (jump . "{ src: './plugins/jump/jump.js', async: true}")
+                                                      (toolbar . "{ src: './plugins/toolbar/toolbar.js', async: true}")))
               )))
 
 (defun myorg/init-cdlatex ()
